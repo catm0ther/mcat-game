@@ -114,7 +114,7 @@ const CLUSTERS = [
         scenarios: [
           "A student studies pharmacology every morning while drinking coffee. On exam day, she drinks coffee beforehand and recalls the material better than when she studied caffeine-free. This best demonstrates...",
           "A diver memorizes a list of words while submerged. When tested later, recall is significantly better underwater than on land. This is an example of...",
-          "A patient learns anxiety-management techniques during a calm therapy session. During a panic attack, she struggles to retrieve them. State-dependent memory predicts recall would be best when...",
+          "A patient learns anxiety-management techniques during calm therapy sessions. During a real panic attack weeks later, she cannot retrieve them — even ones she knew cold while calm. This retrieval failure best illustrates...",
         ],
         correct: "State-Dependent Memory",
         wrongPool: ["Dual-Coding Theory", "The Misinformation Effect", "Context-Dependent Memory", "Encoding Specificity", "Mood-Congruent Memory", "The Primacy Effect"],
