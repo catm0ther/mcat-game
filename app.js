@@ -1,30 +1,26 @@
 // ── Custom Cursor (desktop only) ───────────────────────────────────────────
 (function () {
   if (!window.matchMedia('(hover: hover)').matches) return;
-
   const cursor = document.createElement('div');
   cursor.className = 'custom-cursor';
   cursor.textContent = '⭐';
   document.body.appendChild(cursor);
-
   document.addEventListener('mousemove', e => {
     cursor.style.left = e.clientX + 'px';
     cursor.style.top  = e.clientY + 'px';
   });
-
   document.addEventListener('mouseover', e => {
-    const hover = e.target.closest('button, a, [role="button"]');
-    cursor.classList.toggle('cursor-hover', !!hover);
+    cursor.classList.toggle('cursor-hover', !!e.target.closest('button, a'));
   });
-
   document.addEventListener('mousedown', () => cursor.classList.add('cursor-click'));
   document.addEventListener('mouseup',   () => cursor.classList.remove('cursor-click'));
 })();
 
 // ── State ──────────────────────────────────────────────────────────────────
 const state = {
+  section: null,
   cluster: null,
-  gameType: null,   // 'scenario-drop' | 'showdown' | 'all'
+  gameType: null,
   session: [],
   index: 0,
   score: 0,
@@ -51,10 +47,20 @@ function recordAnswer(clusterId, correct) {
 }
 
 function getMastery(clusterId) {
+  const p = getProgress()[clusterId];
+  if (!p || p.total === 0) return 0;
+  return Math.round((p.correct / p.total) * 100);
+}
+
+function getSectionMastery(section) {
+  const clusters = section.clusterIds.map(id => CLUSTERS.find(c => c.id === id));
   const p = getProgress();
-  const c = p[clusterId];
-  if (!c || c.total === 0) return 0;
-  return Math.round((c.correct / c.total) * 100);
+  let correct = 0, total = 0;
+  clusters.forEach(c => {
+    const rec = p[c.id];
+    if (rec) { correct += rec.correct; total += rec.total; }
+  });
+  return total === 0 ? 0 : Math.round((correct / total) * 100);
 }
 
 // ── Utilities ──────────────────────────────────────────────────────────────
@@ -67,100 +73,155 @@ function shuffle(arr) {
   return a;
 }
 
-function render(html) {
-  document.getElementById('app').innerHTML = html;
-}
+function render(html) { document.getElementById('app').innerHTML = html; }
 
-// ── Build session ──────────────────────────────────────────────────────────
 function buildSession(cluster, gameType) {
   const qs = [];
-
-  if (gameType === 'scenario-drop' || gameType === 'all') {
-    cluster.scenarioDrop.forEach(q =>
-      qs.push({ type: 'scenario-drop', ...q })
-    );
-  }
-
-  if (gameType === 'showdown' || gameType === 'all') {
-    cluster.showdown.forEach(q =>
-      qs.push({ type: 'showdown', ...q })
-    );
-  }
-
+  if (gameType === 'scenario-drop' || gameType === 'all')
+    cluster.scenarioDrop.forEach(q => qs.push({ type: 'scenario-drop', ...q }));
+  if (gameType === 'showdown' || gameType === 'all')
+    cluster.showdown.forEach(q => qs.push({ type: 'showdown', ...q }));
+  if (gameType === 'all' && isMobile)
+    return shuffle(qs.filter(q => q.type === 'scenario-drop').concat(
+      cluster.showdown.length ? [{ type: 'showdown', ...cluster.showdown[0] }] : []
+    ));
   return shuffle(qs);
 }
 
-// ── World Map (Home) ───────────────────────────────────────────────────────
-function renderMap() {
-  state.cluster = null;
-  state.gameType = null;
+// ══════════════════════════════════════════════════════════════════════════
+// SCREEN 1 — Section Map (Home)
+// ══════════════════════════════════════════════════════════════════════════
+function renderSectionMap() {
+  state.section = null; state.cluster = null;
 
-  const zones = CLUSTERS.map(c => {
-    const mastery = getMastery(c.id);
-    const p = getProgress()[c.id];
-    const isNew = !p || p.total === 0;
-    const isHot = mastery > 0 && mastery < 60;
-    const isGreat = mastery >= 85;
-
-    const badge = isNew    ? `<span class="zone-badge badge-new">New</span>`
-                : isGreat  ? `<span class="zone-badge badge-great">Mastered 🔥</span>`
-                : isHot    ? `<span class="zone-badge badge-hot">Needs work</span>`
-                : '';
-
-    const masteryLabel = mastery === 0 ? 'Not started'
-      : mastery < 60 ? `${mastery}% correct`
-      : mastery < 85 ? `${mastery}% — almost there`
-      : `${mastery}% — crushing it`;
+  const cards = SECTIONS.map(s => {
+    const mastery = s.available ? getSectionMastery(s) : 0;
+    const masteryBar = s.available ? `
+      <div class="section-footer">
+        <div class="mastery-bar">
+          <div class="mastery-fill" style="width:${mastery}%; background:${s.color}"></div>
+        </div>
+        <span class="status-label">${mastery === 0 ? 'Not started' : mastery + '% correct'}</span>
+      </div>` : '';
 
     return `
-      <button class="zone-territory"
-        onclick="renderZoneHub('${c.id}')"
-        style="--zone-color:${c.color}; --zone-light:${c.lightColor}">
-        ${badge}
-        <div class="zone-top">
-          <span class="zone-icon">${c.emoji}</span>
-          <div class="zone-names">
-            <div class="zone-place">${c.place}</div>
-            <div class="zone-tagline">${c.tagline}</div>
+      <button class="section-card ${s.available ? '' : 'section-wip'}"
+        ${s.available ? `onclick="renderSectionHub('${s.id}')"` : 'disabled'}
+        style="--sec-color:${s.color}; --sec-light:${s.lightColor}">
+        <div class="section-card-top">
+          <span class="section-icon">${s.emoji}</span>
+          <div class="section-names">
+            <div class="section-name">${s.name}</div>
+            <div class="section-full">${s.fullName}</div>
           </div>
+          ${!s.available ? '<span class="wip-badge">Coming soon</span>' : ''}
         </div>
-        <div class="zone-topics">${c.description}</div>
-        <div class="zone-footer">
-          <div class="mastery-bar">
-            <div class="mastery-fill" style="width:${mastery}%"></div>
+        ${masteryBar}
+      </button>`;
+  }).join('');
+
+  render(`
+    <div class="screen-section-map">
+      <header class="map-header">
+        <div class="map-title">MCAT <span>Training</span></div>
+        <p class="map-subtitle">Pick a section to train${isMobile ? ' · 📱 phone mode' : ''}</p>
+      </header>
+      <div class="section-grid">${cards}</div>
+      <p class="map-footnote">CARS not shown — you don't need it 💅</p>
+    </div>
+  `);
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// SCREEN 2 — Section Hub (e.g. Psych/Soc)
+// Shows all topic clusters within the section + overall stats
+// ══════════════════════════════════════════════════════════════════════════
+function renderSectionHub(sectionId) {
+  const section = SECTIONS.find(s => s.id === sectionId);
+  state.section = section;
+  const clusters = section.clusterIds.map(id => CLUSTERS.find(c => c.id === id));
+  const mastery = getSectionMastery(section);
+  const totalQs = clusters.reduce((n, c) => n + c.scenarioDrop.length + c.showdown.length, 0);
+
+  const clusterCards = clusters.map(c => {
+    const cm = getMastery(c.id);
+    const p = getProgress()[c.id];
+    const badge = !p || p.total === 0 ? '<span class="topic-badge badge-new">New</span>'
+      : cm >= 85 ? '<span class="topic-badge badge-great">🔥 Mastered</span>'
+      : cm < 60  ? '<span class="topic-badge badge-hot">Needs work</span>'
+      : '';
+
+    return `
+      <button class="topic-card" onclick="renderZoneHub('${c.id}')"
+        style="--zone-color:${c.color}; --zone-light:${c.lightColor}">
+        <div class="topic-card-top">
+          <span class="topic-icon">${c.emoji}</span>
+          <div class="topic-names">
+            <div class="topic-place">${c.place}</div>
+            <div class="topic-tagline">${c.tagline}</div>
           </div>
-          <span class="status-label">${masteryLabel}</span>
+          ${badge}
+        </div>
+        <div class="topic-concepts">${c.description}</div>
+        <div class="topic-footer">
+          <div class="mastery-bar">
+            <div class="mastery-fill" style="width:${cm}%; background:${c.color}"></div>
+          </div>
+          <span class="status-label">${cm === 0 ? 'Not started' : cm + '%'}</span>
         </div>
       </button>`;
   }).join('');
 
   render(`
-    <div class="screen-map">
-      <span class="compass">🧭</span>
-      <header class="map-header">
-        <div class="map-title">MCAT <span>World</span></div>
-        <p class="map-subtitle">
-          ${isMobile ? '📱 Phone mode — quick sessions · ' : ''}Pick a zone to train
-        </p>
-      </header>
-      <div class="zone-grid">${zones}</div>
+    <div class="screen-section-hub" style="--sec-color:${section.color}; --sec-light:${section.lightColor}">
+
+      <div class="section-hub-hero">
+        <div class="section-hub-hero-bg"></div>
+        <button class="hub-back" onclick="renderSectionMap()">← Sections</button>
+        <div class="section-hub-icon">${section.emoji}</div>
+        <div class="section-hub-name">${section.name}</div>
+        <div class="section-hub-full">${section.fullName}</div>
+        <div class="section-hub-stats">
+          <div class="hub-stat">
+            <span class="hub-stat-val">${totalQs}</span>
+            <span class="hub-stat-label">questions</span>
+          </div>
+          <div class="hub-stat-divider"></div>
+          <div class="hub-stat">
+            <span class="hub-stat-val">${mastery}%</span>
+            <span class="hub-stat-label">overall correct</span>
+          </div>
+          <div class="hub-stat-divider"></div>
+          <div class="hub-stat">
+            <span class="hub-stat-val">${clusters.length}</span>
+            <span class="hub-stat-label">topics</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-hub-body">
+        <p class="hub-section-label">Topics</p>
+        <div class="topic-grid">${clusterCards}</div>
+      </div>
+
     </div>
   `);
 }
 
-// ── Zone Hub ───────────────────────────────────────────────────────────────
+// ══════════════════════════════════════════════════════════════════════════
+// SCREEN 3 — Zone Hub (game selection for one topic cluster)
+// ══════════════════════════════════════════════════════════════════════════
 function renderZoneHub(clusterId) {
   const cluster = CLUSTERS.find(c => c.id === clusterId);
+  const section = SECTIONS.find(s => s.clusterIds.includes(clusterId));
   state.cluster = cluster;
 
-  const sdCount = cluster.scenarioDrop.length;
-  const swCount = cluster.showdown.length;
+  const sdCount  = cluster.scenarioDrop.length;
+  const swCount  = cluster.showdown.length;
   const allCount = sdCount + swCount;
 
-  // On mobile, showdown gets folded into "all" — keep it simple
   const showdownOption = isMobile ? '' : `
-    <button class="game-option"
-      onclick="startGame('${clusterId}', 'showdown')"
+    <button class="game-option" onclick="startGame('${clusterId}','showdown')"
       style="--zone-color:${cluster.color}; --zone-light:${cluster.lightColor}">
       <div class="game-option-icon">⚔️</div>
       <div class="game-option-info">
@@ -174,51 +235,47 @@ function renderZoneHub(clusterId) {
     <div class="screen-hub" style="--zone-color:${cluster.color}; --zone-light:${cluster.lightColor}">
       <div class="hub-hero">
         <div class="hub-hero-bg"></div>
-        <button class="hub-back" onclick="renderMap()">← Map</button>
+        <button class="hub-back" onclick="renderSectionHub('${section.id}')">← ${section.name}</button>
         <div class="hub-icon">${cluster.emoji}</div>
         <div class="hub-place">${cluster.place}</div>
         <div class="hub-tagline">${cluster.tagline}</div>
       </div>
-
       <div class="hub-body">
         <p class="hub-prompt">Choose your game</p>
         <div class="game-menu">
-
-          <button class="game-option"
-            onclick="startGame('${clusterId}', 'scenario-drop')"
+          <button class="game-option" onclick="startGame('${clusterId}','scenario-drop')"
             style="--zone-color:${cluster.color}; --zone-light:${cluster.lightColor}">
             <div class="game-option-icon">🎯</div>
             <div class="game-option-info">
               <div class="game-option-name">Scenario Drop</div>
-              <div class="game-option-desc">A scenario appears — pick the concept that fits from 4 choices</div>
+              <div class="game-option-desc">Read a scenario — pick the concept that fits from 4 choices</div>
             </div>
             <span class="game-option-count">${sdCount} questions</span>
           </button>
-
           ${showdownOption}
-
-          <button class="game-option play-all"
-            onclick="startGame('${clusterId}', 'all')"
+          <button class="game-option play-all" onclick="startGame('${clusterId}','all')"
             style="--zone-color:${cluster.color}; --zone-light:${cluster.lightColor}">
             <div class="game-option-icon" style="background:rgba(255,255,255,0.2)">🌀</div>
             <div class="game-option-info">
               <div class="game-option-name">Play All</div>
-              <div class="game-option-desc">Everything shuffled together — the full zone experience</div>
+              <div class="game-option-desc">Everything shuffled — the full topic experience</div>
             </div>
-            <span class="game-option-count">${isMobile ? sdCount + 1 : allCount} questions</span>
+            <span class="game-option-count">${isMobile ? sdCount + Math.min(1, swCount) : allCount} questions</span>
           </button>
-
         </div>
       </div>
     </div>
   `);
 }
 
-// ── Start game ─────────────────────────────────────────────────────────────
+// ══════════════════════════════════════════════════════════════════════════
+// SCREEN 4 — Game
+// ══════════════════════════════════════════════════════════════════════════
 function startGame(clusterId, gameType) {
   const cluster = CLUSTERS.find(c => c.id === clusterId);
   state.cluster  = cluster;
   state.gameType = gameType;
+  state.section  = SECTIONS.find(s => s.clusterIds.includes(clusterId));
   state.session  = buildSession(cluster, gameType);
   state.index    = 0;
   state.score    = 0;
@@ -226,24 +283,21 @@ function startGame(clusterId, gameType) {
   renderQuestion();
 }
 
-// ── Render current question ────────────────────────────────────────────────
 function renderQuestion() {
-  const q = state.session[state.index];
+  const q  = state.session[state.index];
   state.currentQ   = q;
   state.answered   = false;
-
   const pct   = (state.index / state.session.length) * 100;
   const count = `${state.index + 1} / ${state.session.length}`;
   const c     = state.cluster;
-
-  const gameLabel = q.type === 'scenario-drop' ? 'Scenario Drop' : 'Showdown';
+  const label = q.type === 'scenario-drop' ? 'Scenario Drop' : 'Showdown';
 
   const header = `
     <div class="game-header" style="--zone-color:${c.color}">
       <button class="btn-back" onclick="renderZoneHub('${c.id}')">← Zone</button>
       <div class="header-center">
         <span class="cluster-name">${c.emoji} ${c.place}</span>
-        <span class="game-type-pill">${gameLabel}</span>
+        <span class="game-type-pill">${label}</span>
       </div>
       <span class="question-count">${count}</span>
     </div>
@@ -251,14 +305,11 @@ function renderQuestion() {
       <div class="progress-fill" style="width:${pct}%; background:${c.color}"></div>
     </div>`;
 
-  if (q.type === 'scenario-drop') {
-    renderScenarioDrop(q, header);
-  } else {
-    renderShowdown(q, header);
-  }
+  q.type === 'scenario-drop'
+    ? renderScenarioDrop(q, header)
+    : renderShowdown(q, header);
 }
 
-// ── Scenario Drop ──────────────────────────────────────────────────────────
 function renderScenarioDrop(q, header) {
   const answers = shuffle([q.correct, ...q.wrong]);
   state.currentAnswers = answers;
@@ -268,13 +319,9 @@ function renderScenarioDrop(q, header) {
     <div class="screen-game" style="--zone-color:${c.color}; --zone-light:${c.lightColor}">
       ${header}
       <div class="game-body">
-        <div class="scenario-card">
-          <p class="scenario-text">${q.scenario}</p>
-        </div>
+        <div class="scenario-card"><p class="scenario-text">${q.scenario}</p></div>
         <div class="answers-grid" id="answers">
-          ${answers.map((a, i) =>
-            `<button class="answer-btn" data-idx="${i}">${a}</button>`
-          ).join('')}
+          ${answers.map((a, i) => `<button class="answer-btn" data-idx="${i}">${a}</button>`).join('')}
         </div>
         <div id="feedback" class="feedback-panel hidden"></div>
       </div>
@@ -289,7 +336,6 @@ function renderScenarioDrop(q, header) {
       const correct  = selected === state.currentQ.correct;
       if (correct) state.score++;
       recordAnswer(state.cluster.id, correct);
-
       document.querySelectorAll('.answer-btn').forEach(b => {
         const val = state.currentAnswers[parseInt(b.dataset.idx)];
         if (val === state.currentQ.correct) b.classList.add('correct');
@@ -297,13 +343,11 @@ function renderScenarioDrop(q, header) {
         else                                 b.classList.add('dimmed');
         b.disabled = true;
       });
-
       showFeedback(correct, state.currentQ.explanation);
     });
   });
 }
 
-// ── Showdown ───────────────────────────────────────────────────────────────
 function renderShowdown(q, header) {
   const c = state.cluster;
 
@@ -312,9 +356,7 @@ function renderShowdown(q, header) {
       ${header}
       <div class="game-body">
         <p class="showdown-prompt">Which concept fits?</p>
-        <div class="scenario-card">
-          <p class="scenario-text">${q.scenario}</p>
-        </div>
+        <div class="scenario-card"><p class="scenario-text">${q.scenario}</p></div>
         <div class="showdown-choices">
           <button class="showdown-btn" id="btnA">${q.conceptA}</button>
           <div class="vs-badge">VS</div>
@@ -325,25 +367,20 @@ function renderShowdown(q, header) {
     </div>
   `);
 
-  [
-    { id: 'btnA', val: q.conceptA },
-    { id: 'btnB', val: q.conceptB },
-  ].forEach(({ id, val }) => {
+  [{ id: 'btnA', val: q.conceptA }, { id: 'btnB', val: q.conceptB }].forEach(({ id, val }) => {
     document.getElementById(id).addEventListener('click', function () {
       if (state.answered) return;
       state.answered = true;
       const correct = val === state.currentQ.correct;
       if (correct) state.score++;
       recordAnswer(state.cluster.id, correct);
-
       document.querySelectorAll('.showdown-btn').forEach(b => {
-        const isWinner = b.textContent.trim() === state.currentQ.correct;
-        if (isWinner)          b.classList.add('correct');
-        else if (b === this)   b.classList.add('incorrect');
-        else                   b.classList.add('dimmed');
+        const winner = b.textContent.trim() === state.currentQ.correct;
+        if (winner)          b.classList.add('correct');
+        else if (b === this) b.classList.add('incorrect');
+        else                 b.classList.add('dimmed');
         b.disabled = true;
       });
-
       showFeedback(correct, state.currentQ.explanation);
     });
   });
@@ -353,7 +390,6 @@ function renderShowdown(q, header) {
 function showFeedback(correct, explanation) {
   const panel  = document.getElementById('feedback');
   const isLast = state.index + 1 >= state.session.length;
-
   panel.className = `feedback-panel ${correct ? 'feedback-correct' : 'feedback-incorrect'}`;
   panel.innerHTML = `
     <div class="feedback-top">
@@ -365,56 +401,38 @@ function showFeedback(correct, explanation) {
     </div>
     <div class="feedback-actions">
       <button class="btn-flag" onclick="flagQuestion()">🚩 Flag question</button>
-      <button class="btn-next" onclick="nextQuestion()">
-        ${isLast ? 'See Results →' : 'Next →'}
-      </button>
-    </div>
-  `;
+      <button class="btn-next" onclick="nextQuestion()">${isLast ? 'See Results →' : 'Next →'}</button>
+    </div>`;
 }
 
-// ── Flag ───────────────────────────────────────────────────────────────────
 function flagQuestion() {
   const q = state.currentQ;
   const flags = JSON.parse(localStorage.getItem('mcatFlags') || '[]');
-  if (!flags.some(f => f.scenario === q.scenario)) {
+  if (!flags.some(f => f.scenario === q.scenario))
     flags.push({ cluster: state.cluster.id, scenario: q.scenario, type: q.type });
-    localStorage.setItem('mcatFlags', JSON.stringify(flags));
-  }
+  localStorage.setItem('mcatFlags', JSON.stringify(flags));
   const btn = document.querySelector('.btn-flag');
   if (btn) { btn.textContent = '🚩 Flagged'; btn.disabled = true; }
 }
 
-// ── Advance ────────────────────────────────────────────────────────────────
 function nextQuestion() {
   state.index++;
-  if (state.index >= state.session.length) {
-    renderResults();
-  } else {
-    renderQuestion();
-  }
+  state.index >= state.session.length ? renderResults() : renderQuestion();
 }
 
-// ── Results ────────────────────────────────────────────────────────────────
+// ══════════════════════════════════════════════════════════════════════════
+// SCREEN 5 — Results
+// ══════════════════════════════════════════════════════════════════════════
 function renderResults() {
   const total = state.session.length;
   const pct   = Math.round((state.score / total) * 100);
   const c     = state.cluster;
-  const gt    = state.gameType;
 
-  let emoji, title, subtitle;
-  if (pct >= 90) {
-    emoji = '🔥'; title = 'On Fire!';
-    subtitle = 'This zone is yours. Keep it hot.';
-  } else if (pct >= 70) {
-    emoji = '💪'; title = 'Solid Work';
-    subtitle = "You're getting there. One more round will lock it in.";
-  } else if (pct >= 50) {
-    emoji = '📈'; title = 'Building Up';
-    subtitle = 'These gaps are closing. Keep going.';
-  } else {
-    emoji = '🧠'; title = 'Brain Training';
-    subtitle = "This is exactly why we practice. Run it again.";
-  }
+  const [emoji, title, subtitle] =
+    pct >= 90 ? ['🔥', 'On Fire!',      'This topic is yours. Keep it hot.']
+  : pct >= 70 ? ['💪', 'Solid Work',    "You're getting there. One more round will lock it in."]
+  : pct >= 50 ? ['📈', 'Building Up',   'These gaps are closing. Keep going.']
+  :             ['🧠', 'Brain Training', "This is exactly why we practice. Run it again."];
 
   render(`
     <div class="screen-results" style="--zone-color:${c.color}">
@@ -428,7 +446,7 @@ function renderResults() {
         </div>
         <div class="results-actions">
           <button class="btn-primary" onclick="renderZoneHub('${c.id}')">← Zone</button>
-          <button class="btn-secondary" onclick="startGame('${c.id}', '${gt}')">Play Again</button>
+          <button class="btn-secondary" onclick="startGame('${c.id}','${state.gameType}')">Play Again</button>
         </div>
       </div>
     </div>
@@ -436,4 +454,4 @@ function renderResults() {
 }
 
 // ── Boot ───────────────────────────────────────────────────────────────────
-renderMap();
+renderSectionMap();

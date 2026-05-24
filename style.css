@@ -56,7 +56,310 @@ button:active { transform: scale(0.96); }
 .custom-cursor.cursor-hover { font-size: 28px; }
 .custom-cursor.cursor-click { transform: translate(-50%, -50%) scale(0.75); }
 
-/* ── World Map (Home) ─────────────────────────────── */
+/* ── Section Map (Home) ──────────────────────────── */
+.screen-section-map {
+  min-height: 100vh;
+  padding: 40px 20px 56px;
+  background-color: var(--bg);
+  background-image: radial-gradient(circle, #D9C9A8 1px, transparent 1px);
+  background-size: 28px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.map-header { text-align: center; margin-bottom: 36px; }
+
+.map-title {
+  font-size: 2.6rem;
+  font-weight: 900;
+  color: var(--text);
+  letter-spacing: -1.5px;
+  line-height: 1;
+}
+
+.map-title span {
+  display: inline-block;
+  background: linear-gradient(135deg, #7C3AED, #F97316);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.map-subtitle {
+  font-size: 1rem;
+  color: var(--text-soft);
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+.map-footnote {
+  margin-top: 24px;
+  font-size: 0.8rem;
+  color: var(--text-soft);
+  font-weight: 700;
+  font-style: italic;
+  opacity: 0.7;
+}
+
+.section-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  max-width: 560px;
+}
+
+.section-card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 22px;
+  box-shadow: var(--shadow);
+  text-align: left;
+  width: 100%;
+  border: 3px solid transparent;
+  border-left: 7px solid var(--sec-color);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s;
+}
+
+.section-card:not(.section-wip):hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--sec-color);
+}
+
+.section-wip {
+  opacity: 0.55;
+  border-left-color: #D1D5DB;
+}
+
+.section-card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.section-icon { font-size: 2.2rem; flex-shrink: 0; line-height: 1; }
+
+.section-names { flex: 1; }
+
+.section-name {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.section-full {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-soft);
+  line-height: 1.4;
+}
+
+.section-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wip-badge {
+  font-size: 0.7rem;
+  font-weight: 800;
+  background: #F3F4F6;
+  color: #9CA3AF;
+  padding: 3px 10px;
+  border-radius: 99px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  flex-shrink: 0;
+}
+
+/* ── Section Hub (e.g. Psych/Soc) ────────────────── */
+.screen-section-hub {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-hub-hero {
+  background: var(--sec-color);
+  color: white;
+  padding: 32px 24px 40px;
+  text-align: center;
+  position: relative;
+}
+
+.section-hub-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0; right: 0;
+  height: 36px;
+  background: var(--bg);
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+}
+
+.section-hub-icon { font-size: 3.8rem; margin-bottom: 10px; line-height: 1; }
+
+.section-hub-name {
+  font-size: 2rem;
+  font-weight: 900;
+  color: white;
+  margin-bottom: 4px;
+}
+
+.section-hub-full {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 20px;
+}
+
+.section-hub-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  background: rgba(255,255,255,0.15);
+  border-radius: 16px;
+  padding: 14px 20px;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.hub-stat {
+  flex: 1;
+  text-align: center;
+}
+
+.hub-stat-val {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: white;
+  line-height: 1;
+}
+
+.hub-stat-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.75);
+  margin-top: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.hub-stat-divider {
+  width: 1px;
+  height: 32px;
+  background: rgba(255,255,255,0.3);
+  flex-shrink: 0;
+}
+
+.section-hub-body {
+  flex: 1;
+  padding: 28px 20px 48px;
+  max-width: 760px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.hub-section-label {
+  font-size: 0.8rem;
+  font-weight: 900;
+  color: var(--text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  margin-bottom: 14px;
+}
+
+/* ── Topic Cards (inside section hub) ────────────── */
+.topic-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (min-width: 600px) {
+  .topic-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+}
+
+.topic-card {
+  background: var(--white);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+  text-align: left;
+  width: 100%;
+  border: 2.5px solid transparent;
+  border-top: 5px solid var(--zone-color);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s;
+  position: relative;
+}
+
+.topic-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--zone-color);
+}
+
+.topic-card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.topic-icon { font-size: 2rem; flex-shrink: 0; line-height: 1; }
+
+.topic-names { flex: 1; }
+
+.topic-place {
+  font-size: 1rem;
+  font-weight: 900;
+  color: var(--text);
+  margin-bottom: 2px;
+  line-height: 1.2;
+}
+
+.topic-tagline {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--text-soft);
+  font-style: italic;
+}
+
+.topic-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 3px 9px;
+  border-radius: 99px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+.topic-concepts {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-soft);
+  line-height: 1.5;
+  padding: 8px 10px;
+  background: var(--zone-light);
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.topic-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ── World Map (old home, kept for reference) ─────── */
 .screen-map {
   min-height: 100vh;
   padding: 32px 20px 48px;

@@ -2,6 +2,41 @@
 // Foundations of Behavior outline. Flag any question in-game if something
 // feels off — accuracy is everything.
 
+// ── MCAT Sections ──────────────────────────────────────────────────────────
+// CARS is intentionally excluded — not a gap area.
+const SECTIONS = [
+  {
+    id: 'psych-soc',
+    name: 'Psych/Soc',
+    fullName: 'Psychological, Social & Biological Foundations',
+    emoji: '🧠',
+    color: '#7C3AED',
+    lightColor: '#EDE9FE',
+    available: true,
+    clusterIds: ['memory-systems', 'social-psychology', 'development-language', 'research-stats'],
+  },
+  {
+    id: 'bio-biochem',
+    name: 'Bio/Biochem',
+    fullName: 'Biological & Biochemical Foundations of Living Systems',
+    emoji: '🔬',
+    color: '#059669',
+    lightColor: '#D1FAE5',
+    available: false,
+    clusterIds: [],
+  },
+  {
+    id: 'chem-phys',
+    name: 'Chem/Phys',
+    fullName: 'Chemical & Physical Foundations of Biological Systems',
+    emoji: '⚗️',
+    color: '#0284C7',
+    lightColor: '#E0F2FE',
+    available: false,
+    clusterIds: [],
+  },
+];
+
 const CLUSTERS = [
   {
     id: 'memory-systems',
