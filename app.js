@@ -50,7 +50,8 @@ async function cloudLoad() {
     });
     if (!r.ok) return false;
     const d = await r.json();
-    if (d?.mastery) { saveMasteryData(d.mastery); return true; }
+    const mastery = d?.mastery ?? d?.record?.mastery;
+    if (mastery) { saveMasteryData(mastery); return true; }
   } catch {}
   return false;
 }
