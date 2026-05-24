@@ -6,6 +6,8 @@ const CLUSTERS = [
   {
     id: 'memory-systems',
     name: 'Memory Systems',
+    place: 'The Memory Maze',
+    tagline: 'Where memories are made (and broken)',
     emoji: '🧠',
     color: '#7C3AED',
     lightColor: '#EDE9FE',
@@ -89,6 +91,8 @@ const CLUSTERS = [
   {
     id: 'social-psychology',
     name: 'Social Psychology',
+    place: 'Social Square',
+    tagline: 'It\'s not you, it\'s your attribution style',
     emoji: '👥',
     color: '#F97316',
     lightColor: '#FFEDD5',
@@ -147,6 +151,8 @@ const CLUSTERS = [
   {
     id: 'development-language',
     name: 'Development & Language',
+    place: 'Language Lagoon',
+    tagline: 'Words shape worlds (a little bit)',
     emoji: '🌱',
     color: '#0D9488',
     lightColor: '#CCFBF1',
@@ -217,6 +223,8 @@ const CLUSTERS = [
   {
     id: 'research-stats',
     name: 'Research & Statistics',
+    place: 'Data Desert',
+    tagline: 'Outliers will not save you here',
     emoji: '📊',
     color: '#2563EB',
     lightColor: '#DBEAFE',
