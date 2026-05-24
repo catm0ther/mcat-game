@@ -105,6 +105,26 @@ function getSectionMastery(section) {
   return total === 0 ? 0 : Math.round((mastered / total) * 100);
 }
 
+// Mirrors buildSmartSession logic to calculate the actual question count
+// without randomness, so the zone hub can show the real number.
+function getSmartSessionCount(cluster, gameType) {
+  let pool = [];
+  if (gameType === 'scenario-drop' || gameType === 'all')
+    cluster.scenarioDrop.forEach(q => pool.push({ ...q, type: 'scenario-drop' }));
+  if (gameType === 'showdown' || gameType === 'all')
+    cluster.showdown.forEach(q => pool.push({ ...q, type: 'showdown' }));
+  if (isMobile && gameType === 'all') {
+    const sds = pool.filter(q => q.type === 'scenario-drop');
+    const sw  = pool.filter(q => q.type === 'showdown').slice(0, 1);
+    pool = [...sds, ...sw];
+  }
+  const unexplored = pool.filter(q => getConceptState(q.conceptId) === 'unexplored').length;
+  const practicing = pool.filter(q => getConceptState(q.conceptId) === 'practicing').length;
+  const mastered   = pool.filter(q => getConceptState(q.conceptId) === 'mastered').length;
+  const count = practicing + Math.min(3, unexplored) + Math.min(1, mastered);
+  return count > 0 ? count : pool.length;
+}
+
 // ── Session Builder ────────────────────────────────────────────────────────
 // Priority: practicing (streak 1-2) > unexplored (max 3 new) > mastered (1 resurfacing)
 // Each question gets a randomly chosen scenario variant so repeat plays feel fresh.
@@ -288,10 +308,10 @@ function renderZoneHub(clusterId) {
   const section = SECTIONS.find(s => s.clusterIds.includes(clusterId));
   state.cluster = cluster;
 
-  const sdCount  = cluster.scenarioDrop.length;
-  const swCount  = cluster.showdown.length;
-  const allCount = isMobile ? sdCount + Math.min(1, swCount) : sdCount + swCount;
-  const m        = getClusterMastery(cluster);
+  const sdCount    = cluster.scenarioDrop.length;
+  const swCount    = cluster.showdown.length;
+  const smartCount = getSmartSessionCount(cluster, 'all');
+  const m          = getClusterMastery(cluster);
 
   // Concept status breakdown
   const conceptIds = getClusterConceptIds(cluster);
@@ -373,7 +393,7 @@ function renderZoneHub(clusterId) {
               <div class="game-option-name">Smart Session</div>
               <div class="game-option-desc">Prioritizes what you're practicing + resurfaces mastered concepts</div>
             </div>
-            <span class="game-option-count">${allCount} questions</span>
+            <span class="game-option-count">${smartCount} questions</span>
           </button>
         </div>
 
