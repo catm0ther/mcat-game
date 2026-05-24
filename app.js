@@ -177,7 +177,7 @@ function renderSectionHub(sectionId) {
 
       <div class="section-hub-hero">
         <div class="section-hub-hero-bg"></div>
-        <button class="hub-back" onclick="renderSectionMap()">← Sections</button>
+        <button class="hub-back" onclick="renderSectionMap()">← Home</button>
         <div class="section-hub-icon">${section.emoji}</div>
         <div class="section-hub-name">${section.name}</div>
         <div class="section-hub-full">${section.fullName}</div>
@@ -235,7 +235,10 @@ function renderZoneHub(clusterId) {
     <div class="screen-hub" style="--zone-color:${cluster.color}; --zone-light:${cluster.lightColor}">
       <div class="hub-hero">
         <div class="hub-hero-bg"></div>
-        <button class="hub-back" onclick="renderSectionHub('${section.id}')">← ${section.name}</button>
+        <div class="hub-nav">
+          <button class="btn-home-light" onclick="renderSectionMap()">🏠</button>
+          <button class="hub-back" onclick="renderSectionHub('${section.id}')">← ${section.name}</button>
+        </div>
         <div class="hub-icon">${cluster.emoji}</div>
         <div class="hub-place">${cluster.place}</div>
         <div class="hub-tagline">${cluster.tagline}</div>
@@ -294,7 +297,10 @@ function renderQuestion() {
 
   const header = `
     <div class="game-header" style="--zone-color:${c.color}">
-      <button class="btn-back" onclick="renderZoneHub('${c.id}')">← Zone</button>
+      <div class="header-left">
+        <button class="btn-home" onclick="renderSectionMap()" title="Home">🏠</button>
+        <button class="btn-back" onclick="renderZoneHub('${c.id}')">← Zone</button>
+      </div>
       <div class="header-center">
         <span class="cluster-name">${c.emoji} ${c.place}</span>
         <span class="game-type-pill">${label}</span>
