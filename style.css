@@ -564,7 +564,7 @@ button:active { transform: scale(0.96); }
 }
 
 .hub-hero-bg {
-  position: absolute;
+  position: absolute !important;
   inset: 0;
   background: var(--zone-color);
   z-index: 0;
@@ -579,12 +579,26 @@ button:active { transform: scale(0.96); }
   border-radius: 50% 50% 0 0 / 100% 100% 0 0;
 }
 
-.hub-hero > * { position: relative; z-index: 1; }
+/* explicitly stack text content above the bg div */
+.hub-icon,
+.hub-place,
+.hub-tagline { position: relative; z-index: 1; }
+
+.hub-icon  { font-size: 3.5rem; margin-bottom: 8px; line-height: 1; display: block; }
+.hub-place { font-size: 1.7rem; font-weight: 900; margin-bottom: 4px; color: #fff; }
+.hub-tagline { font-size: 0.88rem; font-weight: 700; font-style: italic; color: rgba(255,255,255,0.88); display: block; }
+
+.hub-nav {
+  position: absolute !important;
+  top: 16px;
+  left: 16px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
 
 .hub-back {
-  position: absolute;
-  top: 16px; left: 16px;
-  z-index: 2;
   background: rgba(255,255,255,0.2);
   color: white;
   border-radius: 99px;
@@ -593,10 +607,6 @@ button:active { transform: scale(0.96); }
   font-weight: 700;
 }
 .hub-back:hover { background: rgba(255,255,255,0.35); }
-
-.hub-icon { font-size: 3.5rem; margin-bottom: 8px; line-height: 1; }
-.hub-place { font-size: 1.7rem; font-weight: 900; margin-bottom: 4px; }
-.hub-tagline { font-size: 0.88rem; font-weight: 700; opacity: 0.85; font-style: italic; }
 
 .hub-body {
   flex: 1;
