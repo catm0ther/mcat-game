@@ -33,6 +33,119 @@ const state = {
 const isMobile = window.innerWidth < 768 ||
   /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
+// ── Cloud Sync (JSONBin.io) ────────────────────────────────────────────────
+// Key lives only in your browser's localStorage — never in code or URLs.
+// Setup: tap "Enable sync" on the home screen, then paste your JSONBin Master Key.
+// Free key: jsonbin.io → Sign Up → account menu → API Keys → Master Key
+
+let SYNC_KEY       = localStorage.getItem('mcatSyncKey') || '';
+let _binId         = localStorage.getItem('mcatBinId')   || null;
+let _showSyncSetup = false;
+
+async function cloudLoad() {
+  if (!SYNC_KEY || !_binId) return false;
+  try {
+    const r = await fetch(`https://api.jsonbin.io/v3/b/${_binId}/latest`, {
+      headers: { 'X-Master-Key': SYNC_KEY, 'X-Bin-Meta': 'false' }
+    });
+    if (!r.ok) return false;
+    const d = await r.json();
+    if (d?.mastery) { saveMasteryData(d.mastery); return true; }
+  } catch {}
+  return false;
+}
+
+async function cloudSave() {
+  if (!SYNC_KEY) return;
+  const body = JSON.stringify({ mastery: getMasteryData() });
+  try {
+    if (!_binId) {
+      const r = await fetch('https://api.jsonbin.io/v3/b', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Master-Key': SYNC_KEY,
+          'X-Bin-Name': 'mcat-progress',
+        },
+        body,
+      });
+      if (!r.ok) return;
+      _binId = (await r.json()).metadata.id;
+      localStorage.setItem('mcatBinId', _binId);
+      renderSectionMap();
+    } else {
+      await fetch(`https://api.jsonbin.io/v3/b/${_binId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', 'X-Master-Key': SYNC_KEY },
+        body,
+      });
+    }
+  } catch {}
+}
+
+function showSyncSetup() { _showSyncSetup = true;  renderSectionMap(); }
+function hideSyncSetup() { _showSyncSetup = false; renderSectionMap(); }
+
+function submitSyncKey() {
+  const key = document.getElementById('sync-key-input')?.value?.trim();
+  if (!key) return;
+  SYNC_KEY = key;
+  localStorage.setItem('mcatSyncKey', SYNC_KEY);
+  _showSyncSetup = false;
+  // If we already have a bin ID (came via sync link), load from cloud.
+  // Otherwise create a new bin on first session save.
+  cloudLoad().then(ok => { if (!ok && !_binId) cloudSave(); renderSectionMap(); });
+}
+
+async function copySyncLink() {
+  if (!_binId) {
+    const el = document.getElementById('sync-copy-btn');
+    if (el) { el.textContent = '⏳ Play a session first'; setTimeout(() => { el.textContent = '📱 Sync to another device'; }, 2000); }
+    return;
+  }
+  const link = `${location.origin}${location.pathname}?s=${_binId}`;
+  try { await navigator.clipboard.writeText(link); }
+  catch { prompt('Copy this sync link:', link); return; }
+  const el = document.getElementById('sync-copy-btn');
+  if (el) { el.textContent = '✓ Link copied — text it to yourself!'; setTimeout(() => { el.textContent = '📱 Sync to another device'; }, 3000); }
+}
+
+function disableSync() {
+  if (!confirm('Remove sync from this device?\n(Your cloud progress stays safe — you can re-link anytime.)')) return;
+  SYNC_KEY = ''; _binId = null;
+  localStorage.removeItem('mcatSyncKey'); localStorage.removeItem('mcatBinId');
+  renderSectionMap();
+}
+
+function buildSyncUI() {
+  if (_showSyncSetup) return `
+    <div class="sync-box">
+      <p class="sync-box-title">☁️ Set up sync</p>
+      <p class="sync-box-desc">
+        Go to <strong>jsonbin.io</strong>, sign up free, then open<br>
+        <strong>API Keys</strong> in your account menu and copy the <strong>Master Key</strong>.
+      </p>
+      <div class="sync-input-row">
+        <input id="sync-key-input" type="password" class="sync-key-input"
+          placeholder="Paste master key here…" autocomplete="off" autocorrect="off">
+        <button onclick="submitSyncKey()" class="btn-sync-submit">Save</button>
+      </div>
+      <button onclick="hideSyncSetup()" class="btn-sync-cancel">Cancel</button>
+    </div>`;
+
+  if (SYNC_KEY) return `
+    <div class="sync-bar">
+      <span class="sync-indicator ${_binId ? 'sync-on' : 'sync-idle'}"></span>
+      <span class="sync-label">${_binId ? 'Sync on' : 'Sync ready — play a session to activate'}</span>
+      ${_binId ? `<button id="sync-copy-btn" class="btn-sync-link" onclick="copySyncLink()">📱 Sync to another device</button>` : ''}
+    </div>`;
+
+  return `
+    <div class="sync-bar">
+      <button class="btn-sync-setup" onclick="showSyncSetup()">☁️ Enable cross-device sync</button>
+    </div>`;
+}
+
 // ── Mastery System (per-concept) ───────────────────────────────────────────
 // States: 'unexplored' | 'practicing' | 'mastered'
 // Mastered concepts resurface once per session as a check-in.
@@ -232,6 +345,7 @@ function renderSectionMap() {
       </header>
       <div class="section-grid">${cards}</div>
       <p class="map-footnote">CARS not shown — you don't need it 💅</p>
+      ${buildSyncUI()}
     </div>
   `);
 }
@@ -638,7 +752,20 @@ function renderResults() {
       </div>
     </div>
   `);
+  cloudSave(); // auto-save to cloud after every session
 }
 
 // ── Boot ───────────────────────────────────────────────────────────────────
+// Handle incoming sync link (?s=binId opens on a new device)
+const _urlBin = new URLSearchParams(location.search).get('s');
+if (_urlBin) {
+  _binId = _urlBin;
+  localStorage.setItem('mcatBinId', _urlBin);
+  history.replaceState({}, '', location.pathname);
+  if (!SYNC_KEY) _showSyncSetup = true; // new device: prompt for key
+}
+
 renderSectionMap();
+
+// Load latest cloud progress on startup (fire-and-forget)
+if (SYNC_KEY && _binId) cloudLoad().then(ok => { if (ok) renderSectionMap(); });
