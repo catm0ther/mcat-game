@@ -282,8 +282,9 @@ function renderSectionHub(sectionId) {
   render(`
     <div class="screen-section-hub" style="--sec-color:${section.color}; --sec-light:${section.lightColor}">
       <div class="section-hub-hero">
-        <div class="section-hub-hero-bg"></div>
-        <button class="hub-back" onclick="renderSectionMap()">← Home</button>
+        <div class="hub-nav">
+          <button class="btn-home-light" onclick="renderSectionMap()">🏠</button>
+        </div>
         <div class="section-hub-icon">${section.emoji}</div>
         <div class="section-hub-name">${section.name}</div>
         <div class="section-hub-full">${section.fullName}</div>
