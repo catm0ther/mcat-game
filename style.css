@@ -626,6 +626,149 @@ button:active { transform: scale(0.96); }
   text-align: center;
 }
 
+/* ── Concept Status (zone hub) ────────────────────── */
+.concept-status-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.concept-status-stat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-soft);
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dot-unexplored { background: #D1D5DB; }
+.dot-practicing { background: var(--zone-color, #F97316); }
+.dot-mastered   { background: var(--success); }
+
+.concept-chips-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 16px;
+}
+
+.concept-chip {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 99px;
+  border: 2px solid transparent;
+  transition: opacity 0.2s;
+}
+
+.concept-chip.state-unexplored {
+  background: #F3F4F6;
+  color: #9CA3AF;
+  border-color: #E5E7EB;
+  font-style: italic;
+}
+
+.concept-chip.state-practicing {
+  background: var(--zone-light);
+  color: var(--zone-color);
+  border-color: var(--zone-color);
+}
+
+.concept-chip.state-mastered {
+  background: var(--success-light);
+  color: #065F46;
+  border-color: var(--success);
+}
+
+.mastered-drawer {
+  margin-bottom: 16px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-soft);
+}
+
+.mastered-drawer summary {
+  cursor: pointer;
+  padding: 6px 0;
+  color: #065F46;
+}
+
+/* ── State pills in game header ───────────────────── */
+.header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.state-pill {
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 99px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.pill-unexplored { background: rgba(255,255,255,0.25); color: white; }
+.pill-practicing { background: rgba(255,255,255,0.25); color: white; }
+.pill-mastered   { background: rgba(255,255,255,0.3);  color: white; }
+
+/* ── Mastery milestone banner ─────────────────────── */
+.milestone {
+  background: var(--success-light);
+  color: #065F46;
+  border: 1.5px solid var(--success);
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-align: center;
+  animation: slideUp 0.3s ease;
+}
+
+/* ── Mastery summary on results ───────────────────── */
+.mastery-summary {
+  background: var(--bg);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mastery-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-soft);
+}
+
+.mastery-summary-row span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.mastery-summary-row strong { color: var(--text); }
+
+/* ── badges ───────────────────────────────────────── */
+.badge-progress { background: #FEF3C7; color: #92400E; }
+
 .game-menu {
   display: flex;
   flex-direction: column;
