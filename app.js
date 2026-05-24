@@ -20,7 +20,8 @@
 const state = {
   section: null,
   cluster: null,
-  gameType: null,
+  playMode: 'cluster',  // 'cluster' | 'section'
+  gameType: 'all',
   session: [],
   index: 0,
   score: 0,
@@ -105,24 +106,15 @@ function getSectionMastery(section) {
   return total === 0 ? 0 : Math.round((mastered / total) * 100);
 }
 
-// Mirrors buildSmartSession logic to calculate the actual question count
-// without randomness, so the zone hub can show the real number.
-function getSmartSessionCount(cluster, gameType) {
-  let pool = [];
-  if (gameType === 'scenario-drop' || gameType === 'all')
-    cluster.scenarioDrop.forEach(q => pool.push({ ...q, type: 'scenario-drop' }));
-  if (gameType === 'showdown' || gameType === 'all')
-    cluster.showdown.forEach(q => pool.push({ ...q, type: 'showdown' }));
-  if (isMobile && gameType === 'all') {
-    const sds = pool.filter(q => q.type === 'scenario-drop');
-    const sw  = pool.filter(q => q.type === 'showdown').slice(0, 1);
-    pool = [...sds, ...sw];
-  }
-  const unexplored = pool.filter(q => getConceptState(q.conceptId) === 'unexplored').length;
-  const practicing = pool.filter(q => getConceptState(q.conceptId) === 'practicing').length;
-  const mastered   = pool.filter(q => getConceptState(q.conceptId) === 'mastered').length;
+// Count how many concepts will appear in the next smart session.
+// Uses unique conceptIds (one question per concept), matching buildSmartSession.
+function getSmartSessionCount(cluster) {
+  const conceptIds = getClusterConceptIds(cluster);
+  const unexplored = conceptIds.filter(id => getConceptState(id) === 'unexplored').length;
+  const practicing = conceptIds.filter(id => getConceptState(id) === 'practicing').length;
+  const mastered   = conceptIds.filter(id => getConceptState(id) === 'mastered').length;
   const count = practicing + Math.min(3, unexplored) + Math.min(1, mastered);
-  return count > 0 ? count : pool.length;
+  return count > 0 ? count : conceptIds.length;
 }
 
 // ── Session Builder ────────────────────────────────────────────────────────
@@ -134,38 +126,58 @@ function pickScenario(q) {
   return variants[Math.floor(Math.random() * variants.length)];
 }
 
-function buildSmartSession(cluster, gameType) {
-  let pool = [];
+function pickWrongAnswers(q) {
+  const pool = q.wrongPool || q.wrong || [];
+  return shuffle([...pool]).slice(0, 3);
+}
 
-  if (gameType === 'scenario-drop' || gameType === 'all') {
-    cluster.scenarioDrop.forEach(q => pool.push({ ...q, type: 'scenario-drop' }));
-  }
-  if (gameType === 'showdown' || gameType === 'all') {
-    cluster.showdown.forEach(q => pool.push({ ...q, type: 'showdown' }));
-  }
-  // Mobile: only 1 showdown max
-  if (isMobile && gameType === 'all') {
-    const sds = pool.filter(q => q.type === 'scenario-drop');
-    const sw  = pool.filter(q => q.type === 'showdown').slice(0, 1);
-    pool = [...sds, ...sw];
-  }
+// Build a session for one cluster. One question per conceptId (randomly picks
+// scenario-drop or showdown when both exist) so the same concept never appears
+// twice in one session.
+function buildSmartSession(cluster) {
+  const conceptMap = new Map();
+  cluster.scenarioDrop.forEach(q => conceptMap.set(q.conceptId, { ...q, type: 'scenario-drop' }));
+  cluster.showdown.forEach(q => {
+    if (!conceptMap.has(q.conceptId) || Math.random() < 0.5)
+      conceptMap.set(q.conceptId, { ...q, type: 'showdown' });
+  });
+  const pool = [...conceptMap.values()];
+  return _applyMastery(pool);
+}
 
-  const unexplored  = pool.filter(q => getConceptState(q.conceptId) === 'unexplored');
-  const practicing  = pool.filter(q => getConceptState(q.conceptId) === 'practicing');
-  const mastered    = pool.filter(q => getConceptState(q.conceptId) === 'mastered');
+// Build a session spanning all clusters in a section. Attaches _cluster to each
+// question so renderQuestion can update styling as topics change mid-session.
+function buildSectionSession(sectionId) {
+  const section  = SECTIONS.find(s => s.id === sectionId);
+  const clusters = section.clusterIds.map(id => CLUSTERS.find(c => c.id === id));
+  let combined = [];
+  clusters.forEach(cluster => {
+    const conceptMap = new Map();
+    cluster.scenarioDrop.forEach(q => conceptMap.set(q.conceptId, { ...q, type: 'scenario-drop', _cluster: cluster }));
+    cluster.showdown.forEach(q => {
+      if (!conceptMap.has(q.conceptId) || Math.random() < 0.5)
+        conceptMap.set(q.conceptId, { ...q, type: 'showdown', _cluster: cluster });
+    });
+    combined.push(...conceptMap.values());
+  });
+  return _applyMastery(combined, { maxNew: 5, maxMastered: 2 });
+}
 
-  // Build: all practicing + up to 3 new unexplored + 1 mastered check-in
+function _applyMastery(pool, { maxNew = 3, maxMastered = 1 } = {}) {
+  const unexplored = pool.filter(q => getConceptState(q.conceptId) === 'unexplored');
+  const practicing = pool.filter(q => getConceptState(q.conceptId) === 'practicing');
+  const mastered   = pool.filter(q => getConceptState(q.conceptId) === 'mastered');
   const session = [
     ...shuffle(practicing),
-    ...shuffle(unexplored).slice(0, 3),
-    ...shuffle(mastered).slice(0, 1),
+    ...shuffle(unexplored).slice(0, maxNew),
+    ...shuffle(mastered).slice(0, maxMastered),
   ];
-
-  // Fallback: if everything is mastered or nothing practicing, show full pool
   const finalPool = session.length > 0 ? session : shuffle(pool);
-
-  // Attach a randomly chosen scenario variant to each question
-  return finalPool.map(q => ({ ...q, scenario: pickScenario(q) }));
+  return finalPool.map(q => ({
+    ...q,
+    scenario:     pickScenario(q),
+    wrongAnswers: pickWrongAnswers(q),
+  }));
 }
 
 // ── Utilities ──────────────────────────────────────────────────────────────
@@ -293,7 +305,12 @@ function renderSectionHub(sectionId) {
         </div>
       </div>
       <div class="section-hub-body">
-        <p class="hub-section-label">Topics</p>
+        <button class="btn-play-section" onclick="startSectionGame('${sectionId}')"
+          style="background:${section.color}">
+          ▶ Play All ${section.name}
+          <span class="play-section-sub">${totalConcepts} concepts</span>
+        </button>
+        <p class="hub-section-label" style="margin-top:24px">Topics</p>
         <div class="topic-grid">${clusterCards}</div>
       </div>
     </div>
@@ -308,42 +325,19 @@ function renderZoneHub(clusterId) {
   const section = SECTIONS.find(s => s.clusterIds.includes(clusterId));
   state.cluster = cluster;
 
-  const sdCount    = cluster.scenarioDrop.length;
-  const swCount    = cluster.showdown.length;
-  const smartCount = getSmartSessionCount(cluster, 'all');
+  const smartCount = getSmartSessionCount(cluster);
   const m          = getClusterMastery(cluster);
 
-  // Concept status breakdown
   const conceptIds = getClusterConceptIds(cluster);
   const conceptChips = conceptIds.map(id => {
     const s = getConceptState(id);
-    // Display name: find matching question to get the correct answer text
     const q = cluster.scenarioDrop.find(q => q.conceptId === id)
            || cluster.showdown.find(q => q.conceptId === id);
     const label = q ? q.correct : id;
     return `<span class="concept-chip state-${s}" title="${s}">${label}</span>`;
   }).join('');
 
-  const masteredChips = conceptIds
-    .filter(id => getConceptState(id) === 'mastered')
-    .map(id => {
-      const q = cluster.scenarioDrop.find(q => q.conceptId === id)
-             || cluster.showdown.find(q => q.conceptId === id);
-      return `<span class="concept-chip state-mastered">${q ? q.correct : id}</span>`;
-    }).join('');
-
-  const hasMastered = conceptIds.some(id => getConceptState(id) === 'mastered');
-
-  const showdownOption = isMobile ? '' : `
-    <button class="game-option" onclick="startGame('${clusterId}','showdown')"
-      style="--zone-color:${cluster.color}; --zone-light:${cluster.lightColor}">
-      <div class="game-option-icon">⚔️</div>
-      <div class="game-option-info">
-        <div class="game-option-name">Showdown</div>
-        <div class="game-option-desc">Two concepts face off — one scenario, pick the right match</div>
-      </div>
-      <span class="game-option-count">${swCount} rounds</span>
-    </button>`;
+  const countLabel = smartCount === 1 ? '1 concept' : `${smartCount} concepts`;
 
   render(`
     <div class="screen-hub" style="--zone-color:${cluster.color}; --zone-light:${cluster.lightColor}">
@@ -359,7 +353,6 @@ function renderZoneHub(clusterId) {
       </div>
 
       <div class="hub-body">
-
         <div class="concept-status-row">
           <span class="concept-status-stat"><span class="dot dot-unexplored"></span>${m.unexplored} unexplored</span>
           <span class="concept-status-stat"><span class="dot dot-practicing"></span>${m.practicing} practicing</span>
@@ -368,35 +361,13 @@ function renderZoneHub(clusterId) {
 
         <div class="concept-chips-wrap">${conceptChips}</div>
 
-        ${hasMastered ? `
-          <details class="mastered-drawer">
-            <summary>🔥 Mastered concepts (${m.mastered})</summary>
-            <div class="concept-chips-wrap" style="margin-top:8px">${masteredChips}</div>
-          </details>` : ''}
-
-        <p class="hub-prompt" style="margin-top:20px">Choose your game</p>
-        <div class="game-menu">
-          <button class="game-option" onclick="startGame('${clusterId}','scenario-drop')"
-            style="--zone-color:${cluster.color}; --zone-light:${cluster.lightColor}">
-            <div class="game-option-icon">🎯</div>
-            <div class="game-option-info">
-              <div class="game-option-name">Scenario Drop</div>
-              <div class="game-option-desc">Read a scenario — pick the concept that fits from 4 choices</div>
-            </div>
-            <span class="game-option-count">${sdCount} concepts</span>
-          </button>
-          ${showdownOption}
-          <button class="game-option play-all" onclick="startGame('${clusterId}','all')"
-            style="--zone-color:${cluster.color}; --zone-light:${cluster.lightColor}">
-            <div class="game-option-icon" style="background:rgba(255,255,255,0.2)">🌀</div>
-            <div class="game-option-info">
-              <div class="game-option-name">Smart Session</div>
-              <div class="game-option-desc">Prioritizes what you're practicing + resurfaces mastered concepts</div>
-            </div>
-            <span class="game-option-count">${smartCount} questions</span>
+        <div class="single-play-wrap">
+          <button class="btn-play-big" onclick="startGame('${clusterId}')"
+            style="background:${cluster.color}">
+            ▶ Play
+            <span class="play-sub">${countLabel} this session</span>
           </button>
         </div>
-
       </div>
     </div>
   `);
@@ -405,28 +376,46 @@ function renderZoneHub(clusterId) {
 // ══════════════════════════════════════════════════════════════════════════
 // SCREEN 4 — Game
 // ══════════════════════════════════════════════════════════════════════════
-function startGame(clusterId, gameType) {
+function startGame(clusterId) {
   const cluster   = CLUSTERS.find(c => c.id === clusterId);
   state.cluster   = cluster;
-  state.gameType  = gameType;
+  state.playMode  = 'cluster';
+  state.gameType  = 'all';
   state.section   = SECTIONS.find(s => s.clusterIds.includes(clusterId));
-  state.session   = buildSmartSession(cluster, gameType);
+  state.session   = buildSmartSession(cluster);
   state.index     = 0;
   state.score     = 0;
   state.answered  = false;
   renderQuestion();
 }
 
+function startSectionGame(sectionId) {
+  const section  = SECTIONS.find(s => s.id === sectionId);
+  state.section  = section;
+  state.cluster  = null;
+  state.playMode = 'section';
+  state.gameType = 'all';
+  state.session  = buildSectionSession(sectionId);
+  state.index    = 0;
+  state.score    = 0;
+  state.answered = false;
+  renderQuestion();
+}
+
 function renderQuestion() {
   const q = state.session[state.index];
-  state.currentQ  = q;
-  state.answered  = false;
+  state.currentQ = q;
+  state.answered = false;
+
+  // Section-wide play: each question carries its cluster; update state so
+  // colors and navigation reflect the current question's topic area.
+  if (q._cluster) state.cluster = q._cluster;
+
   const pct   = (state.index / state.session.length) * 100;
   const count = `${state.index + 1} / ${state.session.length}`;
   const c     = state.cluster;
   const label = q.type === 'scenario-drop' ? 'Scenario Drop' : 'Showdown';
 
-  // Show mastery state of this concept in header
   const cState = getConceptState(q.conceptId);
   const statePill = cState === 'mastered'
     ? '<span class="state-pill pill-mastered">🔥 Resurfacing</span>'
@@ -434,11 +423,15 @@ function renderQuestion() {
     ? '<span class="state-pill pill-practicing">📈 Practicing</span>'
     : '<span class="state-pill pill-unexplored">✨ New</span>';
 
+  const backBtn = state.playMode === 'section'
+    ? `<button class="btn-back" onclick="renderSectionHub('${state.section.id}')">← ${state.section.name}</button>`
+    : `<button class="btn-back" onclick="renderZoneHub('${c.id}')">← Zone</button>`;
+
   const header = `
     <div class="game-header" style="--zone-color:${c.color}">
       <div class="header-left">
         <button class="btn-home" onclick="renderSectionMap()" title="Home">🏠</button>
-        <button class="btn-back" onclick="renderZoneHub('${c.id}')">← Zone</button>
+        ${backBtn}
       </div>
       <div class="header-center">
         <span class="cluster-name">${c.emoji} ${c.place}</span>
@@ -459,7 +452,7 @@ function renderQuestion() {
 }
 
 function renderScenarioDrop(q, header) {
-  const answers = shuffle([q.correct, ...q.wrong]);
+  const answers = shuffle([q.correct, ...(q.wrongAnswers || q.wrong || [])]);
   state.currentAnswers = answers;
   const c = state.cluster;
 
@@ -583,8 +576,29 @@ function nextQuestion() {
 function renderResults() {
   const total = state.session.length;
   const pct   = Math.round((state.score / total) * 100);
-  const c     = state.cluster;
-  const m     = getClusterMastery(c);
+  const isSectionPlay = state.playMode === 'section';
+
+  let m, zoneColor, backFn, retryFn;
+  if (isSectionPlay) {
+    const sec = state.section;
+    const clusters = sec.clusterIds.map(id => CLUSTERS.find(c => c.id === id));
+    let totalC = 0, mastered = 0, practicing = 0, unexplored = 0;
+    clusters.forEach(cl => {
+      const cm = getClusterMastery(cl);
+      totalC += cm.total; mastered += cm.mastered;
+      practicing += cm.practicing; unexplored += cm.unexplored;
+    });
+    m         = { total: totalC, mastered, practicing, unexplored };
+    zoneColor = sec.color;
+    backFn    = `renderSectionHub('${sec.id}')`;
+    retryFn   = `startSectionGame('${sec.id}')`;
+  } else {
+    const c  = state.cluster;
+    m        = getClusterMastery(c);
+    zoneColor = c.color;
+    backFn   = `renderZoneHub('${c.id}')`;
+    retryFn  = `startGame('${c.id}')`;
+  }
 
   const [emoji, title, subtitle] =
     pct >= 90 ? ['🔥', 'On Fire!',      'Keep at it — mastery is close.']
@@ -593,7 +607,7 @@ function renderResults() {
   :             ['🧠', 'Brain Training', "This is exactly why we practice. Run it again."];
 
   render(`
-    <div class="screen-results" style="--zone-color:${c.color}">
+    <div class="screen-results" style="--zone-color:${zoneColor}">
       <div class="results-content">
         <div class="results-emoji">${emoji}</div>
         <h2>${title}</h2>
@@ -617,8 +631,8 @@ function renderResults() {
           </div>
         </div>
         <div class="results-actions">
-          <button class="btn-primary" onclick="renderZoneHub('${c.id}')">← Zone</button>
-          <button class="btn-secondary" onclick="startGame('${c.id}','${state.gameType}')">Play Again</button>
+          <button class="btn-primary" onclick="${backFn}">← Back</button>
+          <button class="btn-secondary" onclick="${retryFn}">Play Again</button>
         </div>
       </div>
     </div>

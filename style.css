@@ -769,6 +769,68 @@ button:active { transform: scale(0.96); }
 /* ── badges ───────────────────────────────────────── */
 .badge-progress { background: #FEF3C7; color: #92400E; }
 
+/* ── Unified Play button (zone hub) ──────────────── */
+.single-play-wrap { margin-top: 20px; }
+
+.btn-play-big {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  padding: 22px 24px;
+  border-radius: 20px;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 900;
+  font-family: 'Nunito', sans-serif;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.22);
+  transition: transform 0.15s, box-shadow 0.15s;
+  letter-spacing: -0.5px;
+}
+
+.btn-play-big:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 32px rgba(0,0,0,0.28);
+}
+
+.play-sub {
+  font-size: 0.82rem;
+  font-weight: 700;
+  opacity: 0.85;
+  letter-spacing: 0;
+}
+
+/* ── Play All button (section hub) ───────────────── */
+.btn-play-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  padding: 18px 20px;
+  border-radius: 16px;
+  border: none;
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 900;
+  font-family: 'Nunito', sans-serif;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.2);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.btn-play-section:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.26);
+}
+
+.play-section-sub {
+  font-size: 0.8rem;
+  font-weight: 700;
+  opacity: 0.85;
+}
+
 .game-menu {
   display: flex;
   flex-direction: column;
