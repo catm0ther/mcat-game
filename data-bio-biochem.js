@@ -1,0 +1,875 @@
+// Biological & Biochemical Foundations of Living Systems
+// Source: AAMC Practice Exam 2 gap analysis
+// wrongPool: 5-6 distractors, 3 randomly picked per session
+
+(function () {
+  const clusters = [
+
+    // ── Amino Acids & Bonding ──────────────────────────────────────────────
+    {
+      id: 'amino-acids-bonding',
+      name: 'Amino Acids & Bonding',
+      place: 'Amino Acid Alley',
+      tagline: 'Know every residue like a friend',
+      emoji: '⛓️',
+      color: '#0891B2',
+      lightColor: '#CFFAFE',
+      description: 'Disulfide bonds, TM helices, Pro/Gly/His, peptide bond, basic residues, phosphorylation',
+      scenarioDrop: [
+        {
+          conceptId: 'disulfide-cysteine',
+          label: 'Disulfide bonds = cysteine',
+          scenarios: [
+            'A protein contains both cysteine and methionine residues. Upon oxidation, a covalent S–S bond forms. Which residue is involved?',
+            'Two residues in close proximity form a disulfide bond during protein folding. Which amino acid provides the reactive thiol group?',
+            'A researcher uses β-mercaptoethanol to reduce all disulfide bonds in a protein. Which amino acid residues become free –SH groups after reduction?',
+          ],
+          correct: 'Cysteine — its free thiol (–SH) is oxidized to form –S–S– bonds',
+          wrongPool: [
+            'Methionine — contains sulfur as a thioether (C–S–C), no free –SH available',
+            'Serine — contains –OH but no sulfur; cannot form disulfides',
+            'Histidine — imidazole ring, no sulfur-containing group',
+            'Asparagine — polar uncharged; no sulfur chemistry',
+            'Tryptophan — aromatic indole ring, no reactive thiol',
+          ],
+          explanation: 'Only Cys has a free –SH (thiol). Met\'s sulfur is locked in a thioether (C–S–C) — unreactive for disulfides. Oxidation of two Cys –SH groups forms the covalent –S–S– disulfide bond.',
+        },
+        {
+          conceptId: 'transmembrane-nonpolar',
+          label: 'TM helix = nonpolar core',
+          scenarios: [
+            'The middle of a membrane-spanning α-helix sits in the hydrophobic lipid bilayer core. Which residues are enriched there?',
+            'A 20-residue stretch predicted to be a transmembrane helix is rich in Leu, Ile, Val, and Ala. This is expected because...',
+            'A receptor\'s transmembrane domain must be energetically stable inside the lipid bilayer. This requires its interior residues to be...',
+          ],
+          correct: 'Nonpolar (hydrophobic) residues — compatible with the hydrophobic lipid core',
+          wrongPool: [
+            'Positively charged residues (Lys, Arg) — repelled by the hydrophobic bilayer interior',
+            'Negatively charged residues (Asp, Glu) — hydrophilic; incompatible with lipid core',
+            'Polar uncharged residues (Ser, Thr) — disfavored in the TM core due to unsatisfied H-bond potential',
+            'Proline residues — would break the helix; disfavored in TM domains',
+            'Glycine residues only — too flexible; TM helices need rigid nonpolar residues',
+          ],
+          explanation: 'The lipid bilayer core is hydrophobic. TM helices use nonpolar residues (Leu, Val, Ile, Ala, Phe) to match this environment. Charged residues are found at membrane-water interfaces, not buried in the lipid core.',
+        },
+        {
+          conceptId: 'proline-helix-disruptor',
+          label: 'Proline disrupts α-helices',
+          scenarios: [
+            'Which amino acid is found at helix-breaking turns and loops rather than inside α-helices, due to its inability to donate a backbone H-bond?',
+            'Proline\'s nitrogen is covalently bonded to its side chain ring. What structural consequence does this have for α-helices?',
+            'A single proline residue inserted into the middle of an α-helix would most likely...',
+          ],
+          correct: 'Proline disrupts α-helices — its N is in a rigid ring with no H to donate for backbone H-bonds',
+          wrongPool: [
+            'Proline strongly stabilizes α-helices due to its rigid ring structure',
+            'Proline is commonly found in the interior of long α-helices',
+            'Proline is the smallest amino acid and therefore the best helix-former',
+            'Glycine disrupts helices; proline stabilizes and caps them',
+            'Proline donates an H-bond from its ring nitrogen to maintain helix geometry',
+          ],
+          explanation: 'Pro\'s nitrogen is part of a pyrrolidine ring — no N–H to donate for the backbone hydrogen bond that holds helices together. The ring also restricts the backbone φ angle needed for helical geometry. Proline is a helix-breaker, found at turns and kinks.',
+        },
+        {
+          conceptId: 'histidine-physiological-buffer',
+          label: 'Histidine buffers at pH 7.4',
+          scenarios: [
+            'Which amino acid is uniquely suited to act as an intracellular proton donor/acceptor at physiological pH, and why?',
+            'A serine protease active site contains a histidine that shuttles protons during catalysis at pH 7.4. What property makes His ideal for this?',
+            'Of the 20 standard amino acids, which one has a side chain pKa closest to physiological pH (~7.4)?',
+          ],
+          correct: 'Histidine — imidazole side chain pKa ~6; partially protonated/deprotonated near pH 7.4',
+          wrongPool: [
+            'Lysine — pKa ~10.5; fully protonated and positively charged at pH 7.4; cannot buffer there',
+            'Aspartate — pKa ~3.9; fully deprotonated at pH 7.4; not a buffer at physiological pH',
+            'Arginine — pKa ~12.5; always carries positive charge at physiological pH',
+            'Glutamate — pKa ~4.1; fully deprotonated at pH 7.4',
+            'Serine — no ionizable side chain at physiological pH',
+          ],
+          explanation: 'His imidazole pKa ≈ 6. At pH 7.4, His is above its pKa (mostly deprotonated) but close enough to equilibrate rapidly. This makes it the go-to proton shuttle in enzyme active sites (serine proteases, carbonic anhydrase).',
+        },
+        {
+          conceptId: 'glycine-achiral-flexible',
+          label: 'Glycine = achiral, most flexible',
+          scenarios: [
+            'Which is the only standard amino acid that lacks a chiral center and is optically inactive?',
+            'At tight β-turns and flexible hinges in protein structures, glycine is overrepresented. What structural feature explains this?',
+            'A researcher uses circular dichroism to detect L-amino acids. Which amino acid would produce no signal because it has no chiral center?',
+          ],
+          correct: 'Glycine — its "side chain" is a hydrogen atom; the α-carbon has two identical H substituents, so no chiral center',
+          wrongPool: [
+            'Alanine — smallest side chain after Gly, but still chiral (methyl group)',
+            'Proline — cyclic and rigid, the opposite of flexible',
+            'Serine — chiral center at α-carbon due to –CH₂OH side chain',
+            'Leucine — branched nonpolar; chiral',
+            'Valine — branched nonpolar; chiral α-carbon',
+          ],
+          explanation: 'All amino acids except Gly have four distinct groups on the α-carbon → chiral. Gly has two H atoms on the α-carbon → identical substituents → no chiral center → no optical activity. Its small size also allows backbone angles (φ, ψ) that are impossible for other amino acids.',
+        },
+        {
+          conceptId: 'peptide-bond-planarity',
+          label: 'Peptide bond is planar (resonance)',
+          scenarios: [
+            'The C–N bond in a peptide linkage is shorter than a typical C–N single bond and resists rotation. Why?',
+            'Six atoms surrounding a peptide bond are constrained to lie in the same plane. What forces this coplanarity?',
+            'A peptide bond cannot freely rotate the way a typical C–C single bond can, because...',
+          ],
+          correct: 'Resonance between N lone pair and C=O gives C–N ~40% double-bond character → planar, restricted rotation',
+          wrongPool: [
+            'Peptide bonds rotate freely; protein flexibility comes entirely from φ and ψ angles',
+            'The peptide bond is a full C=N double bond in all conformations',
+            'Planarity arises from steric clashes between R groups flanking the bond',
+            'The peptide bond is an ionic interaction between –COO⁻ and –NH₃⁺ groups',
+            'Peptide bonds break and reform during folding to allow conformational sampling',
+          ],
+          explanation: 'Resonance: N lone pair delocalizes into C=O, creating partial double bond character in C–N. This makes the bond shorter, stronger, and planar. The 6-atom unit (Cα–C(=O)–N–H–Cα) is coplanar. Trans (ω ≈ 180°) is strongly preferred over cis.',
+        },
+        {
+          conceptId: 'basic-amino-acid-trio',
+          label: 'Basic amino acids: Lys, Arg, His',
+          scenarios: [
+            'Which three amino acids carry a positive charge at physiological pH and are classified as basic?',
+            'A DNA-binding domain needs positively charged residues to interact with the negatively charged phosphate backbone of DNA. Which amino acids should be enriched?',
+            'Three amino acids are basic: one has a guanidinium group, one an ε-amino group, and one an imidazole ring. Name them.',
+          ],
+          correct: 'Lysine (ε-amino, pKa ~10.5), Arginine (guanidinium, pKa ~12.5), Histidine (imidazole, pKa ~6)',
+          wrongPool: [
+            'Glutamate, Aspartate, and Histidine — Glu and Asp are acidic (negatively charged)',
+            'Asparagine, Glutamine, and Lysine — Asn and Gln are polar uncharged at pH 7.4',
+            'Serine, Threonine, and Lysine — Ser and Thr carry no net charge at pH 7.4',
+            'Lysine, Arginine, and Glutamate — Glu is negatively charged, not basic',
+            'Tryptophan, Phenylalanine, and Histidine — Trp and Phe are nonpolar aromatic',
+          ],
+          explanation: 'Basic = positively charged at pH 7.4: Lys (+, pKa 10.5), Arg (+, pKa 12.5), His (borderline; pKa 6, ~10% protonated at 7.4 — still considered basic on the MCAT). Acidic = negatively charged: Asp, Glu.',
+        },
+        {
+          conceptId: 'methionine-start-codon',
+          label: 'AUG = Methionine (start codon)',
+          scenarios: [
+            'In eukaryotic translation, which amino acid is always incorporated first, encoded by the start codon AUG?',
+            'Every eukaryotic mRNA begins translation at an AUG codon. What amino acid does this codon specify?',
+            'A researcher mutates the AUG start codon of a eukaryotic mRNA. Translation does not initiate. AUG encodes...',
+          ],
+          correct: 'Methionine (Met/M) — AUG is both the initiator codon and the internal Met codon in eukaryotes',
+          wrongPool: [
+            'Formylmethionine (fMet) — the initiator in prokaryotes and mitochondria, NOT eukaryotic cytoplasmic ribosomes',
+            'Valine — encoded by GUG, not AUG',
+            'Glycine — encoded by GGN codons',
+            'Isoleucine — encoded by AUU, AUC, AUA',
+            'Threonine — encoded by ACN codons',
+          ],
+          explanation: 'Eukaryotes: AUG → Met. Prokaryotes/mitochondria: AUG → fMet (formylmethionine). The initiator Met is often cleaved post-translationally but is always translated first. AUG is the only standard start codon in eukaryotes.',
+        },
+        {
+          conceptId: 'tyrosine-phosphorylatable',
+          label: 'Tyrosine phosphorylated by RTKs',
+          scenarios: [
+            'Receptor tyrosine kinases (RTKs) auto-phosphorylate upon ligand binding. Which amino acid is phosphorylated?',
+            'EGF binds its receptor, causing intracellular domain phosphorylation. The phosphorylated residue is...',
+            'Three amino acids can be phosphorylated: serine, threonine, and a third. Which is the third, and which kinase family phosphorylates it?',
+          ],
+          correct: 'Tyrosine — its phenolic –OH is phosphorylated by tyrosine kinases (RTKs like EGFR, insulin receptor)',
+          wrongPool: [
+            'Serine — phosphorylated by Ser/Thr kinases (PKA, PKC, PDK1), not RTKs',
+            'Threonine — also Ser/Thr kinases, not receptor tyrosine kinases',
+            'Histidine — phosphorylated in bacterial two-component systems; not by RTKs in humans',
+            'Phenylalanine — aromatic but no hydroxyl group to phosphorylate',
+            'Tryptophan — aromatic indole; no –OH group for phosphorylation',
+          ],
+          explanation: 'Tyr has a phenol (aromatic –OH). RTKs phosphorylate Tyr → creates docking sites for SH2 domains → activates downstream signaling. Ser/Thr kinases (PKA, CDK, PDK1) target Ser and Thr. All three –OH-bearing amino acids (Ser, Thr, Tyr) can be phosphorylated, but by different kinase families.',
+        },
+      ],
+      showdown: [
+        {
+          conceptId: 'disulfide-cysteine',
+          scenarios: [
+            'Both cysteine and methionine contain sulfur. Only one can form disulfide bonds. Which one, and why?',
+            'An oxidizing environment causes S–S bonds to form between two residues. The residue with a free –SH (not a thioether) is...',
+          ],
+          conceptA: 'Cysteine — free thiol (–SH) forms disulfides',
+          conceptB: 'Methionine — thioether (C–S–C), no free –SH',
+          correct: 'Cysteine — free thiol (–SH) forms disulfides',
+          explanation: 'Met sulfur is in a thioether linkage (carbon–sulfur–carbon) — locked in and unreactive for disulfide formation. Only Cys has the free –SH.',
+        },
+        {
+          conceptId: 'transmembrane-nonpolar',
+          scenarios: [
+            'A transmembrane helix must be stable inside the hydrophobic lipid bilayer. Its interior residues should be...',
+            'The lipid bilayer core is hydrophobic. TM helices that span it are enriched in which residue type?',
+          ],
+          conceptA: 'Nonpolar (hydrophobic) residues',
+          conceptB: 'Positively charged residues (Lys, Arg)',
+          correct: 'Nonpolar (hydrophobic) residues',
+          explanation: 'The bilayer core is hydrophobic — only nonpolar residues are energetically stable there. Charged residues are at the membrane surface, not buried inside.',
+        },
+        {
+          conceptId: 'proline-helix-disruptor',
+          scenarios: [
+            'Proline\'s nitrogen is in a ring and has no H to donate for backbone H-bonding. This makes proline a helix...',
+            'A stretch of residues forms a stable α-helix. Inserting a proline in the middle would...',
+          ],
+          conceptA: 'Helix disruptor — proline breaks helical geometry',
+          conceptB: 'Helix stabilizer — proline rigidity reinforces helix',
+          correct: 'Helix disruptor — proline breaks helical geometry',
+          explanation: 'No N–H on Pro → cannot donate the backbone H-bond → helix stability is broken at that point. Pro is found at turns and kinks, not helix interiors.',
+        },
+        {
+          conceptId: 'histidine-physiological-buffer',
+          scenarios: [
+            'Which amino acid, with a side chain pKa closest to physiological pH, can act as a proton shuttle in enzyme active sites at pH 7.4?',
+            'Lysine (pKa ~10.5) vs. Histidine (pKa ~6): which can act as both acid and base near pH 7.4?',
+          ],
+          conceptA: 'Histidine — pKa ~6, near physiological pH',
+          conceptB: 'Lysine — pKa ~10.5, fully protonated at pH 7.4',
+          correct: 'Histidine — pKa ~6, near physiological pH',
+          explanation: 'Lys is fully protonated (+) at pH 7.4 — can only act as acid, not accept protons. His at pKa ~6 is ~10% protonated at 7.4, able to swing both ways as a proton shuttle.',
+        },
+        {
+          conceptId: 'glycine-achiral-flexible',
+          scenarios: [
+            'Which amino acid has two identical substituents on its α-carbon, making it the only achiral standard amino acid?',
+            'All standard amino acids have a chiral center except one — the one whose "side chain" is just a hydrogen atom. This is...',
+          ],
+          conceptA: 'Glycine — achiral, most flexible',
+          conceptB: 'Alanine — smallest after Gly, but still chiral',
+          correct: 'Glycine — achiral, most flexible',
+          explanation: 'Gly: α-carbon has H, H, NH₂, COOH — the two H\'s are identical, so no chiral center. Ala has a –CH₃ group, making all four substituents distinct → chiral.',
+        },
+        {
+          conceptId: 'basic-amino-acid-trio',
+          scenarios: [
+            'Lysine, Arginine, and Histidine are the three basic amino acids. Their opposites — the acidic amino acids with negative charges at pH 7.4 — are...',
+            'Asp and Glu are acidic; Lys, Arg, and His are basic. At pH 7.4, the basic trio carries which charge?',
+          ],
+          conceptA: 'Lys, Arg, His — positively charged (basic)',
+          conceptB: 'Asp, Glu, His — the acidic and borderline group',
+          correct: 'Lys, Arg, His — positively charged (basic)',
+          explanation: 'Asp and Glu are negatively charged (acidic) at pH 7.4. Lys (+), Arg (+), His (borderline +, pKa ~6) are the positively charged basic amino acids.',
+        },
+      ],
+    },
+
+    // ── Protein Function & Localization ────────────────────────────────────
+    {
+      id: 'protein-function-localization',
+      name: 'Protein Function & Localization',
+      place: 'Protein Mission Control',
+      tagline: 'Where proteins go and how they know',
+      emoji: '📍',
+      color: '#7C3AED',
+      lightColor: '#EDE9FE',
+      description: 'Isoelectric point and charge, nuclear localization sequences, vasopressin and aquaporins',
+      scenarioDrop: [
+        {
+          conceptId: 'pi-above-physio-positive',
+          label: 'pI > pH → net positive charge',
+          scenarios: [
+            'A protein has a pI of 9. At physiological pH (7.4), what is its net charge?',
+            'Histone proteins have pIs around 10–12 due to many Lys and Arg residues. At physiological pH, histones carry what net charge?',
+            'A protein\'s isoelectric point is 9. When placed in a buffer at pH 7.4, the protein will migrate toward which electrode in gel electrophoresis?',
+          ],
+          correct: 'Net positive — pH 7.4 is below pI 9, so the protein is more protonated than at its pI',
+          wrongPool: [
+            'Net negative — a higher pI does not mean more negative charge at physiological pH',
+            'Net neutral — physiological pH always results in neutral net charge (incorrect rule)',
+            'Depends on whether the protein is a monomer or multimer',
+            'Depends on the number of subunits in the protein complex',
+            'Net positive only if the protein contains disulfide bonds',
+          ],
+          explanation: 'Rule: pH < pI → net positive (+). pH > pI → net negative (−). At pI, net charge = 0. At pH 7.4 with pI = 9: solution is more acidic than pI → extra protons available → protein stays protonated → net positive. Histones (+) bind negatively charged DNA — pI explains this.',
+        },
+        {
+          conceptId: 'nuclear-localization-sequence',
+          label: 'Nuclear proteins carry NLS',
+          scenarios: [
+            'A transcription factor must enter the nucleus to activate gene expression. What sequence feature enables it to cross the nuclear pore?',
+            'β-Catenin moves to the nucleus to activate Wnt target genes. What structural feature enables nuclear import?',
+            'A researcher mutates a stretch of basic amino acids in a nuclear protein and finds it can no longer enter the nucleus. This sequence is a...',
+          ],
+          correct: 'Nuclear localization sequence (NLS) — short basic peptide recognized by importins for nuclear pore import',
+          wrongPool: [
+            'Signal peptide — targets proteins to the ER lumen, not the nucleus',
+            'Transmembrane domain — for membrane insertion, not nuclear import',
+            'High proportion of surface nonpolar residues — describes membrane association, not nuclear targeting',
+            'GPI anchor — lipid modification for membrane attachment',
+            'KDEL sequence — retains proteins in the ER lumen; not a nuclear import signal',
+          ],
+          explanation: 'NLS = short sequence rich in Lys and Arg. Importin-α recognizes NLS → importin-β docks at nuclear pore → RanGTP-driven transport into nucleus. Signal peptides target ER. KDEL retains ER residents. Surface nonpolar residues = membrane association.',
+        },
+        {
+          conceptId: 'vasopressin-collecting-duct-aquaporin',
+          label: 'Vasopressin → AQP2 in collecting duct',
+          scenarios: [
+            'Vasopressin (ADH) increases water reabsorption by inserting aquaporin-2 (AQP2) into the apical membrane of which nephron segment?',
+            'A patient with central diabetes insipidus lacks vasopressin. Which nephron segment fails to appropriately reabsorb water?',
+            'ADH stimulates V2 receptors → cAMP → PKA → AQP2 vesicle fusion with the apical membrane of...',
+          ],
+          correct: 'Collecting duct (and late distal tubule) — V2 receptors here trigger AQP2 insertion',
+          wrongPool: [
+            'Ascending loop of Henle — water-impermeable regardless of vasopressin; the ascending limb actively excludes water',
+            'Proximal convoluted tubule — obligatory, vasopressin-independent water reabsorption',
+            'Glomerulus — site of filtration, not selective tubular reabsorption',
+            'Descending loop of Henle — passively permeable to water but not regulated by vasopressin',
+            'Bowman\'s capsule — surrounds the glomerulus; not a reabsorption site',
+          ],
+          explanation: 'Vasopressin → V2 receptor on collecting duct principal cells → Gs → adenylyl cyclase → cAMP → PKA → AQP2 vesicle fusion with apical membrane → water permeability ↑ → water reabsorbed. The ascending limb is always water-impermeable (essential for countercurrent multiplication). ADH acts at the collecting duct.',
+        },
+      ],
+      showdown: [
+        {
+          conceptId: 'pi-above-physio-positive',
+          scenarios: [
+            'A protein has pI = 9 and is placed in a buffer at pH 7.4. Since pH < pI, the protein carries a net...',
+            'Histones have pI > 10. At cytoplasmic pH (~7.4), histones are net...',
+          ],
+          conceptA: 'Net positive (pH < pI)',
+          conceptB: 'Net negative (pH > pI)',
+          correct: 'Net positive (pH < pI)',
+          explanation: 'pH < pI → positive. The solution is more acidic than the pI, so the protein\'s ionizable groups are protonated → net positive charge.',
+        },
+        {
+          conceptId: 'nuclear-localization-sequence',
+          scenarios: [
+            'A transcription factor heading to the nucleus carries a nuclear localization sequence (NLS). A protein heading to the ER lumen carries a...',
+            'NLS targets the nucleus. A different N-terminal sequence, rich in hydrophobic residues, targets the...',
+          ],
+          conceptA: 'Nuclear localization sequence (NLS) → nucleus',
+          conceptB: 'Signal peptide → ER lumen',
+          correct: 'Nuclear localization sequence (NLS) → nucleus',
+          explanation: 'NLS = basic residue-rich, recognized by importins → nucleus. Signal peptide = hydrophobic, recognized by SRP → ER. Both are targeting sequences but for different destinations.',
+        },
+        {
+          conceptId: 'vasopressin-collecting-duct-aquaporin',
+          scenarios: [
+            'Vasopressin inserts AQP2 water channels into the apical membrane of the collecting duct. The ascending loop of Henle is water-impermeable because...',
+            'ADH target: collecting duct or ascending loop of Henle?',
+          ],
+          conceptA: 'Collecting duct — the vasopressin target',
+          conceptB: 'Ascending loop of Henle — always water-impermeable',
+          correct: 'Collecting duct — the vasopressin target',
+          explanation: 'Ascending limb is always water-impermeable (no aquaporins) — that\'s what drives the medullary concentration gradient. Vasopressin controls water permeability only in the collecting duct.',
+        },
+      ],
+    },
+
+    // ── Metabolism ─────────────────────────────────────────────────────────
+    {
+      id: 'metabolism',
+      name: 'Metabolism',
+      place: 'Metabolic Furnace',
+      tagline: 'Fuel, intermediates, and electron flow',
+      emoji: '🔥',
+      color: '#DC2626',
+      lightColor: '#FEE2E2',
+      description: 'PEP in glycolysis not CAC, anaerobic ATP yield, ETC functional coupling',
+      scenarioDrop: [
+        {
+          conceptId: 'pep-glycolysis-not-cac',
+          label: 'PEP = glycolysis, not CAC',
+          scenarios: [
+            'Phosphoenolpyruvate (PEP) is an intermediate in which metabolic pathway?',
+            'A biochemist asks which molecule is NOT a citric acid cycle intermediate. PEP should be on this list because...',
+            'PEP is converted to pyruvate by pyruvate kinase, generating ATP. PEP belongs to...',
+          ],
+          correct: 'Glycolysis — PEP is the penultimate step before pyruvate in glycolysis',
+          wrongPool: [
+            'Citric acid cycle — a common distractor; PEP is never a CAC intermediate',
+            'β-Oxidation of fatty acids — generates NADH and acetyl-CoA, not PEP',
+            'Pentose phosphate pathway — generates NADPH and ribose-5-phosphate, not PEP',
+            'Electron transport chain — passes electrons, not a metabolite like PEP',
+            'Amino acid catabolism — feeds into the CAC or pyruvate, but PEP itself is not generated there',
+          ],
+          explanation: 'PEP is step 9 → step 10 of glycolysis: PEP + ADP → pyruvate + ATP (pyruvate kinase). The CAC intermediates are citrate, isocitrate, α-KG, succinyl-CoA, succinate, fumarate, malate, and oxaloacetate. PEP is never on that list.',
+        },
+        {
+          conceptId: 'anaerobic-glycolysis-2-atp',
+          label: 'Anaerobic glycolysis = 2 net ATP',
+          scenarios: [
+            'Under anaerobic conditions, how many net ATP molecules does glycolysis produce per glucose molecule?',
+            'A muscle cell during intense exercise relies solely on glycolysis (no oxygen available). Net ATP yield per glucose is...',
+            'Glycolysis invests 2 ATP and generates 4 ATP gross. The net ATP yield per glucose is...',
+          ],
+          correct: '2 net ATP per glucose — 4 produced (steps 7, 10) minus 2 invested (steps 1, 3)',
+          wrongPool: [
+            '36–38 ATP — that is the total aerobic yield including oxidative phosphorylation',
+            '32 ATP — aerobic yield via FADH₂ and NADH through the ETC; not anaerobic',
+            '3 net ATP per glucose',
+            '4 net ATP — that is the gross yield before subtracting the investment phase',
+            '0 ATP — glycolysis always produces some ATP even anaerobically',
+          ],
+          explanation: 'Glycolysis investment phase: hexokinase (step 1) and PFK-1 (step 3) each use 1 ATP → −2 ATP. Payoff phase: PGK (step 7) and pyruvate kinase (step 10) each produce 2 ATP (× 2 trioses) → +4 ATP. Net = 4 − 2 = 2 ATP. Anaerobically, NADH is re-oxidized by LDH (→ lactate), not the ETC.',
+        },
+        {
+          conceptId: 'etc-functional-coupling',
+          label: 'ETC complexes are coupled in series',
+          scenarios: [
+            'Why must researchers isolate and measure each ETC complex individually to determine its specific activity?',
+            'Rotenone inhibits Complex I of the ETC. This also impairs electron flow through Complexes III and IV because the complexes are...',
+            'A single inhibitor (e.g., cyanide at Complex IV) can shut down the entire electron transport chain because ETC complexes...',
+          ],
+          correct: 'ETC complexes are functionally coupled — electrons pass sequentially; blocking one backs up all upstream complexes',
+          wrongPool: [
+            'Each complex uses a completely distinct, separate substrate with no shared electron carriers',
+            'Each complex independently generates its own proton gradient without passing electrons to the next',
+            'The complexes are permanently fused and cannot be individually studied in any context',
+            'Inhibiting one complex causes compensatory upregulation of the adjacent complex',
+            'Each complex runs at an independent membrane potential disconnected from the others',
+          ],
+          explanation: 'ETC: NADH → Complex I → CoQ → Complex III → cytochrome c → Complex IV → O₂. Electrons flow sequentially through shared carriers (CoQ, cytochrome c). Block Complex I → CoQ backs up → Complex III stalls → Complex IV stalls. This coupling is why each complex must be measured in isolation.',
+        },
+      ],
+      showdown: [
+        {
+          conceptId: 'pep-glycolysis-not-cac',
+          scenarios: [
+            'PEP is converted to pyruvate in the final ATP-generating step of glycolysis. PEP belongs to glycolysis, not the...',
+            'Malate is a genuine CAC intermediate. PEP is NOT — it belongs to...',
+          ],
+          conceptA: 'Glycolysis (PEP → pyruvate)',
+          conceptB: 'Citric acid cycle (wrong — PEP is not a CAC intermediate)',
+          correct: 'Glycolysis (PEP → pyruvate)',
+          explanation: 'PEP + ADP → pyruvate + ATP via pyruvate kinase (glycolysis step 10). CAC intermediates are: citrate, isocitrate, α-KG, succinyl-CoA, succinate, fumarate, malate, OAA. PEP never appears.',
+        },
+        {
+          conceptId: 'anaerobic-glycolysis-2-atp',
+          scenarios: [
+            'Glycolysis invests 2 ATP and produces 4 gross. Net ATP from anaerobic glycolysis is...',
+            'Under anaerobic conditions with no ETC running, the ATP yield per glucose is just the glycolysis net of...',
+          ],
+          conceptA: '2 net ATP (anaerobic, glycolysis only)',
+          conceptB: '36–38 ATP (aerobic, full oxidation)',
+          correct: '2 net ATP (anaerobic, glycolysis only)',
+          explanation: '2 net ATP = glycolysis only. 36–38 ATP requires the ETC and oxidative phosphorylation, which need O₂. Anaerobically, only glycolysis runs.',
+        },
+        {
+          conceptId: 'etc-functional-coupling',
+          scenarios: [
+            'ETC complexes pass electrons through shared carriers (CoQ, cytochrome c). This means the complexes are...',
+            'Blocking Complex I with rotenone impairs downstream complexes. This is because ETC complexes are...',
+          ],
+          conceptA: 'Functionally coupled — sequential electron handoff',
+          conceptB: 'Independent — each complex uses its own substrate',
+          correct: 'Functionally coupled — sequential electron handoff',
+          explanation: 'CoQ and cytochrome c are mobile electron carriers shared between complexes. Coupling means one blockade affects the entire chain.',
+        },
+      ],
+    },
+
+    // ── Cell Biology & Physiology ──────────────────────────────────────────
+    {
+      id: 'cell-biology-physiology',
+      name: 'Cell Biology & Physiology',
+      place: 'The Cell Lab',
+      tagline: 'Organelles, germ layers, and excitability',
+      emoji: '🔬',
+      color: '#059669',
+      lightColor: '#D1FAE5',
+      description: 'Embryonic germ layers, centrosome as MTOC, lysosomes, K⁺ channel repolarization',
+      scenarioDrop: [
+        {
+          conceptId: 'brain-ectoderm',
+          label: 'Brain = ectoderm (not mesoderm)',
+          scenarios: [
+            'The brain and spinal cord develop from which embryonic germ layer?',
+            'Neural tube defects affect the central nervous system. The neural tube is derived from which germ layer?',
+            'Which germ layer gives rise to the nervous system, skin epidermis, and sensory organs?',
+          ],
+          correct: 'Ectoderm — the outer germ layer; neural tube (brain + spinal cord) develops from neuroectoderm',
+          wrongPool: [
+            'Mesoderm — gives rise to heart, kidney, skeletal muscle, and bone; NOT the nervous system',
+            'Endoderm — gives rise to gut epithelium, lungs, liver, and pancreas; NOT the brain',
+            'Neural crest alone — neural crest is an ectoderm derivative but gives peripheral neurons/craniofacial structures, not the brain itself',
+            'Lateral plate mesoderm — gives rise to heart and body wall, not brain',
+            'Notochord — induces neural tube but is mesoderm-derived; the brain is ectoderm',
+          ],
+          explanation: 'Ectoderm → (1) surface ectoderm: skin/epidermis, lens, cornea; (2) neuroectoderm: brain + spinal cord (neural tube); (3) neural crest: peripheral neurons, melanocytes, craniofacial bones. Heart, kidney, muscle = mesoderm. Gut lining = endoderm.',
+        },
+        {
+          conceptId: 'centrosome-mtoc',
+          label: 'Centrosome = MTOC',
+          scenarios: [
+            'Cytoplasmic microtubules used as tracks for vesicle and organelle transport originate from which cellular structure?',
+            'A researcher disrupts the centrosome and finds that melanosome transport along microtubule tracks stops. The centrosome serves as...',
+            'Which organelle is the primary microtubule-organizing center (MTOC) in most animal cells?',
+          ],
+          correct: 'Centrosome — the MTOC; pericentriolar material (PCM) containing γ-tubulin nucleates microtubule growth',
+          wrongPool: [
+            'Kinetochore — attaches chromosomes to spindle microtubules; does NOT nucleate microtubules',
+            'Golgi apparatus — biosynthetic and sorting organelle; not the primary MTOC',
+            'Nucleus — contains chromatin and houses transcription; not the MTOC',
+            'Smooth ER — lipid synthesis and Ca²⁺ storage; not microtubule nucleation',
+            'Centriole alone — centrioles are within the centrosome but the surrounding PCM actually nucleates microtubules',
+          ],
+          explanation: 'Centrosome = two centrioles + pericentriolar material (PCM). γ-Tubulin ring complexes (γ-TuRCs) in the PCM nucleate microtubule polymerization. Kinetochores are chromosome attachment sites, not nucleation points. Golgi is a biosynthetic organelle.',
+        },
+        {
+          conceptId: 'lysosome-acid-hydrolases',
+          label: 'Lysosomes = acid hydrolases',
+          scenarios: [
+            'Lysosomes degrade cellular waste and foreign material. Which enzyme class defines the lysosomal lumen?',
+            'A cell is treated with bafilomycin A1 (a V-ATPase inhibitor that raises lysosomal pH). Which organelle\'s function is most directly impaired?',
+            'What distinguishes lysosomes from other cytoplasmic vesicles is their content of...',
+          ],
+          correct: 'Acid hydrolases — degradative enzymes (proteases, lipases, nucleases) active at acidic pH ~5',
+          wrongPool: [
+            'Ribosomes — the machines for protein synthesis; found on rough ER and in cytoplasm, not inside lysosomes',
+            'Krebs cycle enzymes — located in the mitochondrial matrix, not in lysosomes',
+            'Histones — DNA-packaging proteins in the nucleus; not lysosomal',
+            'RNA polymerases — transcription machinery in the nucleus',
+            'Kinases and phosphatases — signaling enzymes; not the defining lysosomal content',
+          ],
+          explanation: 'Lysosomes: acidic lumen (pH ~5) maintained by V-type H⁺-ATPase, filled with acid hydrolases (cathepsins, lipases, glycosidases, nucleases). They fuse with autophagosomes (autophagy) and phagosomes (phagocytosis). Ribosomes make proteins; they don\'t live inside lysosomes.',
+        },
+        {
+          conceptId: 'k-channel-repolarization',
+          label: 'Blocking K⁺ channels prolongs AP',
+          scenarios: [
+            'Dendrotoxin blocks voltage-gated K⁺ channels. What effect would this have on the action potential?',
+            'Voltage-gated K⁺ channels open during the falling phase of the action potential. Blocking them would...',
+            'A toxin prevents K⁺ efflux during an action potential. The most likely result is...',
+          ],
+          correct: 'Prolonged action potential — K⁺ efflux drives repolarization; blocking it delays return to resting potential',
+          wrongPool: [
+            'Prevents depolarization — depolarization is driven by Na⁺ influx through voltage-gated Na⁺ channels, not K⁺',
+            'Causes immediate hyperpolarization — hyperpolarization requires K⁺ to flow in or Cl⁻ to flow in, not blocking K⁺ efflux',
+            'Blocks the refractory period only, without affecting action potential duration',
+            'Prevents all action potential generation — that would require blocking Na⁺ channels',
+            'Shortens the action potential by causing faster Na⁺ channel inactivation',
+          ],
+          explanation: 'AP phases: (1) Depolarization: Na⁺ channels open → Na⁺ rushes in. (2) Repolarization: K⁺ channels open → K⁺ rushes out → membrane returns to resting potential. Block K⁺ channels → K⁺ can\'t leave → repolarization delayed → prolonged AP duration.',
+        },
+      ],
+      showdown: [
+        {
+          conceptId: 'brain-ectoderm',
+          scenarios: [
+            'The heart is mesoderm-derived. The brain is NOT — it comes from...',
+            'A NOT question asks which structure is NOT mesoderm-derived. The answer is brain, because the brain is...',
+          ],
+          conceptA: 'Ectoderm — brain/nervous system',
+          conceptB: 'Mesoderm — heart/muscle/kidney',
+          correct: 'Ectoderm — brain/nervous system',
+          explanation: 'Brain + spinal cord = neuroectoderm. Heart, kidney, skeletal muscle = mesoderm. Gut lining = endoderm. Ectoderm also → skin epidermis, lens, inner ear.',
+        },
+        {
+          conceptId: 'centrosome-mtoc',
+          scenarios: [
+            'Microtubules for vesicle transport are nucleated at the centrosome (MTOC). Kinetochores attach to microtubules but do NOT...',
+            'Which structure nucleates cytoplasmic microtubules vs. which structure just attaches to already-formed spindle microtubules?',
+          ],
+          conceptA: 'Centrosome — nucleates microtubules (MTOC)',
+          conceptB: 'Kinetochore — attaches to microtubules (not MTOC)',
+          correct: 'Centrosome — nucleates microtubules (MTOC)',
+          explanation: 'Centrosome (PCM γ-tubulin) nucleates microtubule growth. Kinetochores are protein complexes on chromosomes that capture already-formed spindle microtubules — they don\'t generate them.',
+        },
+        {
+          conceptId: 'lysosome-acid-hydrolases',
+          scenarios: [
+            'Lysosomes contain acid hydrolases for degradation. Protein synthesis machinery (ribosomes) is located...',
+            'What is inside a lysosome: acid hydrolases or ribosomes?',
+          ],
+          conceptA: 'Acid hydrolases — define lysosomes',
+          conceptB: 'Ribosomes — make proteins elsewhere',
+          correct: 'Acid hydrolases — define lysosomes',
+          explanation: 'Lysosomes = acidic, degradative. Acid hydrolases (proteases, lipases, etc.) are their defining content. Ribosomes are on rough ER or free in cytoplasm — not inside lysosomes.',
+        },
+        {
+          conceptId: 'k-channel-repolarization',
+          scenarios: [
+            'Blocking voltage-gated K⁺ channels prevents repolarization, causing a prolonged AP. This is different from blocking Na⁺ channels, which would...',
+            'K⁺ channel blockers prolong the AP. Na⁺ channel blockers would instead prevent...',
+          ],
+          conceptA: 'Prolongs action potential (K⁺ channels blocked)',
+          conceptB: 'Prevents depolarization (Na⁺ channels blocked)',
+          correct: 'Prolongs action potential (K⁺ channels blocked)',
+          explanation: 'K⁺ efflux = repolarization. Block K⁺ → repolarization delayed → prolonged AP. Na⁺ influx = depolarization. Block Na⁺ → no depolarization, no AP at all.',
+        },
+      ],
+    },
+
+    // ── Molecular Genetics ─────────────────────────────────────────────────
+    {
+      id: 'molecular-genetics',
+      name: 'Molecular Genetics',
+      place: 'The Gene Vault',
+      tagline: 'DNA damage, repair, and reading frames',
+      emoji: '🧬',
+      color: '#4F46E5',
+      lightColor: '#E0E7FF',
+      description: 'Phosphodiester bonds, UV pyrimidine dimers, frameshift and amino-terminal preservation',
+      scenarioDrop: [
+        {
+          conceptId: 'dna-phosphodiester-bond',
+          label: 'DNA backbone = phosphodiester bonds',
+          scenarios: [
+            'During DNA excision repair, the resynthesized strand is joined to the existing strand. What covalent bond connects nucleotides in the DNA backbone?',
+            'DNA ligase seals the final nick during repair by forming a...',
+            'The covalent backbone of a single DNA strand — alternating sugar and phosphate groups — is held together by...',
+          ],
+          correct: 'Phosphodiester bonds — 3′-OH of one deoxyribose covalently linked to 5′-phosphate of the next',
+          wrongPool: [
+            'Disulfide bonds — form between cysteine residues in proteins; not found in DNA',
+            'Peptide bonds — amide linkages joining amino acids in proteins; not nucleotides',
+            'Hydrogen bonds — base-pairing bonds between strands; NOT the covalent backbone linkage',
+            'Glycosidic bonds — connect the base to the sugar within each nucleotide; not between nucleotides',
+            'Ionic bonds — electrostatic; the phosphodiester backbone bond is covalent',
+          ],
+          explanation: 'DNA backbone: 3′-OH of sugar + phosphate group + 5′-carbon of next sugar = phosphodiester bond. DNA ligase makes this bond in repair. Disulfide bonds are protein chemistry — a common wrong-answer trap on this question type.',
+        },
+        {
+          conceptId: 'cyclobutane-pyrimidine-dimer',
+          label: 'UV → cyclobutane pyrimidine dimer',
+          scenarios: [
+            'UV radiation causes a cyclobutane ring to form between two adjacent bases in DNA. Which bases are involved?',
+            'The most common UV-induced DNA lesion fuses two adjacent bases via [2+2] cycloaddition. These fused bases are always...',
+            'Xeroderma pigmentosum results from failure to repair UV-induced lesions. These lesions form between two adjacent...',
+          ],
+          correct: 'Two adjacent pyrimidines (most often two thymines) — UV crosslinks adjacent pyrimidines into a cyclobutane ring',
+          wrongPool: [
+            'A purine and a pyrimidine — purines are not involved in cyclobutane dimer formation',
+            'Two purines (adenine–guanine) — purines cannot form cyclobutane dimers',
+            'Any two adjacent bases — UV specifically targets pyrimidine–pyrimidine pairs, not all adjacent bases',
+            'A purine–pyrimidine mispair — these are replication errors, not UV photoproducts',
+            'Guanine–cytosine pairs specifically — Gua is a purine; cyclobutane dimers are pyrimidine only',
+          ],
+          explanation: 'UV (260–280 nm) causes [2+2] cycloaddition between adjacent pyrimidine bases: T–T most common, then T–C, then C–C. Purines (Ade, Gua) do not form cyclobutane dimers. The fused ring distorts the helix and blocks DNA polymerase.',
+        },
+        {
+          conceptId: 'frameshift-amino-terminal',
+          label: 'Frameshift: N-terminus preserved',
+          scenarios: [
+            'A single nucleotide insertion occurs at position 150 of a 600-nt coding sequence. Which portion of the resulting protein is preserved?',
+            'A frameshift mutation shifts the reading frame from the mutation point onward. What is the fate of the region before the insertion?',
+            'After a single-base deletion early in an exon, a protein is produced where the first few amino acids are normal but the C-terminus is completely wrong. Why?',
+          ],
+          correct: 'Amino-terminal (N-terminal) sequence — the region before the frameshift is translated correctly; everything after is altered',
+          wrongPool: [
+            'Carboxy-terminal (C-terminal) sequence — the C-terminus is AFTER the frameshift; it is the altered part',
+            'The entire protein sequence is scrambled from start to finish',
+            'Only the single mutated codon changes; surrounding sequence is unaffected (that describes a missense mutation)',
+            'The protein is truncated at the mutation point with no downstream sequence',
+            'The C-terminal sequence is preserved because ribosomes re-establish the frame at the stop codon',
+          ],
+          explanation: 'Reading frame before the insertion = unchanged → N-terminus (amino-terminal) is correct. At the insertion site, reading frame shifts → all downstream codons are read in the new (wrong) frame → scrambled C-terminus, often with a premature stop codon.',
+        },
+      ],
+      showdown: [
+        {
+          conceptId: 'dna-phosphodiester-bond',
+          scenarios: [
+            'DNA ligase seals nicks in the DNA backbone by forming a phosphodiester bond, not a...',
+            'The covalent bond linking nucleotides in the DNA backbone is a phosphodiester bond. Proteins use a different backbone bond — the...',
+          ],
+          conceptA: 'Phosphodiester bond (DNA backbone)',
+          conceptB: 'Disulfide bond (protein Cys–Cys only)',
+          correct: 'Phosphodiester bond (DNA backbone)',
+          explanation: 'DNA backbone = phosphodiester. Protein backbone = peptide bonds. Disulfide bonds are a side-chain modification of Cys residues in proteins — not a backbone bond and definitely not in DNA.',
+        },
+        {
+          conceptId: 'cyclobutane-pyrimidine-dimer',
+          scenarios: [
+            'UV induces a cyclobutane dimer between two adjacent pyrimidines — not between a purine and a pyrimidine. The dimer is...',
+            'UV photoproducts involve pyrimidine–pyrimidine crosslinks. A purine–pyrimidine dimer is...',
+          ],
+          conceptA: 'Pyrimidine–pyrimidine dimer (UV product)',
+          conceptB: 'Purine–pyrimidine dimer (not a UV photoproduct)',
+          correct: 'Pyrimidine–pyrimidine dimer (UV product)',
+          explanation: 'UV specifically crosslinks adjacent pyrimidines (C, T). Purines (A, G) are not involved in cyclobutane dimer formation. T–T dimers are the most common UV lesion.',
+        },
+        {
+          conceptId: 'frameshift-amino-terminal',
+          scenarios: [
+            'A frameshift at position 150 of a protein alters everything downstream. The region BEFORE the frameshift — the amino-terminal portion — is...',
+            'In a frameshift mutation, which end of the protein is preserved: the amino terminus or the carboxy terminus?',
+          ],
+          conceptA: 'Amino terminus preserved (before the frameshift)',
+          conceptB: 'Carboxy terminus preserved (after the frameshift)',
+          correct: 'Amino terminus preserved (before the frameshift)',
+          explanation: 'Everything before the insertion = normal reading frame → correct amino acids → N-terminus intact. Everything after = shifted frame → wrong amino acids → altered C-terminus.',
+        },
+      ],
+    },
+
+    // ── Immunology ─────────────────────────────────────────────────────────
+    {
+      id: 'immunology',
+      name: 'Immunology',
+      place: 'The Immune Frontier',
+      tagline: 'Antibodies, antigens, and viral entry',
+      emoji: '🛡️',
+      color: '#B45309',
+      lightColor: '#FEF3C7',
+      description: 'Antibody variable regions (heavy + light chains), endosomal acidification and viral fusion',
+      scenarioDrop: [
+        {
+          conceptId: 'antibody-variable-both-chains',
+          label: 'Antibody binding = both VH + VL',
+          scenarios: [
+            'Antigen-binding specificity in an antibody comes from which parts of the molecule?',
+            'The complementarity-determining regions (CDRs) that contact antigen are located in which antibody domains?',
+            'A researcher removes only the variable region of heavy chains from an antibody. What happens to antigen binding?',
+          ],
+          correct: 'Variable regions of BOTH heavy (VH) and light (VL) chains — both contribute to the antigen-binding site',
+          wrongPool: [
+            'Variable region of the light chain only — the heavy-chain variable region is equally important and cannot be ignored',
+            'Constant regions of the heavy chain (Fc) — the Fc region mediates effector functions, not antigen binding',
+            'Only the light chain constant region — constant regions don\'t contact antigen',
+            'The hinge region — provides flexibility but does not bind antigen',
+            'The Fc region — binds complement and Fc receptors on immune cells, not the specific antigen',
+          ],
+          explanation: 'The antigen-binding site (paratope) = 6 CDR loops: 3 from VH + 3 from VL. Both variable regions are required for full antigen specificity. Removing either VH or VL severely reduces affinity. The Fc region determines antibody class/effector function, not antigen specificity.',
+        },
+        {
+          conceptId: 'endosomal-acidification-viral',
+          label: 'Viral fusion requires endosomal acidification',
+          scenarios: [
+            'A virus enters cells via endocytosis and fuses its envelope with the endosomal membrane at low pH. Blocking which process would prevent viral entry?',
+            'Influenza requires low pH to trigger hemagglutinin-mediated membrane fusion. A V-ATPase inhibitor (bafilomycin A1) would prevent infection because...',
+            'Which cellular compartment is acidified to trigger viral fusion protein conformational changes during endocytic entry?',
+          ],
+          correct: 'Endosomal acidification — proton pumps lower pH in endosomes, triggering viral fusion protein conformational change',
+          wrongPool: [
+            'Golgi apparatus — a biosynthetic/sorting organelle; not the site of endocytic viral envelope fusion during entry',
+            'Lysosomal alkalinization — lysosomes are downstream; fusion typically occurs in early/late endosomes before lysosomal degradation',
+            'Nuclear pore dilation — relevant for nuclear import of viral genome; not the acidification-dependent fusion step',
+            'ER lumen acidification — the ER is a biosynthetic compartment, not the site of endocytic viral fusion',
+            'Plasma membrane depolarization — relevant for direct plasma membrane fusion entry routes, not endocytic entry',
+          ],
+          explanation: 'Endocytic viruses (influenza, some SARS-CoV-2 entry routes, VSV) are engulfed in endosomes. V-type H⁺-ATPases acidify the endosome (pH ~5–6). Low pH triggers viral fusion protein conformational changes (e.g., HA in influenza) → viral and endosomal membranes fuse → genome released. Golgi is for biosynthesis, not viral entry.',
+        },
+      ],
+      showdown: [
+        {
+          conceptId: 'antibody-variable-both-chains',
+          scenarios: [
+            'Antigen specificity requires VH and VL together. The Fc region (heavy chain constant domains) mediates...',
+            'Both heavy-chain variable region (VH) and light-chain variable region (VL) contribute to antigen binding. Not just VL — both VH and...',
+          ],
+          conceptA: 'Both VH + VL — antigen binding requires both variable regions',
+          conceptB: 'VL only — light chain variable region alone determines specificity',
+          correct: 'Both VH + VL — antigen binding requires both variable regions',
+          explanation: '6 CDR loops = 3 from VH + 3 from VL. Both variable regions together form the antigen-binding pocket. Light chain alone is not sufficient for full antigen specificity.',
+        },
+        {
+          conceptId: 'endosomal-acidification-viral',
+          scenarios: [
+            'Influenza uses endocytic entry. Membrane fusion is triggered by acidification of the endosome, not the...',
+            'Viral envelope fusion during endocytic entry happens in acidified endosomes, not in the...',
+          ],
+          conceptA: 'Endosome (acidified by V-ATPase)',
+          conceptB: 'Golgi apparatus (biosynthetic, not endocytic)',
+          correct: 'Endosome (acidified by V-ATPase)',
+          explanation: 'V-ATPase acidifies endosomes (pH ~5–6) → triggers viral fusion protein conformational change → membrane fusion → genome entry. Golgi processes newly synthesized proteins — it\'s on the secretory pathway, not the endocytic entry pathway.',
+        },
+      ],
+    },
+
+    // ── Strategy Lab ──────────────────────────────────────────────────────
+    {
+      id: 'strategy-lab-bio',
+      name: 'Strategy Lab',
+      place: 'The Strategy Room',
+      tagline: 'Read every word of the stem',
+      emoji: '🎯',
+      color: '#6B7280',
+      lightColor: '#F3F4F6',
+      description: 'NOT/EXCEPT stems: find the one false statement',
+      scenarioDrop: [
+        {
+          conceptId: 'strat-not-cac-pep',
+          label: 'NOT: CAC intermediates',
+          scenarios: [
+            'All of the following are authentic citric acid cycle intermediates except one. Which molecule does not belong in the CAC?',
+            'A biochemist lists compounds produced during one turn of the citric acid cycle. One molecule on the list does not belong. Which is the exception?',
+            'Which of the following is not a true intermediate of the citric acid cycle?',
+          ],
+          correct: 'Phosphoenolpyruvate (PEP)',
+          wrongPool: [
+            'Malate',
+            'Succinate',
+            'α-Ketoglutarate',
+            'Citrate',
+            'Fumarate',
+          ],
+          explanation: 'PEP is a glycolytic intermediate (step 9→10: PEP + ADP → pyruvate + ATP). It is never part of the CAC. Malate, succinate, α-KG, citrate, and fumarate are all genuine CAC intermediates.',
+        },
+        {
+          conceptId: 'strat-not-mesoderm',
+          label: 'NOT: mesoderm derivatives',
+          scenarios: [
+            'All of the following develop from mesoderm during embryogenesis, except one. Which is the exception?',
+            'A student lists mesoderm-derived structures. One item is incorrectly attributed to mesoderm. Which one?',
+            'Which of the following is not derived from the mesodermal germ layer?',
+          ],
+          correct: 'Brain and spinal cord',
+          wrongPool: [
+            'Skeletal muscle',
+            'Cardiac muscle',
+            'Kidneys',
+            'Bone',
+            'Blood vessels',
+          ],
+          explanation: 'Brain and spinal cord = ectoderm (neuroectoderm/neural tube). Skeletal muscle, cardiac muscle, kidneys, bone, and blood vessels are all mesoderm-derived.',
+        },
+        {
+          conceptId: 'strat-not-disulfide',
+          label: 'NOT: disulfide bond facts',
+          scenarios: [
+            'All of the following correctly describe disulfide bond chemistry, except one. Which statement is incorrect?',
+            'A textbook lists properties of disulfide bonds. One item contains an error. Which one?',
+            'Which of the following statements about disulfide bonds is not accurate?',
+          ],
+          correct: 'Methionine\'s thioether group can also participate in disulfide bond formation',
+          wrongPool: [
+            'Two cysteine –SH groups are oxidized to form the S–S covalent bond',
+            'Disulfide bonds are covalent, not hydrogen bonds',
+            'Breaking disulfide bonds requires a reducing agent such as β-mercaptoethanol',
+            'Disulfide bonds contribute to the tertiary and quaternary structure of proteins',
+            'Disulfide bonds can form between cysteine residues on different polypeptide chains',
+          ],
+          explanation: 'Methionine contains a thioether (C–S–C) — its sulfur has no free –SH and cannot form disulfide bonds. Only cysteine (free –SH) forms disulfides. All other statements are true.',
+        },
+        {
+          conceptId: 'strat-not-lysosome',
+          label: 'NOT: lysosome features',
+          scenarios: [
+            'All of the following are accurate descriptions of lysosomes, except one. Which does not apply to lysosomes?',
+            'A cell biology student lists lysosome features. One claim is incorrect. Which?',
+            'Which of the following is not a feature of lysosomes?',
+          ],
+          correct: 'Primary sites of protein synthesis in the cell',
+          wrongPool: [
+            'Contain acid hydrolases that degrade macromolecules',
+            'Maintain an acidic internal lumen (pH ~5) via proton pumps',
+            'Fuse with phagosomes during phagocytosis to digest ingested material',
+            'Participate in autophagy by degrading damaged organelles',
+            'Are membrane-bound vesicular organelles in the cytoplasm',
+          ],
+          explanation: 'Protein synthesis occurs at ribosomes (rough ER / cytoplasm). Lysosomes are degradative organelles. All other statements accurately describe lysosomes.',
+        },
+        {
+          conceptId: 'strat-not-repolarization',
+          label: 'NOT: action potential repolarization',
+          scenarios: [
+            'All of the following are true of the repolarization phase of the action potential, except one. Which is the exception?',
+            'A physiology exam lists events during action potential repolarization. One item is incorrect. Which?',
+            'Which of the following does not accurately describe what occurs during action potential repolarization?',
+          ],
+          correct: 'Voltage-gated Na⁺ channels open and allow Na⁺ influx into the cell',
+          wrongPool: [
+            'Voltage-gated K⁺ channels open during repolarization',
+            'K⁺ ions flow out of the cell down their electrochemical gradient',
+            'Membrane potential returns toward the resting value (approximately −70 mV)',
+            'Na⁺ channel inactivation contributes to the falling phase',
+            'K⁺ efflux is the primary driver of membrane repolarization',
+          ],
+          explanation: 'Na⁺ channel opening drives depolarization (the rising phase), not repolarization. Repolarization is driven by K⁺ efflux through voltage-gated K⁺ channels. Na⁺ channels are inactivated during repolarization.',
+        },
+      ],
+      showdown: [],
+    },
+
+  ];
+
+  clusters.forEach(c => CLUSTERS.push(c));
+})();

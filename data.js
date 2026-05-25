@@ -24,8 +24,16 @@ const SECTIONS = [
     emoji: '🔬',
     color: '#059669',
     lightColor: '#D1FAE5',
-    available: false,
-    clusterIds: [],
+    available: true,
+    clusterIds: [
+      'amino-acids-bonding',
+      'protein-function-localization',
+      'metabolism',
+      'cell-biology-physiology',
+      'molecular-genetics',
+      'immunology',
+      'strategy-lab-bio',
+    ],
   },
   {
     id: 'chem-phys',
