@@ -321,6 +321,11 @@ function shuffle(arr) {
   return a;
 }
 
+function stripExplanation(text) {
+  const idx = text.indexOf(' — ');
+  return idx !== -1 ? text.slice(0, idx) : text;
+}
+
 function render(html) { document.getElementById('app').innerHTML = html; }
 
 // ══════════════════════════════════════════════════════════════════════════
@@ -469,7 +474,7 @@ function renderZoneHub(clusterId) {
            || (cluster.equationRescue || []).find(q => q.conceptId === id)
            || (cluster.magnitudeBlitz  || []).find(q => q.conceptId === id);
     const label = q ? (q.label || q.correct) : id;
-    return `<span class="concept-chip state-${s}" title="${s}">${label}</span>`;
+    return `<span class="concept-chip state-${s}" title="${s}">${stripExplanation(label)}</span>`;
   }).join('');
 
   const countLabel = smartCount === 1 ? '1 concept' : `${smartCount} concepts`;
@@ -602,7 +607,7 @@ function renderScenarioDrop(q, header) {
       <div class="game-body">
         <div class="scenario-card"><p class="scenario-text">${q.scenario}</p></div>
         <div class="answers-grid" id="answers">
-          ${answers.map((a, i) => `<button class="answer-btn" data-idx="${i}">${a}</button>`).join('')}
+          ${answers.map((a, i) => `<button class="answer-btn" data-idx="${i}">${stripExplanation(a)}</button>`).join('')}
         </div>
         <div id="feedback" class="feedback-panel hidden"></div>
       </div>
@@ -639,9 +644,9 @@ function renderShowdown(q, header) {
         <p class="showdown-prompt">Which concept fits?</p>
         <div class="scenario-card"><p class="scenario-text">${q.scenario}</p></div>
         <div class="showdown-choices">
-          <button class="showdown-btn" id="btnA">${q.conceptA}</button>
+          <button class="showdown-btn" id="btnA" data-val="${q.conceptA}">${stripExplanation(q.conceptA)}</button>
           <div class="vs-badge">VS</div>
-          <button class="showdown-btn" id="btnB">${q.conceptB}</button>
+          <button class="showdown-btn" id="btnB" data-val="${q.conceptB}">${stripExplanation(q.conceptB)}</button>
         </div>
         <div id="feedback" class="feedback-panel hidden"></div>
       </div>
@@ -656,7 +661,7 @@ function renderShowdown(q, header) {
       if (correct) state.score++;
       recordAnswer(state.currentQ.conceptId, correct);
       document.querySelectorAll('.showdown-btn').forEach(b => {
-        const winner = b.textContent.trim() === state.currentQ.correct;
+        const winner = b.dataset.val === state.currentQ.correct;
         if (winner)          b.classList.add('correct');
         else if (b === this) b.classList.add('incorrect');
         else                 b.classList.add('dimmed');
