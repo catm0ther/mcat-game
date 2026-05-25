@@ -34,8 +34,15 @@ const SECTIONS = [
     emoji: '⚗️',
     color: '#0284C7',
     lightColor: '#E0F2FE',
-    available: false,
-    clusterIds: [],
+    available: true,
+    clusterIds: [
+      'spectroscopy-light',
+      'proteins-amino-acids',
+      'biomolecules-reactions',
+      'physical-chemistry',
+      'physics-fundamentals',
+      'calc-lab',
+    ],
   },
 ];
 

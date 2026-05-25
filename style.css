@@ -1364,6 +1364,86 @@ button:active { transform: scale(0.96); }
 }
 .btn-secondary:hover { border-color: var(--text); }
 
+/* ── Equation Rescue & Magnitude Blitz ───────────── */
+.calc-badge {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  padding: 4px 12px;
+  border-radius: 99px;
+  margin-bottom: 12px;
+}
+.rescue-badge {
+  background: #EDE9FE;
+  color: #6D28D9;
+}
+.blitz-badge {
+  background: #FEF3C7;
+  color: #B45309;
+}
+
+.calc-prompt {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-soft);
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+/* Equation Rescue: stacked option buttons (text can be long) */
+.rescue-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.rescue-btn {
+  background: var(--white);
+  border: 2px solid #E5E7EB;
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text);
+  text-align: left;
+  line-height: 1.5;
+  transition: border-color 0.15s, background 0.15s;
+  font-family: 'Nunito', monospace;
+}
+.rescue-btn:hover:not(:disabled) {
+  border-color: var(--zone-color, #6D28D9);
+  background: var(--zone-light, #EDE9FE);
+}
+.rescue-btn.correct  { border-color: var(--success); background: var(--success-light); color: #065F46; }
+.rescue-btn.incorrect { border-color: var(--error);   background: var(--error-light);   color: #7F1D1D; }
+.rescue-btn.dimmed   { opacity: 0.4; }
+
+/* Magnitude Blitz: 2×2 grid of big bold choices */
+.blitz-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.blitz-btn {
+  background: var(--white);
+  border: 3px solid #E5E7EB;
+  border-radius: var(--radius);
+  padding: 24px 12px;
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--text);
+  text-align: center;
+  transition: border-color 0.15s, background 0.15s, transform 0.1s;
+}
+.blitz-btn:hover:not(:disabled) {
+  border-color: var(--zone-color, #B45309);
+  background: var(--zone-light, #FEF3C7);
+  transform: scale(1.03);
+}
+.blitz-btn.correct  { border-color: var(--success); background: var(--success-light); color: #065F46; }
+.blitz-btn.incorrect { border-color: var(--error);   background: var(--error-light);   color: #7F1D1D; }
+.blitz-btn.dimmed   { opacity: 0.4; }
+
 /* ── Animations ───────────────────────────────────── */
 @keyframes slideUp {
   from { opacity: 0; transform: translateY(12px); }

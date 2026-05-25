@@ -1,0 +1,745 @@
+// Chemical & Physical Foundations of Biological Systems
+// Source: AAMC Practice Exam 2 gap analysis
+// wrongPool: 5-6 distractors, 3 randomly picked per session
+
+(function () {
+  const clusters = [
+
+    // ── Spectroscopy & Light ───────────────────────────────────────────────
+    {
+      id: 'spectroscopy-light',
+      name: 'Spectroscopy & Light',
+      place: 'The Spectrum Station',
+      tagline: 'Light, energy, and molecular excitation',
+      emoji: '🌈',
+      color: '#6D28D9',
+      lightColor: '#EDE9FE',
+      description: 'UV excitation, wavelength-energy tradeoffs, circular dichroism',
+      scenarioDrop: [
+        {
+          conceptId: 'uv-electronic-excitation',
+          scenarios: [
+            'A chromophore in a purified protein absorbs strongly at 280 nm. Which molecular transition does UV absorption at this wavelength represent?',
+            'Researchers illuminate an enzyme solution with 254 nm UV light and measure strong absorbance. What type of excitation is occurring in the molecule?',
+            'A biochemist uses UV-Vis spectroscopy to detect aromatic amino acids. The 280 nm absorption peak arises from which physical process?',
+          ],
+          correct: 'Electronic excitation of electrons to higher energy orbitals',
+          wrongPool: [
+            'Vibrational excitation of covalent bonds between atoms',
+            'Rotational excitation of the whole molecule',
+            'Nuclear excitation of protons in the atomic nucleus',
+            'Ionization — removal of a valence electron entirely',
+            'Translational excitation increasing molecular kinetic energy',
+          ],
+          explanation: 'UV light has enough energy to promote electrons to higher orbitals (electronic excitation). IR causes vibrations; microwave causes rotations. UV ≠ bond vibration.',
+        },
+        {
+          conceptId: 'wavelength-energy-inverse',
+          scenarios: [
+            'Infrared light (1000 nm) and UV light (200 nm) are compared. Which photon carries more energy, and why?',
+            'A researcher compares red light (700 nm) to violet light (400 nm). Using E = hc/λ, which photon has higher energy?',
+            'Near-UV light (350 nm) vs. visible green light (550 nm): which has greater energy per photon according to the Planck relation?',
+          ],
+          correct: 'Shorter wavelength = higher energy (E = hc/λ — inverse relationship)',
+          wrongPool: [
+            'Longer wavelength = higher energy',
+            'Wavelength and energy are directly proportional',
+            'Both wavelengths carry the same energy per photon',
+            'Energy depends on light intensity, not wavelength',
+            'Longer wavelength = higher frequency',
+          ],
+          explanation: 'E = hc/λ. Wavelength and energy are inversely proportional: shorter λ → higher E. UV photons are more energetic than visible or IR.',
+        },
+        {
+          conceptId: 'near-uv-cd-aromatic',
+          scenarios: [
+            'CD spectroscopy in the near-UV region (250–320 nm) reports on which structural feature of a protein?',
+            'A protein\'s near-UV CD signal disappears upon addition of 8 M urea. What does this loss most directly indicate?',
+            'Scientists use near-UV CD to assess protein folding. The near-UV region specifically reflects which aspect of protein structure?',
+          ],
+          correct: 'Aromatic side chain environments and tertiary structure',
+          wrongPool: [
+            'Alpha-helix content — backbone H-bond geometry',
+            'Beta-sheet hydrogen bonding patterns',
+            'Peptide backbone conformation (far-UV CD does this)',
+            'Primary sequence and disulfide bond connectivity',
+            'Hydrophobic core burial only, not aromatic residues',
+          ],
+          explanation: 'Near-UV CD (250–320 nm) reports on aromatic side chains (Trp, Tyr, Phe) in their fixed, asymmetric tertiary structure environment. Far-UV CD (190–250 nm) reports on backbone/secondary structure.',
+        },
+        {
+          conceptId: 'trp-cd-folded',
+          scenarios: [
+            'Tryptophan residues in a protein show the strongest near-UV CD signal under which conditions?',
+            'A researcher adds denaturant to a protein and monitors the Trp near-UV CD signal. What happens to the signal as the protein unfolds?',
+            'Near-UV CD from Trp is used to track folding. At what structural state is the Trp CD signal maximized?',
+          ],
+          correct: 'Fully folded protein — Trp is in a fixed, asymmetric environment',
+          wrongPool: [
+            'Partially unfolded intermediate state',
+            'Fully denatured state — Trp fully exposed to solvent',
+            'When tryptophan is protonated (low pH)',
+            'When the protein is heated above its melting temperature',
+            'When tryptophan is in free amino acid form in solution',
+          ],
+          explanation: 'Trp near-UV CD requires the aromatic ring to be in an asymmetric, immobilized environment — only true when the protein is fully folded. Denaturation lets Trp tumble freely, killing the CD signal.',
+        },
+      ],
+      showdown: [
+        {
+          conceptId: 'uv-electronic-excitation',
+          scenarios: [
+            'UV light at 280 nm is absorbed by a phenylalanine ring. The absorbed energy promotes electrons to higher orbitals. This is called...',
+            'UV spectroscopy detects aromatic amino acids by measuring the energy absorbed as electrons are promoted. This type of transition is...',
+          ],
+          conceptA: 'Electronic excitation',
+          conceptB: 'Vibrational excitation',
+          correct: 'Electronic excitation',
+          explanation: 'UV promotes electrons between orbitals (electronic). IR causes bond vibrations. UV energy is too high for simple vibrations.',
+        },
+        {
+          conceptId: 'wavelength-energy-inverse',
+          scenarios: [
+            'A photon of red light (700 nm) vs. a photon of blue light (450 nm) are compared using E = hc/λ. Blue light has shorter wavelength, so it has...',
+            'UV light (300 nm) and visible green light (500 nm): per E = hc/λ, the UV photon has shorter wavelength and therefore...',
+          ],
+          conceptA: 'Higher energy (shorter wavelength)',
+          conceptB: 'Lower energy (longer wavelength = more energy)',
+          correct: 'Higher energy (shorter wavelength)',
+          explanation: 'E = hc/λ: as λ decreases, E increases. Shorter wavelength = higher frequency = higher energy.',
+        },
+        {
+          conceptId: 'trp-cd-folded',
+          scenarios: [
+            'A scientist tracks Trp near-UV CD while adding urea to a protein. The signal starts strong and drops during unfolding. The maximum signal appears when the protein is...',
+            'Near-UV CD from Trp requires an asymmetric, fixed environment. This condition is met when the protein is...',
+          ],
+          conceptA: 'Fully folded',
+          conceptB: 'Partially denatured',
+          correct: 'Fully folded',
+          explanation: 'Trp needs to be locked in an asymmetric tertiary structure environment for near-UV CD signal. Any unfolding reduces this signal.',
+        },
+      ],
+    },
+
+    // ── Proteins & Amino Acids ─────────────────────────────────────────────
+    {
+      id: 'proteins-amino-acids',
+      name: 'Proteins & Amino Acids',
+      place: 'Protein Palace',
+      tagline: 'Structure, phosphorylation, and residue chemistry',
+      emoji: '🧬',
+      color: '#0369A1',
+      lightColor: '#E0F2FE',
+      description: 'Secondary structure H-bonds, phosphomimetics, kinase targets, ATP phosphate transfer',
+      scenarioDrop: [
+        {
+          conceptId: 'secondary-backbone-hbonds',
+          scenarios: [
+            'Alpha helices and beta sheets are stabilized primarily by which type of chemical interaction?',
+            'A mutation replaces a charged surface residue with alanine. The protein\'s alpha-helix secondary structure is expected to...',
+            'What distinguishes secondary structure stabilization from tertiary structure stabilization in terms of the specific interactions involved?',
+          ],
+          correct: 'Hydrogen bonds between backbone amide (N–H) and carbonyl (C=O) groups',
+          wrongPool: [
+            'Hydrophobic interactions between nonpolar side chains',
+            'Disulfide bonds between cysteine side chains',
+            'Ionic interactions between oppositely charged side chains',
+            'Van der Waals forces between aromatic side chains',
+            'Hydrogen bonds involving side chain functional groups (not backbone)',
+          ],
+          explanation: 'Secondary structure (helix, sheet) is defined by backbone H-bonds between N–H and C=O groups — no side chains involved. Side chain interactions determine tertiary structure.',
+        },
+        {
+          conceptId: 'phosphomimetic-glu-asp',
+          scenarios: [
+            'A researcher wants a constitutively "phosphorylated" form of a substrate without using a kinase. Which amino acid substitution at the serine site would work?',
+            'In a signaling study, a Ser→Glu mutation is introduced into a substrate protein. What biological state does this substitution mimic?',
+            'Which amino acid is considered a phosphomimetic because its side chain carries a negative charge similar to a phosphate group?',
+          ],
+          correct: 'Glutamate (Glu/E) or Aspartate (Asp/D) — negatively charged side chains mimic phosphate',
+          wrongPool: [
+            'Lysine (Lys/K) — positively charged, opposite of phosphate',
+            'Arginine (Arg/R) — positively charged, binds phosphate instead',
+            'Asparagine (Asn/N) — polar but uncharged, no charge mimicry',
+            'Glutamine (Gln/Q) — polar uncharged, not a phosphomimetic',
+            'Alanine (Ala/A) — nonpolar, no charge at all',
+          ],
+          explanation: 'Phosphorylated Ser/Thr/Tyr carries a negative charge from the phosphate group. Glu and Asp side chains are also negatively charged, making them structural mimics (phosphomimetics).',
+        },
+        {
+          conceptId: 'pdk1-ser-thr-hydroxyl',
+          scenarios: [
+            'PDK1, a serine/threonine kinase, transfers a phosphate group to which functional group on its substrate protein?',
+            'A kinase phosphorylates a serine residue. The phosphate group becomes covalently attached to which part of the serine side chain?',
+            'Serine/threonine kinases transfer the γ-phosphate of ATP onto their substrate. Serine\'s side chain contains which functional group that accepts this phosphate?',
+          ],
+          correct: 'Hydroxyl (–OH) group of serine or threonine',
+          wrongPool: [
+            'Amino (–NH₂) group of lysine residues',
+            'Carboxyl (–COOH) group of aspartate or glutamate',
+            'Thiol (–SH) group of cysteine residues',
+            'Imidazole ring of histidine residues',
+            'Peptide backbone nitrogen (not a side chain target)',
+          ],
+          explanation: 'Ser and Thr both have hydroxyl (–OH) groups on their side chains. Kinases phosphorylate the oxygen of this –OH, forming a phosphoester bond.',
+        },
+        {
+          conceptId: 'atp-gamma-phosphate',
+          scenarios: [
+            'When a kinase uses ATP to phosphorylate a substrate, which of ATP\'s three phosphate groups is transferred?',
+            'ATP has three phosphate groups: α (closest to adenosine), β (middle), and γ (terminal). Which is donated to the substrate in a kinase reaction?',
+            'A biochemist radiolabels the γ-phosphate of ATP and runs a kinase reaction. After the reaction, radioactivity would appear in...',
+          ],
+          correct: 'γ-phosphate — the terminal phosphate, furthest from adenosine',
+          wrongPool: [
+            'α-phosphate — the phosphate directly bonded to ribose',
+            'β-phosphate — the middle phosphate group',
+            'The entire ATP molecule is transferred to the substrate',
+            'α and β phosphates are both transferred together',
+            'ADP retains the γ-phosphate after the reaction',
+          ],
+          explanation: 'The γ (terminal) phosphate of ATP is the one transferred. The α-β phosphates remain as ADP. This is why kinase reactions release ADP, not AMP.',
+        },
+      ],
+      showdown: [
+        {
+          conceptId: 'phosphomimetic-glu-asp',
+          scenarios: [
+            'A researcher substitutes the phosphorylated serine in a signaling protein with a different amino acid to lock it in the "active" state. The substitute must carry negative charge. That rules out Lys and points to...',
+            'Phosphomimetic mutations mimic the negative charge of phosphate. Between Glu (negatively charged) and Lys (positively charged), a phosphomimetic is...',
+          ],
+          conceptA: 'Glutamate — negatively charged phosphomimetic',
+          conceptB: 'Lysine — positively charged, binds phosphate',
+          correct: 'Glutamate — negatively charged phosphomimetic',
+          explanation: 'Phosphate is negatively charged. Glu and Asp are also negative — they mimic it. Lys is positive and would attract phosphate rather than mimic it.',
+        },
+        {
+          conceptId: 'pdk1-ser-thr-hydroxyl',
+          scenarios: [
+            'PDK1 phosphorylates serine residues. Serine\'s side chain ends in –CH₂OH. The phosphate is attached to the oxygen of the...',
+            'Kinases target serine and threonine because both carry a hydroxyl group. The phosphate forms a phosphoester bond with the...',
+          ],
+          conceptA: 'Hydroxyl group (–OH)',
+          conceptB: 'Amino group (–NH₂)',
+          correct: 'Hydroxyl group (–OH)',
+          explanation: 'Ser and Thr side chains both end in –OH. Kinases form a phosphoester bond with this oxygen. Tyr kinases also target –OH (phenol). Lys has –NH₂, not a kinase target here.',
+        },
+        {
+          conceptId: 'atp-gamma-phosphate',
+          scenarios: [
+            'In a kinase reaction, ATP loses one phosphate to the substrate and becomes ADP. The phosphate transferred is the one at the end of the chain — the...',
+            'A radiolabeled ATP molecule is used in a phosphorylation assay. The label ends up in the substrate, not in ADP. This means the label was on the...',
+          ],
+          conceptA: 'γ-phosphate (terminal)',
+          conceptB: 'α-phosphate (adjacent to adenosine)',
+          correct: 'γ-phosphate (terminal)',
+          explanation: 'γ is the outermost phosphate in ATP. Cleavage of the γ–β bond releases γ-phosphate to the substrate, leaving α–β as ADP.',
+        },
+      ],
+    },
+
+    // ── Biomolecules & Reactions ───────────────────────────────────────────
+    {
+      id: 'biomolecules-reactions',
+      name: 'Biomolecules & Reactions',
+      place: 'Reaction Arena',
+      tagline: 'Lipids, nucleotides, bonds, and redox',
+      emoji: '⚗️',
+      color: '#047857',
+      lightColor: '#D1FAE5',
+      description: 'Storage lipids, Chargaff\'s rules, NADH redox, coordinate bonds, coordination number',
+      scenarioDrop: [
+        {
+          conceptId: 'storage-lipid-tag',
+          scenarios: [
+            'The primary form of long-term energy storage in adipose tissue is which type of lipid?',
+            'When excess dietary calories are stored as fat, what is the predominant molecular form found in adipocytes?',
+            'A biochemist analyzes the contents of a fat cell and identifies the dominant energy reserve molecule. It is most likely...',
+          ],
+          correct: 'Triacylglycerol (triglyceride) — three fatty acids esterified to glycerol',
+          wrongPool: [
+            'Phosphatidylcholine — a membrane phospholipid, not energy storage',
+            'Cholesterol — a structural membrane sterol',
+            'Sphingomyelin — a membrane sphingolipid',
+            'Free fatty acids — transport form in blood, not storage',
+            'Diacylglycerol — signaling molecule, not primary storage form',
+          ],
+          explanation: 'Triacylglycerols (TAGs) are the body\'s main energy storage lipid. Phospholipids form membranes. Free fatty acids travel in blood bound to albumin. TAGs are highly reduced, energy-dense, and anhydrous.',
+        },
+        {
+          conceptId: 'chargaff-gc',
+          scenarios: [
+            'A researcher analyzes double-stranded DNA and measures 30% guanine. Which base is also present at exactly 30%?',
+            'Chargaff\'s rules describe base pairing in double-stranded DNA. If adenine = 22%, what is the percentage of guanine?',
+            'A dsDNA sample is 18% thymine. What percentage of the bases is cytosine?',
+          ],
+          correct: 'G = C and A = T (Watson-Crick complementary base pairing)',
+          wrongPool: [
+            'G = A and C = T (purines equal purines — not a Chargaff rule)',
+            'All four bases are present in equal 25% amounts',
+            'G + C = A + T, but G can differ from C individually',
+            'G = T and A = C (wrong pairing)',
+            'Purines equal pyrimidines in total, but G ≠ C individually',
+          ],
+          explanation: 'Chargaff\'s rules: A=T and G=C in dsDNA because they base-pair. If G=30%, then C=30%. If A=22%, then T=22%, and G+C=56%, so G=C=28%.',
+        },
+        {
+          conceptId: 'nadh-reduction',
+          scenarios: [
+            'NADH donates electrons to a ketone carbonyl, converting it to an alcohol. What reaction type is this?',
+            'In fermentation, pyruvate accepts electrons from NADH to form lactate. This step is best classified as...',
+            'An enzyme uses NADH to convert an aldehyde (R–CHO) to a primary alcohol (R–CH₂OH). This reaction is a...',
+          ],
+          correct: 'Reduction — gain of electrons (and hydrogen) by the carbonyl',
+          wrongPool: [
+            'Hydrolysis — addition of water to break a bond',
+            'Oxidation — loss of electrons by the molecule being changed',
+            'Phosphorylation — addition of a phosphate group',
+            'Decarboxylation — loss of CO₂ from a carboxyl group',
+            'Condensation — loss of water to form a new covalent bond',
+          ],
+          explanation: 'NADH is the electron donor (reducing agent). The carbonyl accepts electrons — it is reduced. OIL RIG: Oxidation Is Loss, Reduction Is Gain. Ketone → alcohol = gain of H, gain of electrons = reduction.',
+        },
+        {
+          conceptId: 'coordinate-covalent-metal',
+          scenarios: [
+            'A zinc ion (Zn²⁺) accepts an electron pair from a histidine residue in an enzyme active site. What type of bond is formed?',
+            'In hemoglobin, Fe²⁺ binds nitrogen atoms of the porphyrin ring; the nitrogen donates both electrons of the bond. This interaction is a...',
+            'A ligand donates both electrons to a metal ion to form a bond. This is classified as a...',
+          ],
+          correct: 'Coordinate covalent bond (dative bond) — both electrons from the ligand',
+          wrongPool: [
+            'Ionic bond — complete electron transfer between atoms',
+            'Nonpolar covalent bond — equal sharing between atoms',
+            'Hydrogen bond — weak electrostatic attraction to H',
+            'Van der Waals interaction — temporary induced dipole',
+            'Polar covalent bond — unequal sharing (but both atoms contribute electrons)',
+          ],
+          explanation: 'A coordinate covalent bond (dative bond) forms when one atom (the ligand) donates BOTH electrons. The metal ion acts as Lewis acid; the ligand acts as Lewis base.',
+        },
+        {
+          conceptId: 'coordination-number-subscript',
+          scenarios: [
+            'In the complex ion [Fe(CN)₆]⁴⁻, what does the subscript 6 represent?',
+            'The copper complex [Cu(NH₃)₄]²⁺ is written with a subscript 4 after ammonia. What does that 4 indicate?',
+            'In metal-ligand complex notation, the subscript after the ligand symbol always represents...',
+          ],
+          correct: 'Coordination number — the number of ligands directly bonded to the central metal',
+          wrongPool: [
+            'Oxidation state of the metal ion',
+            'Overall charge on the complex ion',
+            'Number of electron pairs donated total',
+            'Number of metal atoms in the complex',
+            'Number of valence electrons in each ligand',
+          ],
+          explanation: 'The subscript in a complex ion formula = coordination number = number of ligand molecules/ions bonded directly to the metal. [Fe(CN)₆]⁴⁻ has 6 CN⁻ ligands; coordination number = 6.',
+        },
+      ],
+      showdown: [
+        {
+          conceptId: 'storage-lipid-tag',
+          scenarios: [
+            'Adipocytes store energy as a neutral, water-insoluble molecule made of three fatty acids on a glycerol backbone. This is a triacylglycerol, not a...',
+            'Long-term energy storage in fat tissue uses triacylglycerols. Membrane bilayers use a different lipid class:',
+          ],
+          conceptA: 'Triacylglycerol — energy storage',
+          conceptB: 'Phospholipid — membrane component',
+          correct: 'Triacylglycerol — energy storage',
+          explanation: 'TAGs store energy (no phosphate head group, no charge). Phospholipids form bilayers (have phosphate + polar head group). Adipocytes store TAGs, not phospholipids.',
+        },
+        {
+          conceptId: 'nadh-reduction',
+          scenarios: [
+            'NADH transfers electrons to a carbonyl group. The carbonyl gains electrons and hydrogen — this is called...',
+            'Pyruvate is converted to lactate by accepting electrons from NADH. Pyruvate gains electrons, so it undergoes...',
+          ],
+          conceptA: 'Reduction',
+          conceptB: 'Hydrolysis',
+          correct: 'Reduction',
+          explanation: 'Reduction = gain of electrons. Hydrolysis = cleavage by water. NADH is an electron carrier — it reduces the carbonyl. No water is added here.',
+        },
+        {
+          conceptId: 'coordinate-covalent-metal',
+          scenarios: [
+            'A nitrogen atom on a histidine donates both of its lone pair electrons to Zn²⁺. The bond formed is...',
+            'In an enzyme active site, a ligand donates both electrons to a metal. This is a coordinate covalent bond, not a...',
+          ],
+          conceptA: 'Coordinate covalent bond',
+          conceptB: 'Ionic bond',
+          correct: 'Coordinate covalent bond',
+          explanation: 'Ionic bonds involve electron transfer; coordinate covalent bonds involve electron pair donation from one atom (the ligand). Metal-ligand bonds are coordinate covalent.',
+        },
+      ],
+    },
+
+    // ── Physical Chemistry ─────────────────────────────────────────────────
+    {
+      id: 'physical-chemistry',
+      name: 'Physical Chemistry',
+      place: 'Equilibrium Zone',
+      tagline: 'Catalysts, ionization, and bond properties',
+      emoji: '⚖️',
+      color: '#B45309',
+      lightColor: '#FEF3C7',
+      description: 'Catalysts and equilibrium, ionization energy jumps, bond length vs. bond energy',
+      scenarioDrop: [
+        {
+          conceptId: 'catalyst-rate-not-yield',
+          scenarios: [
+            'A chemist adds platinum catalyst to a reversible reaction already at equilibrium. What changes?',
+            'Adding an enzyme to a reaction mixture speeds up the forward and reverse reactions equally. Which of the following is unaffected?',
+            'A catalyst lowers the activation energy for a reaction. Which quantity does a catalyst NOT change?',
+          ],
+          correct: 'Equilibrium position and yield are unchanged — only the rate increases',
+          wrongPool: [
+            'Keq increases — more product at equilibrium',
+            'Product yield increases because the forward rate is faster',
+            'ΔG° decreases — the reaction becomes more thermodynamically favorable',
+            'The reaction becomes irreversible with a strong enough catalyst',
+            'Equilibrium shifts toward products by Le Chatelier\'s principle',
+          ],
+          explanation: 'Catalysts lower activation energy equally for forward and reverse reactions, speeding both up. Equilibrium is reached faster but the Keq (and final yield) is unchanged. Catalysts affect kinetics, not thermodynamics.',
+        },
+        {
+          conceptId: 'second-ionization-energy',
+          scenarios: [
+            'Sodium\'s 1st ionization energy is 496 kJ/mol but its 2nd is 4562 kJ/mol — a 9-fold jump. Why?',
+            'Magnesium shows a dramatic increase between the 2nd and 3rd ionization energies. What structural reason explains this jump?',
+            'Why does an unusually large jump occur between certain successive ionization energies of main-group elements?',
+          ],
+          correct: 'The next electron removed comes from a filled noble-gas configuration (complete shell) — much harder to remove',
+          wrongPool: [
+            'Each successive positive charge proportionally increases electron attraction',
+            'The atom\'s radius increases after each ionization, making removal harder',
+            'Electron-electron repulsion increases in the smaller ion',
+            'The oxidation state change strengthens the remaining bonds',
+            'The nucleus gains protons between ionizations',
+          ],
+          explanation: 'Na: 1st IE removes the lone 3s electron (easy — outside the Ne core). 2nd IE must remove from the filled 2p shell (Ne configuration). Breaking into a noble-gas core requires dramatically more energy.',
+        },
+        {
+          conceptId: 'bond-length-energy-inverse',
+          scenarios: [
+            'Comparing C–C (single), C=C (double), and C≡C (triple) bonds: which has the shortest length and highest energy?',
+            'As bond order increases from 1 to 3 for the same two atoms, how do bond length and bond energy change?',
+            'A triple bond vs. a single bond between the same pair of atoms: the triple bond has...',
+          ],
+          correct: 'Triple bond: shortest length, highest energy — bond length and energy are inversely related',
+          wrongPool: [
+            'Triple bond: longest length, highest energy (more bonds = more stretch)',
+            'Single bond: shortest length because fewer electrons cause less repulsion',
+            'Bond length and energy are directly proportional — longer = stronger',
+            'Triple bond: shortest length, lowest energy (shorter = less strain)',
+            'Bond order does not affect length, only bond energy',
+          ],
+          explanation: 'More bonds between the same atoms = shorter, stronger bond. C–C: 154 pm, 347 kJ/mol. C=C: 134 pm, 614 kJ/mol. C≡C: 120 pm, 839 kJ/mol. Shorter = stronger = harder to break.',
+        },
+      ],
+      showdown: [
+        {
+          conceptId: 'catalyst-rate-not-yield',
+          scenarios: [
+            'A catalyst speeds up a reversible reaction. It reaches equilibrium faster, but the equilibrium position itself is unchanged. A catalyst changes the reaction\'s...',
+            'Enzymes lower activation energy for both forward and reverse reactions equally. This affects kinetics but not the...',
+          ],
+          conceptA: 'Rate — reaches equilibrium faster',
+          conceptB: 'Equilibrium yield — more product formed',
+          correct: 'Rate — reaches equilibrium faster',
+          explanation: 'Catalysts affect rate (kinetics), not thermodynamics. Keq and ΔG° are unchanged — equilibrium yield is the same with or without catalyst.',
+        },
+        {
+          conceptId: 'bond-length-energy-inverse',
+          scenarios: [
+            'A C≡C triple bond (120 pm) vs. a C–C single bond (154 pm): the triple bond is shorter AND...',
+            'Increasing bond order from single to triple makes the bond shorter and...',
+          ],
+          conceptA: 'Shorter bond = higher bond energy',
+          conceptB: 'Shorter bond = lower bond energy',
+          correct: 'Shorter bond = higher bond energy',
+          explanation: 'Bond length and bond energy are inversely related. Shorter bonds have more electron density between nuclei → stronger attraction → higher energy to break.',
+        },
+        {
+          conceptId: 'second-ionization-energy',
+          scenarios: [
+            'Na\'s 2nd ionization energy is ~9× its 1st. The 2nd electron must come from Na\'s noble-gas core (Ne configuration). Removing an electron from a filled noble-gas shell is...',
+            'A dramatic jump in successive ionization energies signals that the next electron must come from...',
+          ],
+          conceptA: 'Much harder — noble-gas core electrons are tightly held',
+          conceptB: 'Slightly harder — each positive charge adds proportional difficulty',
+          correct: 'Much harder — noble-gas core electrons are tightly held',
+          explanation: 'Noble-gas electron configurations are exceptionally stable. Breaking into a filled shell requires a disproportionately large energy jump, not just a proportional increase.',
+        },
+      ],
+    },
+
+    // ── Physics Fundamentals ───────────────────────────────────────────────
+    {
+      id: 'physics-fundamentals',
+      name: 'Physics Fundamentals',
+      place: 'Physics Foundry',
+      tagline: 'Charge, energy, optics, and mechanics',
+      emoji: '⚡',
+      color: '#BE123C',
+      lightColor: '#FFE4E6',
+      description: 'Triboelectric charging, battery energy conversion, torque and balance, diverging lens images',
+      scenarioDrop: [
+        {
+          conceptId: 'triboelectric-electron-transfer',
+          scenarios: [
+            'When a rubber rod is rubbed with fur, the rod becomes negatively charged. What particle was transferred during rubbing?',
+            'Two materials are rubbed together; one becomes positive. What particle moved away from the positively charged material?',
+            'Triboelectric (friction) charging occurs because rubbing transfers...',
+          ],
+          correct: 'Electrons — protons are bound in nuclei and cannot be transferred by rubbing',
+          wrongPool: [
+            'Protons — from one material to another during friction',
+            'Both protons and electrons in equal amounts',
+            'Neutrons released from the nucleus by friction energy',
+            'Positive charges flow from the positive material',
+            'Ions are scraped off the surface by mechanical friction',
+          ],
+          explanation: 'Only electrons move in triboelectric charging. Protons are locked in atomic nuclei — they don\'t transfer. The material that gains electrons becomes negative; the one that loses electrons becomes positive.',
+        },
+        {
+          conceptId: 'battery-energy-conversion',
+          scenarios: [
+            'A battery powers a resistor in a circuit. Trace the complete sequence of energy conversions from battery to heat.',
+            'In a flashlight, energy in the battery ultimately produces light. What is the correct order of energy transformations?',
+            'Which sequence correctly describes energy transformation in a standard battery-powered circuit?',
+          ],
+          correct: 'Chemical → electrical → thermal (or light/mechanical depending on the load)',
+          wrongPool: [
+            'Electrical → chemical → thermal (battery charges, not discharges)',
+            'Chemical → mechanical → thermal (no mechanical step in basic circuit)',
+            'Thermal → electrical → chemical (that\'s a thermoelectric generator)',
+            'Nuclear → electrical → thermal (wrong — batteries are electrochemical)',
+            'Chemical → thermal directly, without electrical intermediate',
+          ],
+          explanation: 'A battery converts stored chemical energy to electrical energy (via redox reactions at the electrodes). That electrical energy then converts to thermal (resistor), light (bulb), or mechanical (motor) energy.',
+        },
+        {
+          conceptId: 'center-of-mass-torque',
+          scenarios: [
+            'A person leans forward until they tip over. The best physical explanation for instability is that...',
+            'A physical therapist says balance requires the center of mass to remain over the base of support. This is a statement about...',
+            'An MCAT passage describes someone falling when leaning too far forward. The most accurate physics explanation involves...',
+          ],
+          correct: 'Center of mass shifted outside base of support → net torque → rotation (falling)',
+          wrongPool: [
+            'Gravitational potential energy increases past a critical threshold',
+            'Momentum builds up and exceeds the friction force of the feet',
+            'The normal force drops below the body weight, ending equilibrium',
+            'Bernoulli\'s principle creates a pressure difference at the feet',
+            'Kinetic energy exceeds potential energy, forcing forward motion',
+          ],
+          explanation: 'When the center of mass moves outside the base of support (feet), gravity creates a net torque about the pivot point (toes), rotating the body forward — you fall. It\'s a torque/rotation problem, not energy.',
+        },
+        {
+          conceptId: 'diverging-lens-image',
+          scenarios: [
+            'An object is placed at any distance in front of a diverging (concave) lens. What type of image is always formed?',
+            'A nearsighted patient wears corrective concave lenses. Regardless of object distance, these lenses produce images that are always...',
+            'Which set of image properties is always true for a diverging lens, regardless of where the object is placed?',
+          ],
+          correct: 'Virtual, upright, and reduced (smaller than the object)',
+          wrongPool: [
+            'Real, inverted, and magnified (that\'s a converging lens beyond 2F)',
+            'Virtual, inverted, and reduced',
+            'Real, upright, and reduced',
+            'Virtual, upright, and magnified (that\'s a converging lens inside F)',
+            'Real, inverted, and reduced (diverging lenses never form real images)',
+          ],
+          explanation: 'Diverging lenses ALWAYS produce virtual, upright, reduced images — regardless of object distance. This is what makes them useful for correcting nearsightedness. Converging lenses can form real or virtual images depending on object position.',
+        },
+      ],
+      showdown: [
+        {
+          conceptId: 'triboelectric-electron-transfer',
+          scenarios: [
+            'Rubbing a glass rod with silk transfers charge. Only one type of subatomic particle actually moves between materials. That particle is...',
+            'Triboelectric charging moves charges between surfaces. Protons stay in nuclei; the mobile particle is...',
+          ],
+          conceptA: 'Electrons',
+          conceptB: 'Protons',
+          correct: 'Electrons',
+          explanation: 'Protons are in atomic nuclei — they don\'t move. Only electrons, in outermost orbitals, can be transferred by contact or friction.',
+        },
+        {
+          conceptId: 'battery-energy-conversion',
+          scenarios: [
+            'A battery drives current through a circuit. Inside the battery, stored chemical energy converts to the form that drives electrons through the wire. The battery converts...',
+            'Electrochemical cells (batteries) release energy as electrons flow. The primary conversion inside the battery cell is...',
+          ],
+          conceptA: 'Chemical → electrical energy',
+          conceptB: 'Electrical → chemical energy',
+          correct: 'Chemical → electrical energy',
+          explanation: 'Discharging: chemical → electrical (spontaneous redox reaction drives electrons). Charging: electrical → chemical (reverse, non-spontaneous, powered by external current).',
+        },
+        {
+          conceptId: 'diverging-lens-image',
+          scenarios: [
+            'A diverging lens is held in front of a printed page. The image seen through the lens is smaller and right-side up — it is...',
+            'No matter how far an object is from a diverging lens, the image is always virtual, upright, and reduced. This contrasts with a converging lens, which can produce...',
+          ],
+          conceptA: 'Virtual, upright, reduced',
+          conceptB: 'Real, inverted, magnified',
+          correct: 'Virtual, upright, reduced',
+          explanation: 'Diverging lenses always produce virtual, upright, reduced images. Real images require converging lenses (or mirrors). Virtual images cannot be projected on a screen.',
+        },
+      ],
+    },
+
+    // ── Calc Lab ──────────────────────────────────────────────────────────
+    {
+      id: 'calc-lab',
+      name: 'Calc Lab',
+      place: 'The Calculation Station',
+      tagline: 'Set it up right — then the math is easy',
+      emoji: '🧮',
+      color: '#7C3AED',
+      lightColor: '#F3E8FF',
+      description: 'Unit conversions, equation setup, and order-of-magnitude estimation',
+      scenarioDrop: [],
+      showdown: [],
+      equationRescue: [
+        {
+          conceptId: 'calc-unit-conversion-ratio',
+          label: 'Unit conversion (mM → nM)',
+          scenario: 'An enzyme assay contains 2 mM substrate and 40 nM enzyme. Which setup correctly calculates the substrate:enzyme molar ratio?',
+          options: [
+            '2,000,000 nM ÷ 40 nM = 5 × 10⁴',
+            '2,000 nM ÷ 40 nM = 50 (stopped at µM, not nM)',
+            '2 ÷ 40 = 0.05 (ignored unit conversion entirely)',
+            '2,000 µM ÷ 40 nM = 50 (mixed units without converting)',
+          ],
+          correct: '2,000,000 nM ÷ 40 nM = 5 × 10⁴',
+          explanation: '1 mM = 10⁶ nM. So 2 mM = 2 × 10⁶ nM. Divide by 40 nM → 5 × 10⁴. The trap is stopping the conversion at µM (2000) instead of going all the way to nM.',
+        },
+        {
+          conceptId: 'calc-sp2-carbon-count',
+          label: 'Count sp² carbons',
+          scenario: 'A molecule has: one benzene ring (6 C), two C=C double bonds (2 alkene C each), one C=O carbonyl, and three sp³ C–H carbons. How many carbons are sp² hybridized?',
+          options: [
+            '6 (aromatic) + 2 (from C=C, one each) + 1 (C=O) = 9 sp² carbons',
+            '4 sp² carbons — only counting the two C=C double bonds (2 × 2)',
+            '8 sp² carbons — aromatic + C=C, forgetting the carbonyl',
+            '2 sp² carbons — only the carbons directly double-bonded to oxygen',
+          ],
+          correct: '6 (aromatic) + 2 (from C=C, one each) + 1 (C=O) = 9 sp² carbons',
+          explanation: 'sp² = any carbon in a double bond or aromatic ring. Benzene: 6 sp² carbons. Each C=C contributes 2 sp² carbons total (but only 2 new ones here — re-read the problem). C=O carbonyl C: 1 sp². Total = 6 + 2 + 1 = 9.',
+        },
+        {
+          conceptId: 'calc-mass-percent-oxygen',
+          label: 'Mass percent oxygen',
+          scenario: 'Which molecule has the highest mass percent of oxygen: H₂O (MW = 18), CO₂ (MW = 44), or C₆H₁₂O₆ (MW = 180)?',
+          options: [
+            'H₂O: (16/18) × 100 = 89% — highest',
+            'CO₂: (32/44) × 100 = 73% — highest (2 oxygen atoms)',
+            'C₆H₁₂O₆: (96/180) × 100 = 53% — highest (6 oxygen atoms)',
+            'CO₂ because it has the most oxygen atoms per molecule',
+          ],
+          correct: 'H₂O: (16/18) × 100 = 89% — highest',
+          explanation: 'Mass percent = (mass of O in formula / molar mass) × 100. More oxygen atoms does NOT mean higher percent. H₂O: 16/18 = 89%. CO₂: 32/44 = 73%. Glucose: 96/180 = 53%. Always calculate — don\'t count atoms.',
+        },
+        {
+          conceptId: 'calc-henderson-hasselbalch',
+          label: 'Henderson-Hasselbalch setup',
+          scenario: 'A buffer contains 0.2 M formic acid (pKa = 3.74) and 0.4 M formate (conjugate base). Which setup correctly calculates the pH?',
+          options: [
+            'pH = 3.74 + log(0.4/0.2) = 3.74 + 0.30 = 4.04',
+            'pH = 3.74 + log(0.2/0.4) = 3.74 − 0.30 = 3.44 (ratio flipped)',
+            'pH = 3.74 × log(0.4/0.2) = 1.12 (multiplied instead of added)',
+            'pH = log(0.4) + log(0.2) + 3.74 = incorrect combination',
+          ],
+          correct: 'pH = 3.74 + log(0.4/0.2) = 3.74 + 0.30 = 4.04',
+          explanation: 'H-H: pH = pKa + log([A⁻]/[HA]). Base (formate, the conjugate base) goes on top. [A⁻]/[HA] = 0.4/0.2 = 2. log(2) = 0.30. pH = 3.74 + 0.30 = 4.04. More base than acid → pH > pKa. ✓',
+        },
+        {
+          conceptId: 'calc-ksp-solubility',
+          label: 'Ksp → solubility setup',
+          scenario: 'BaF₂ dissociates as: BaF₂ → Ba²⁺ + 2F⁻. If molar solubility = s, which expression for Ksp is correct?',
+          options: [
+            'Ksp = (s)(2s)² = 4s³',
+            'Ksp = s² (treats it as a 1:1 salt — wrong stoichiometry)',
+            'Ksp = (s)(s)² = s³ (forgot the coefficient 2 on F⁻)',
+            'Ksp = 2s × s = 2s² (used coefficient as multiplier, not exponent)',
+          ],
+          correct: 'Ksp = (s)(2s)² = 4s³',
+          explanation: 'Ba²⁺ = s; F⁻ = 2s (stoichiometry). Ksp = [Ba²⁺][F⁻]² = (s)(2s)² = s × 4s² = 4s³. The factor of 4 comes from squaring the 2 in (2s)². The most common error is writing s³ (forgetting to square the coefficient).',
+        },
+        {
+          conceptId: 'calc-hess-law',
+          label: 'Hess\'s Law setup',
+          scenario: 'Find ΔH° for A → C, given: A → B (ΔH₁ = +1200 kJ) and B → C (ΔH₂ = +1800 kJ). Which setup is correct?',
+          options: [
+            'ΔH° = ΔH₁ + ΔH₂ = +1200 + 1800 = +3000 kJ',
+            'ΔH° = ΔH₂ − ΔH₁ = 1800 − 1200 = +600 kJ (subtracted instead of added)',
+            'ΔH° = (ΔH₁ + ΔH₂)/2 = +1500 kJ (averaged instead of summed)',
+            'ΔH° = ΔH₁ × ΔH₂ = 2,160,000 kJ (multiplied the values)',
+          ],
+          correct: 'ΔH° = ΔH₁ + ΔH₂ = +1200 + 1800 = +3000 kJ',
+          explanation: 'Hess\'s Law: ΔH for A→C = sum of ΔH for each step. A→B→C: ΔH = 1200 + 1800 = 3000 kJ. The path doesn\'t matter — only the sum of each step\'s enthalpy. Never subtract sequential steps; never average.',
+        },
+        {
+          conceptId: 'calc-parallel-resistance',
+          label: 'Parallel resistance',
+          scenario: 'R₁ = 20 Ω and R₂ = 60 Ω are connected in parallel. Which setup correctly finds the equivalent resistance?',
+          options: [
+            '1/Req = 1/20 + 1/60 = 3/60 + 1/60 = 4/60 → Req = 15 Ω',
+            'Req = 20 + 60 = 80 Ω (series formula applied to parallel circuit)',
+            '1/Req = 1/20 − 1/60 → Req = 30 Ω (subtracted instead of added)',
+            'Req = √(20 × 60) ≈ 34.6 Ω (geometric mean — not the formula)',
+          ],
+          correct: '1/Req = 1/20 + 1/60 = 3/60 + 1/60 = 4/60 → Req = 15 Ω',
+          explanation: 'Parallel: 1/Req = 1/R₁ + 1/R₂. Find common denominator: 3/60 + 1/60 = 4/60. Req = 60/4 = 15 Ω. Key check: parallel Req is always less than the smallest resistor (15 < 20 ✓).',
+        },
+      ],
+      magnitudeBlitz: [
+        {
+          conceptId: 'calc-power-mgh',
+          label: 'Power: P = mgh/t',
+          scenario: 'A 5 kg box is raised 9 m in 5 seconds. Using P = mgh/t (g ≈ 10 m/s²), what is the best estimate of power output?',
+          options: ['0.9 W', '9 W', '90 W', '900 W'],
+          correct: '90 W',
+          explanation: 'P = (5)(10)(9)/5 = 450/5 = 90 W. Common traps: forgetting g gives 9 W; using m = 50 kg gives 900 W.',
+        },
+        {
+          conceptId: 'calc-spring-work',
+          label: 'Spring work: W = ½kx²',
+          scenario: 'A spring (k = 200 N/m) is compressed 0.2 m from equilibrium. Using W = ½kx², what is the elastic potential energy stored?',
+          options: ['0.4 J', '4 J', '40 J', '400 J'],
+          correct: '4 J',
+          explanation: 'W = ½ × 200 × (0.2)² = 100 × 0.04 = 4 J. Traps: forgetting to square x (0.2 not 0.04) gives 40 J; forgetting the ½ gives 8 J.',
+        },
+        {
+          conceptId: 'calc-decibel-ratio',
+          label: 'dB difference → intensity ratio',
+          scenario: 'Two sounds differ by 20 dB. Using ΔdB = 10 × log(I₂/I₁), what is the intensity ratio I₂/I₁?',
+          options: ['2', '20', '100', '1000'],
+          correct: '100',
+          explanation: 'I₂/I₁ = 10^(ΔdB/10) = 10^(20/10) = 10² = 100. Every 10 dB = 10× intensity. Two 10 dB steps = 10 × 10 = 100×.',
+        },
+        {
+          conceptId: 'calc-gas-stp-volume',
+          label: 'Gas volume at STP',
+          scenario: 'A reaction produces 1.5 mol of CO₂ gas. At STP, 1 mol of ideal gas = 22.4 L. What volume of CO₂ is produced?',
+          options: ['3.4 L', '15 L', '33.6 L', '224 L'],
+          correct: '33.6 L',
+          explanation: 'V = n × 22.4 = 1.5 × 22.4 = 33.6 L. The trap is using 22.4 L without scaling for the actual moles (1 mol → 22.4, not 1.5 mol → 22.4).',
+        },
+        {
+          conceptId: 'calc-electrons-from-charge',
+          label: 'Charge → number of electrons',
+          scenario: 'A sphere holds 3.2 × 10⁻⁹ C of charge. Each electron has charge 1.6 × 10⁻¹⁹ C. How many electrons were removed?',
+          options: ['2 × 10⁸', '2 × 10¹⁰', '2 × 10¹²', '2 × 10²⁸'],
+          correct: '2 × 10¹⁰',
+          explanation: 'n = Q/e = (3.2 × 10⁻⁹)/(1.6 × 10⁻¹⁹). Coefficients: 3.2/1.6 = 2. Exponents: −9 − (−19) = +10. Answer: 2 × 10¹⁰.',
+        },
+      ],
+    },
+
+  ];
+
+  clusters.forEach(c => CLUSTERS.push(c));
+})();

@@ -201,10 +201,11 @@ function getClusterMastery(cluster) {
 }
 
 function getClusterConceptIds(cluster) {
-  // Unique concept IDs across all question types in this cluster
   const ids = new Set();
   cluster.scenarioDrop.forEach(q => ids.add(q.conceptId));
   cluster.showdown.forEach(q => ids.add(q.conceptId));
+  (cluster.equationRescue || []).forEach(q => ids.add(q.conceptId));
+  (cluster.magnitudeBlitz || []).forEach(q => ids.add(q.conceptId));
   return [...ids];
 }
 
@@ -227,7 +228,9 @@ function getSmartSessionCount(cluster) {
   const unexplored = conceptIds.filter(id => getConceptState(id) === 'unexplored').length;
   const practicing = conceptIds.filter(id => getConceptState(id) === 'practicing').length;
   const mastered   = conceptIds.filter(id => getConceptState(id) === 'mastered').length;
-  const count = practicing + Math.min(3, unexplored) + Math.min(1, mastered);
+  const isCalc = (cluster.equationRescue || []).length > 0 || (cluster.magnitudeBlitz || []).length > 0;
+  const maxNew = isCalc ? 4 : 3;
+  const count = practicing + Math.min(maxNew, unexplored) + Math.min(1, mastered);
   return count > 0 ? count : conceptIds.length;
 }
 
@@ -247,8 +250,16 @@ function pickWrongAnswers(q) {
 
 // Build a session for one cluster. One question per conceptId (randomly picks
 // scenario-drop or showdown when both exist) so the same concept never appears
-// twice in one session.
+// twice in one session. Calc clusters use equationRescue + magnitudeBlitz instead.
 function buildSmartSession(cluster) {
+  const isCalc = (cluster.equationRescue || []).length > 0 || (cluster.magnitudeBlitz || []).length > 0;
+  if (isCalc) {
+    const pool = [
+      ...(cluster.equationRescue || []).map(q => ({ ...q, type: 'equation-rescue' })),
+      ...(cluster.magnitudeBlitz  || []).map(q => ({ ...q, type: 'magnitude-blitz' })),
+    ];
+    return _applyMastery(pool, { maxNew: 4, maxMastered: 1 });
+  }
   const conceptMap = new Map();
   cluster.scenarioDrop.forEach(q => conceptMap.set(q.conceptId, { ...q, type: 'scenario-drop' }));
   cluster.showdown.forEach(q => {
@@ -266,13 +277,19 @@ function buildSectionSession(sectionId) {
   const clusters = section.clusterIds.map(id => CLUSTERS.find(c => c.id === id));
   let combined = [];
   clusters.forEach(cluster => {
-    const conceptMap = new Map();
-    cluster.scenarioDrop.forEach(q => conceptMap.set(q.conceptId, { ...q, type: 'scenario-drop', _cluster: cluster }));
-    cluster.showdown.forEach(q => {
-      if (!conceptMap.has(q.conceptId) || Math.random() < 0.5)
-        conceptMap.set(q.conceptId, { ...q, type: 'showdown', _cluster: cluster });
-    });
-    combined.push(...conceptMap.values());
+    const isCalc = (cluster.equationRescue || []).length > 0 || (cluster.magnitudeBlitz || []).length > 0;
+    if (isCalc) {
+      (cluster.equationRescue || []).forEach(q => combined.push({ ...q, type: 'equation-rescue', _cluster: cluster }));
+      (cluster.magnitudeBlitz  || []).forEach(q => combined.push({ ...q, type: 'magnitude-blitz',  _cluster: cluster }));
+    } else {
+      const conceptMap = new Map();
+      cluster.scenarioDrop.forEach(q => conceptMap.set(q.conceptId, { ...q, type: 'scenario-drop', _cluster: cluster }));
+      cluster.showdown.forEach(q => {
+        if (!conceptMap.has(q.conceptId) || Math.random() < 0.5)
+          conceptMap.set(q.conceptId, { ...q, type: 'showdown', _cluster: cluster });
+      });
+      combined.push(...conceptMap.values());
+    }
   });
   return _applyMastery(combined, { maxNew: 5, maxMastered: 2 });
 }
@@ -289,8 +306,8 @@ function _applyMastery(pool, { maxNew = 3, maxMastered = 1 } = {}) {
   const finalPool = session.length > 0 ? session : shuffle(pool);
   return finalPool.map(q => ({
     ...q,
-    scenario:     pickScenario(q),
-    wrongAnswers: pickWrongAnswers(q),
+    scenario:     q.scenarios ? pickScenario(q) : (q.scenario || ''),
+    wrongAnswers: q.wrongPool  ? pickWrongAnswers(q) : [],
   }));
 }
 
@@ -448,8 +465,10 @@ function renderZoneHub(clusterId) {
   const conceptChips = conceptIds.map(id => {
     const s = getConceptState(id);
     const q = cluster.scenarioDrop.find(q => q.conceptId === id)
-           || cluster.showdown.find(q => q.conceptId === id);
-    const label = q ? q.correct : id;
+           || cluster.showdown.find(q => q.conceptId === id)
+           || (cluster.equationRescue || []).find(q => q.conceptId === id)
+           || (cluster.magnitudeBlitz  || []).find(q => q.conceptId === id);
+    const label = q ? (q.label || q.correct) : id;
     return `<span class="concept-chip state-${s}" title="${s}">${label}</span>`;
   }).join('');
 
@@ -530,7 +549,10 @@ function renderQuestion() {
   const pct   = (state.index / state.session.length) * 100;
   const count = `${state.index + 1} / ${state.session.length}`;
   const c     = state.cluster;
-  const label = q.type === 'scenario-drop' ? 'Scenario Drop' : 'Showdown';
+  const label = q.type === 'scenario-drop'   ? 'Scenario Drop'
+              : q.type === 'showdown'         ? 'Showdown'
+              : q.type === 'equation-rescue'  ? 'Equation Rescue'
+              : 'Magnitude Blitz';
 
   const cState = getConceptState(q.conceptId);
   const statePill = cState === 'mastered'
@@ -562,6 +584,8 @@ function renderQuestion() {
       <div class="progress-fill" style="width:${pct}%; background:${c.color}"></div>
     </div>`;
 
+  if (q.type === 'equation-rescue') return renderEquationRescue(q, header);
+  if (q.type === 'magnitude-blitz') return renderMagnitudeBlitz(q, header);
   q.type === 'scenario-drop'
     ? renderScenarioDrop(q, header)
     : renderShowdown(q, header);
@@ -639,6 +663,78 @@ function renderShowdown(q, header) {
         b.disabled = true;
       });
       showFeedback(correct, state.currentQ.explanation, state.currentQ.conceptId);
+    });
+  });
+}
+
+function renderEquationRescue(q, header) {
+  const c = state.cluster;
+  render(`
+    <div class="screen-game" style="--zone-color:${c.color}; --zone-light:${c.lightColor}">
+      ${header}
+      <div class="game-body">
+        <div class="calc-badge rescue-badge">🔧 Equation Rescue</div>
+        <div class="scenario-card"><p class="scenario-text">${q.scenario}</p></div>
+        <p class="calc-prompt">Which setup is correct?</p>
+        <div class="rescue-options" id="rescue-options">
+          ${q.options.map((opt, i) => `<button class="rescue-btn" data-idx="${i}">${opt}</button>`).join('')}
+        </div>
+        <div id="feedback" class="feedback-panel hidden"></div>
+      </div>
+    </div>
+  `);
+  document.querySelectorAll('.rescue-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (state.answered) return;
+      state.answered = true;
+      const selected = q.options[parseInt(btn.dataset.idx)];
+      const correct  = selected === q.correct;
+      if (correct) state.score++;
+      recordAnswer(q.conceptId, correct);
+      document.querySelectorAll('.rescue-btn').forEach(b => {
+        const val = q.options[parseInt(b.dataset.idx)];
+        if (val === q.correct)  b.classList.add('correct');
+        else if (b === btn)     b.classList.add('incorrect');
+        else                    b.classList.add('dimmed');
+        b.disabled = true;
+      });
+      showFeedback(correct, q.explanation, q.conceptId);
+    });
+  });
+}
+
+function renderMagnitudeBlitz(q, header) {
+  const c = state.cluster;
+  render(`
+    <div class="screen-game" style="--zone-color:${c.color}; --zone-light:${c.lightColor}">
+      ${header}
+      <div class="game-body">
+        <div class="calc-badge blitz-badge">⚡ Magnitude Blitz</div>
+        <div class="scenario-card"><p class="scenario-text">${q.scenario}</p></div>
+        <p class="calc-prompt">Best estimate?</p>
+        <div class="blitz-grid" id="blitz-options">
+          ${q.options.map((opt, i) => `<button class="blitz-btn" data-idx="${i}">${opt}</button>`).join('')}
+        </div>
+        <div id="feedback" class="feedback-panel hidden"></div>
+      </div>
+    </div>
+  `);
+  document.querySelectorAll('.blitz-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (state.answered) return;
+      state.answered = true;
+      const selected = q.options[parseInt(btn.dataset.idx)];
+      const correct  = selected === q.correct;
+      if (correct) state.score++;
+      recordAnswer(q.conceptId, correct);
+      document.querySelectorAll('.blitz-btn').forEach(b => {
+        const val = q.options[parseInt(b.dataset.idx)];
+        if (val === q.correct)  b.classList.add('correct');
+        else if (b === btn)     b.classList.add('incorrect');
+        else                    b.classList.add('dimmed');
+        b.disabled = true;
+      });
+      showFeedback(correct, q.explanation, q.conceptId);
     });
   });
 }
