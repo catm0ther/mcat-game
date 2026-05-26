@@ -39,7 +39,7 @@
           scenarios: [
             'A light is repeatedly paired with a foot shock. Eventually the light alone elicits fear. The light is the... and the foot shock is the...',
             'In Pavlov\'s experiments, the tone that was initially neutral and later elicited salivation on its own is called the...',
-            'A dog salivates to food automatically. After pairing a bell with food, the dog salivates to the bell alone. The food is the...',
+            'A dog salivates to food automatically. After pairing a bell with food, the dog salivates to the bell alone. The bell is the...',
           ],
           correct: 'Conditioned stimulus (CS) — the originally-neutral cue that acquires the ability to elicit the response after pairing',
           wrongPool: [
@@ -364,7 +364,7 @@
           scenarios: [
             'A family earns significantly less than the median income in their society — they have food and shelter but are far poorer than their neighbors. This is called...',
             'As a country\'s average income rises, the threshold for who counts as poor also rises. This definition of poverty is...',
-            'Relative poverty measures disadvantage in comparison to other members of the same society. How does it differ from absolute poverty?',
+            'A family in a wealthy country has food and shelter but earns only 40% of the median income — far below their neighbors. This is which type of poverty?',
           ],
           correct: 'Relative poverty — defined by income/wealth disadvantage compared to others in the same society; threshold shifts as society changes',
           wrongPool: [
