@@ -159,7 +159,7 @@
         {
           conceptId: 'emotional-vs-interpersonal',
           scenarios: [
-            'Managing one\'s own impulses (self-regulation, delay of gratification) is emotional intelligence. Reading and managing other people\'s emotions and relationships is...',
+            'A student resists the urge to check social media while studying, recognizing and managing her own impulses. This self-regulation reflects which type of intelligence?',
             'Delay of gratification = control over one\'s own emotions. Understanding what a friend is feeling = ...',
           ],
           conceptA: 'Emotional intelligence — managing one\'s own emotions',
@@ -233,7 +233,7 @@
         {
           conceptId: 'fovea-vs-optic-disc',
           scenarios: [
-            'You look directly at an object — its image falls on the most cone-dense part of the retina. That\'s the fovea, not the...',
+            'You look directly at a word and see it in crisp detail — the image lands on the most cone-dense region of the retina. Which retinal area is responsible?',
             'The blind spot (zero photoreceptors) is the optic disc. The center of sharpest vision (cone-dense) is the...',
           ],
           conceptA: 'Fovea — cone-dense, maximum acuity and color vision',
@@ -307,7 +307,7 @@
         {
           conceptId: 'hawthorne-vs-impression',
           scenarios: [
-            'Factory workers speed up when a researcher watches, then slow down when the researcher leaves — no strategy involved. This is the Hawthorne effect, not...',
+            'Factory workers speed up when a researcher watches, then slow down when the researcher leaves — no deliberate effort to look good, just an automatic response to being observed. Which phenomenon describes this?',
             'Being observed passively changes behavior (Hawthorne). Deliberately managing how you appear to others is...',
           ],
           conceptA: 'Hawthorne effect — passive, automatic response to observation',
@@ -318,8 +318,8 @@
         {
           conceptId: 'social-loafing',
           scenarios: [
-            'Individuals generate fewer ideas per person in a group than alone. Individual output decreases in the group context. This is social loafing, not...',
-            'Less individual effort in groups vs. better performance with an audience: social loafing vs. ...',
+            'Each person in a rope-pulling team exerts less force than when pulling alone — individual accountability is diffused across the group. Which phenomenon is this?',
+            'In a clapping study, people in a crowd clap less loudly per person than when clapping alone. In a separate study, an audience watching a trained pianist improved her performance. The first phenomenon (reduced individual effort in groups) is...',
           ],
           conceptA: 'Social loafing — less effort in groups',
           conceptB: 'Social facilitation — better performance with audience',

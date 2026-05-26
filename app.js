@@ -682,7 +682,7 @@ function renderEquationRescue(q, header) {
         <div class="scenario-card"><p class="scenario-text">${q.scenario}</p></div>
         <p class="calc-prompt">Which setup is correct?</p>
         <div class="rescue-options" id="rescue-options">
-          ${q.options.map((opt, i) => `<button class="rescue-btn" data-idx="${i}">${opt.replace(/\s*\([^)]*\)\s*$/, '').trim()}</button>`).join('')}
+          ${q.options.map((opt, i) => `<button class="rescue-btn" data-idx="${i}">${stripExplanation(opt.replace(/\s*\([^)]*\)\s*$/, '').trim())}</button>`).join('')}
         </div>
         <div id="feedback" class="feedback-panel hidden"></div>
       </div>

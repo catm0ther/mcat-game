@@ -650,7 +650,7 @@
             'pH = 3.74 + log(0.4/0.2) = 3.74 + 0.30 = 4.04',
             'pH = 3.74 + log(0.2/0.4) = 3.74 − 0.30 = 3.44 (ratio flipped)',
             'pH = 3.74 × log(0.4/0.2) = 1.12 (multiplied instead of added)',
-            'pH = log(0.4) + log(0.2) + 3.74 = incorrect combination',
+            'pH = log(0.4) + log(0.2) + 3.74',
           ],
           correct: 'pH = 3.74 + log(0.4/0.2) = 3.74 + 0.30 = 4.04',
           explanation: 'H-H: pH = pKa + log([A⁻]/[HA]). Base (formate, the conjugate base) goes on top. [A⁻]/[HA] = 0.4/0.2 = 2. log(2) = 0.30. pH = 3.74 + 0.30 = 4.04. More base than acid → pH > pKa. ✓',
