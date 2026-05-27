@@ -178,6 +178,78 @@
           ],
           explanation: 'Tyr has a phenol (aromatic –OH). RTKs phosphorylate Tyr → creates docking sites for SH2 domains → activates downstream signaling. Ser/Thr kinases (PKA, CDK, PDK1) target Ser and Thr. All three –OH-bearing amino acids (Ser, Thr, Tyr) can be phosphorylated, but by different kinase families.',
         },
+        {
+          conceptId: 'peptide-bond-identification',
+          label: 'Peptide bond = amide (C–N), not phosphodiester or glycosidic',
+          scenarios: [
+            'Ribosomal peptidyl transferase catalyzes a condensation reaction between the –COOH of the growing peptide chain and the –NH₂ of the incoming amino acid, releasing water. The bond formed is a...',
+            'A protease cleaves protein chains by hydrolyzing the specific covalent bond that links adjacent amino acid residues in the polypeptide backbone. The bond it cleaves is a...',
+            'During protein synthesis, each amino acid is joined to the next by the same bond type. The bond linking every pair of adjacent residues in all proteins is a(n)...',
+          ],
+          correct: 'Amide (C–N) bond — formed between the carboxyl of one amino acid and the amino group of the next',
+          wrongPool: [
+            'Phosphodiester bond — 3′-OH + 5′-phosphate linkage in the DNA/RNA backbone; not found in proteins',
+            'Glycosidic bond — O-linked bond between monosaccharide units in polysaccharides; not an amino acid linkage',
+            'Disulfide bond — oxidative cross-link between two cysteine –SH side chains; a tertiary/quaternary modification, not the backbone',
+            'Ester bond — links fatty acids to glycerol in triacylglycerols and phospholipids; not the protein backbone',
+            'Hydrogen bond — non-covalent interaction stabilizing secondary structure; does not covalently link residues in sequence',
+          ],
+          explanation: 'Peptide bond = amide bond: the carboxyl carbon (–C=O) of residue n condenses with the amino nitrogen (–NH₂) of residue n+1, releasing H₂O, forming –CO–NH–. This bond has ~40% double-bond character due to N lone pair resonance with C=O → planar, restricted rotation. Proteases hydrolyze this bond. Not the same as phosphodiester (DNA/RNA), glycosidic (sugars), disulfide (Cys side chains), or ester (lipids).',
+        },
+        {
+          conceptId: 'phenylalanine-nonpolar-aromatic',
+          label: 'Phe = nonpolar benzyl ring, no –OH',
+          scenarios: [
+            'An aromatic amino acid has a simple benzyl side chain (–CH₂–C₆H₅) with no hydroxyl group. It is strictly nonpolar and cannot be phosphorylated. This is...',
+            'PKU (phenylketonuria) involves failure to hydroxylate this nonpolar aromatic amino acid, causing toxic accumulation. Its side chain is a methylene group attached to an unsubstituted benzene ring. This amino acid is...',
+            'Which aromatic amino acid lacks any functional substituent on its benzene ring, making it the only nonpolar member of the aromatic trio (the other two having –OH or an indole ring)?',
+          ],
+          correct: 'Phenylalanine (Phe/F) — nonpolar benzyl (–CH₂–C₆H₅), no –OH, not phosphorylatable',
+          wrongPool: [
+            'Tyrosine (Tyr/Y) — has a para-hydroxyl (–OH) on the benzene ring; polar, CAN be phosphorylated by RTKs',
+            'Tryptophan (Trp/W) — indole ring system (bicyclic benzopyrrole), not a simple benzene ring',
+            'Histidine (His/H) — imidazole ring (5-membered), not a benzene ring; ionizable at physiological pH',
+            'Leucine (Leu/L) — nonpolar aliphatic; branched chain, no aromatic ring whatsoever',
+            'Valine (Val/V) — nonpolar aliphatic; branched isopropyl chain, no ring structure',
+          ],
+          explanation: 'Phe: side chain = –CH₂–C₆H₅ (benzyl). Strictly nonpolar — no OH, no N, no charge. PKU: phenylalanine hydroxylase converts Phe → Tyr; deficiency causes Phe buildup. Compare the aromatic trio: Phe (benzyl, nonpolar), Tyr (phenol = benzyl + para-OH, polar, phosphorylatable), Trp (indole = benzene fused to pyrrole, largest, dominant 280 nm absorber). All three absorb UV at ~280 nm.',
+        },
+        {
+          conceptId: 'tryptophan-indole',
+          label: 'Trp = indole (bicyclic), largest side chain, dominant 280 nm absorber',
+          scenarios: [
+            'An aromatic amino acid contains an indole side chain — a benzene ring fused to a five-membered pyrrole ring. It has the largest side chain of any standard amino acid and is the primary contributor to a protein\'s absorbance at 280 nm. This is...',
+            'When a biochemist measures protein concentration spectrophotometrically at 280 nm, the signal primarily comes from one aromatic residue with a bicyclic ring system. That residue is...',
+            'Which amino acid contains an aromatic nitrogen in its bicyclic side chain, making it structurally the most complex of the aromatic amino acids?',
+          ],
+          correct: 'Tryptophan (Trp/W) — indole (bicyclic benzopyrrole) side chain; largest amino acid; dominant 280 nm absorber',
+          wrongPool: [
+            'Phenylalanine (Phe/F) — single benzene ring; absorbs weakly at 280 nm; smaller side chain',
+            'Tyrosine (Tyr/Y) — phenol ring (benzene + OH); also absorbs at 280 nm but less strongly than Trp',
+            'Histidine (His/H) — imidazole ring (5-membered only, not fused bicyclic); different ring system',
+            'Proline (Pro/P) — pyrrolidine ring on the backbone nitrogen, not an aromatic side chain',
+            'Asparagine (Asn/N) — polar uncharged amide side chain; no aromatic ring',
+          ],
+          explanation: 'Trp: side chain = indole (benzene fused to pyrrole). Largest standard amino acid side chain. ε₂₈₀ ≈ 5500 M⁻¹cm⁻¹ per Trp (vs. ~1400 for Tyr, ~0 for Phe at 280 nm). Abs₂₈₀ used for rapid protein quantification relies mainly on Trp and Tyr content. Rare in proteins but critically important for UV spectroscopy.',
+        },
+        {
+          conceptId: 'aspartate-glutamate-acidic',
+          label: 'Asp + Glu = acidic, negatively charged at pH 7.4',
+          scenarios: [
+            'Two amino acids carry a net negative charge at physiological pH 7.4 because their side-chain carboxylate groups (pKa ~3.9 and ~4.1) are fully deprotonated. These acidic amino acids are...',
+            'An enzyme active site requires negatively charged residues to coordinate a positively charged substrate. Which pair of amino acids, both with carboxylate (–COO⁻) side chains, would be enriched there?',
+            'Aspartate and glutamate are both classified as acidic amino acids. They differ structurally in that glutamate has one extra methylene (–CH₂–) group, making its side chain one carbon longer. Both carry which charge at pH 7.4?',
+          ],
+          correct: 'Aspartate (Asp/D) and Glutamate (Glu/E) — carboxylate side chains (–COO⁻), negatively charged at pH 7.4',
+          wrongPool: [
+            'Asparagine (Asn/N) and Glutamine (Gln/Q) — the amide analogues of Asp and Glu; polar uncharged, NOT acidic (–CONH₂ not –COO⁻)',
+            'Lysine (Lys/K) and Arginine (Arg/R) — positively charged (basic); the opposite of acidic',
+            'Serine (Ser/S) and Threonine (Thr/T) — hydroxyl (–OH) side chains; polar uncharged at pH 7.4',
+            'Cysteine (Cys/C) and Methionine (Met/M) — sulfur-containing; Cys has pKa ~8.3 (mostly protonated at 7.4) and is polar, not classified as acidic',
+            'Tyrosine (Tyr/Y) and Histidine (His/H) — aromatic; His is basic, Tyr\'s pKa ~10.5 means it is neutral at pH 7.4',
+          ],
+          explanation: 'Acidic AAs: Asp (4C, –CH₂COO⁻, pKa 3.9) and Glu (5C, –CH₂CH₂COO⁻, pKa 4.1). Both fully deprotonated and negatively charged at pH 7.4. Classic MCAT trap: Asp/Glu ≠ Asn/Gln. Asparagine and glutamine are the amide versions — the –COOH becomes –CONH₂, removing the ionizable group. D/E = acidic; N/Q = polar uncharged.',
+        },
       ],
       showdown: [
         {
@@ -245,6 +317,28 @@
           conceptB: 'Asp, Glu, His — the acidic and borderline group',
           correct: 'Lys, Arg, His — positively charged (basic)',
           explanation: 'Asp and Glu are negatively charged (acidic) at pH 7.4. Lys (+), Arg (+), His (borderline +, pKa ~6) are the positively charged basic amino acids.',
+        },
+        {
+          conceptId: 'phenylalanine-vs-tyrosine',
+          scenarios: [
+            'An aromatic amino acid with a para-hydroxyl group on its benzene ring can be phosphorylated by receptor tyrosine kinases. This amino acid is...',
+            'Two amino acids share a benzene-containing side chain, but one has a hydroxyl group making it polar and phosphorylatable. That one is...',
+          ],
+          conceptA: 'Tyrosine (Tyr) — phenol ring, –OH present, phosphorylatable',
+          conceptB: 'Phenylalanine (Phe) — benzyl ring, no –OH, strictly nonpolar',
+          correct: 'Tyrosine (Tyr) — phenol ring, –OH present, phosphorylatable',
+          explanation: 'Tyr = Phe + a para-OH. The hydroxyl makes Tyr polar and the substrate of tyrosine kinases (RTKs). Phe is strictly nonpolar — no substituents on the benzene ring. In PKU, phenylalanine hydroxylase fails to convert Phe → Tyr, so Phe accumulates.',
+        },
+        {
+          conceptId: 'aspartate-vs-glutamate-length',
+          scenarios: [
+            'Of the two acidic amino acids, the shorter one has a side chain of just one methylene group (–CH₂–) between its α-carbon and its carboxylate. This is...',
+            'Aspartate and glutamate are both negatively charged at pH 7.4. The one with a single –CH₂– connecting the α-carbon to the –COO⁻ group — not two methylenes — is...',
+          ],
+          conceptA: 'Aspartate (Asp/D) — –CH₂COO⁻, shorter (4-carbon total)',
+          conceptB: 'Glutamate (Glu/E) — –CH₂CH₂COO⁻, longer (5-carbon total)',
+          correct: 'Aspartate (Asp/D) — –CH₂COO⁻, shorter (4-carbon total)',
+          explanation: 'Asp: α-C–CH₂–COO⁻ (one methylene). Glu: α-C–CH₂–CH₂–COO⁻ (two methylenes, one carbon longer). Both are negatively charged. Mnemonic: Asp ↔ Asn (amide version, N/Q neutral); Glu ↔ Gln (same swap). D/E acidic; N/Q neutral.',
         },
       ],
     },
@@ -584,6 +678,17 @@
           correct: 'Prolongs action potential (K⁺ channels blocked)',
           explanation: 'K⁺ efflux = repolarization. Block K⁺ → repolarization delayed → prolonged AP. Na⁺ influx = depolarization. Block Na⁺ → no depolarization, no AP at all.',
         },
+        {
+          conceptId: 'systolic-diastolic-pressure',
+          scenarios: [
+            'A blood pressure reading of 120/80 mmHg is recorded. The top number — measured when the ventricles contract and actively eject blood into the aorta — is the...',
+            'A patient\'s peak arterial pressure, recorded at the moment of maximal ventricular ejection, is 118 mmHg. This value represents the patient\'s...',
+          ],
+          conceptA: 'Systolic pressure — peak pressure during ventricular contraction',
+          conceptB: 'Diastolic pressure — minimum pressure during ventricular relaxation',
+          correct: 'Systolic pressure — peak pressure during ventricular contraction',
+          explanation: 'In 120/80: systolic (120) = peak pressure when ventricles contract and push blood out. Diastolic (80) = minimum pressure when ventricles relax and refill. Pulse pressure = systolic − diastolic. Hypertension ≥ 130/80 mmHg.',
+        },
       ],
     },
 
@@ -867,6 +972,98 @@
         },
       ],
       showdown: [],
+    },
+
+    // ── Lab Techniques ────────────────────────────────────────────────────
+    {
+      id: 'lab-techniques',
+      name: 'Lab Techniques',
+      place: 'The Technique Suite',
+      tagline: 'Know your columns and your controls',
+      emoji: '🧪',
+      color: '#0D9488',
+      lightColor: '#CCFBF1',
+      description: 'Column chromatography: size exclusion, ion exchange, and affinity',
+      scenarioDrop: [
+        {
+          conceptId: 'size-exclusion-chromatography',
+          label: 'Size exclusion: large molecules elute first',
+          scenarios: [
+            'A mixture of proteins is run through a column packed with porous gel beads. Large proteins cannot fit into the pores and pass through the column quickly. Small proteins enter the pores and take a longer, more tortuous path. Which elutes first?',
+            'In gel filtration chromatography, a 500 kDa antibody and a 10 kDa peptide are separated on the same column. Which molecule appears in the earliest collected fractions?',
+            'A researcher uses size exclusion chromatography to separate a large enzyme (200 kDa) from a small cofactor (0.5 kDa). Which component will be collected from the column first?',
+          ],
+          correct: 'Large molecules elute first — they are excluded from the pores and travel a shorter, faster path through the column',
+          wrongPool: [
+            'Small molecules elute first — small molecules actually enter the pores, travel longer, and elute last',
+            'Positively charged molecules elute first — charge is irrelevant in size exclusion; only hydrodynamic radius determines elution order',
+            'Molecules elute from smallest to largest — this is backwards; the largest molecules elute earliest',
+            'The most hydrophobic molecules elute first — hydrophobicity does not affect size exclusion separation',
+            'All molecules elute simultaneously — size exclusion resolves molecules by size; retention time depends on ability to enter pores',
+          ],
+          explanation: 'Size exclusion (gel filtration): column contains porous beads. Large molecules: excluded from pores → short, direct path → elute early. Small molecules: enter pores → tortuous long path → elute late. No binding to stationary phase — purely a physical sieving effect. Elution order: largest to smallest.',
+        },
+        {
+          conceptId: 'ion-exchange-chromatography',
+          label: 'Ion exchange: proteins bind by charge, eluted by salt gradient',
+          scenarios: [
+            'A basic protein (net positive charge at pH 7) is loaded onto a cation exchange column (negatively charged resin). It binds tightly. To elute it, the researcher should...',
+            'A negatively charged protein is retained on an anion exchange column (positively charged resin) after washing with low-salt buffer. Which change in the running buffer will cause it to elute?',
+            'A protein bound to an ion exchange column via electrostatic interactions needs to be released. The standard method for elution is to...',
+          ],
+          correct: 'Increase the NaCl (salt) concentration — competing ions displace the bound protein from the resin',
+          wrongPool: [
+            'Decrease the NaCl concentration — reducing salt strengthens electrostatic interactions, keeping the protein more tightly bound',
+            'Add a detergent to the buffer — detergents disrupt hydrophobic interactions, not ionic interactions',
+            'Increase the column temperature significantly — temperature affects binding kinetics but is not the standard elution method',
+            'Switch to a larger column — column size affects capacity, not how bound proteins are released',
+            'Lower the flow rate — flow rate affects resolution but does not elute ionically bound proteins',
+          ],
+          explanation: 'Ion exchange: resin carries fixed charges; proteins bind via complementary ionic interactions. Cation exchange (–COO⁻ resin) binds positively charged proteins. Anion exchange (–NR₃⁺ resin) binds negatively charged proteins. Elution: increasing [NaCl] → Na⁺/Cl⁻ compete with protein → protein displaced → elutes. Gradient elution separates proteins by charge density.',
+        },
+        {
+          conceptId: 'affinity-chromatography',
+          label: 'Affinity: specific binding, highest purity per step',
+          scenarios: [
+            'A His-tagged recombinant protein is purified from a cell lysate using a nickel-NTA column. Only the His-tagged protein binds; all other cellular proteins wash through. This technique is...',
+            'Which type of column chromatography achieves the highest purity in a single step because it exploits specific molecular recognition rather than bulk physical properties like size or total charge?',
+            'A researcher covalently links a drug inhibitor to a resin. Only the drug\'s target enzyme binds when cell lysate is passed through; all other proteins wash through. This one-step purification is an example of...',
+          ],
+          correct: 'Affinity chromatography — exploits specific molecular recognition for single-step, high-purity isolation',
+          wrongPool: [
+            'Size exclusion chromatography — separates by size, not specific binding; multiple proteins of similar size co-elute',
+            'Ion exchange chromatography — separates by charge; many proteins can have similar charge and co-elute; lower specificity',
+            'Reverse-phase HPLC — separates by hydrophobicity; primarily used for small molecules, not native protein purification',
+            'Native PAGE — an electrophoresis technique that separates by charge and size; cannot selectively collect a target protein',
+            'Dialysis — removes small molecules by size-based diffusion through a membrane; not a chromatographic purification method',
+          ],
+          explanation: 'Affinity: specific ligand (His-tag/Ni-NTA, antigen/antibody, substrate analogue) is tethered to resin → only the target binds → everything else flows through → elute target with competitor or pH change. Highest purity per step — the gold standard for recombinant protein purification. Compare: size exclusion separates by size (lower specificity); ion exchange separates by charge (lower specificity).',
+        },
+      ],
+      showdown: [
+        {
+          conceptId: 'size-exclusion-vs-ion-exchange',
+          scenarios: [
+            'A chromatography method separates proteins solely by hydrodynamic radius with no interaction between the protein and the resin. Large molecules elute first. This is...',
+            'A researcher separates a 150 kDa antibody from a 12 kDa peptide using porous gel beads — no binding to the column, just a sieving effect. This technique is...',
+          ],
+          conceptA: 'Size exclusion — separates by size; no protein-resin binding',
+          conceptB: 'Ion exchange — separates by charge; protein binds resin, eluted by salt',
+          correct: 'Size exclusion — separates by size; no protein-resin binding',
+          explanation: 'Size exclusion = gel filtration. No protein binds the resin — physical sieving only. Large → excludes from pores → elutes first. Ion exchange: protein binds charged resin; eluted by salt gradient. Key distinction: size exclusion has zero protein-resin interaction; ion exchange requires it.',
+        },
+        {
+          conceptId: 'affinity-vs-ion-exchange',
+          scenarios: [
+            'Of the major chromatography methods, the one that achieves near-homogeneous purity in a single step by exploiting specific biochemical recognition — not bulk size or charge — is...',
+            'A His-tagged protein is isolated from thousands of other cellular proteins in one column step using Ni-NTA resin. This is possible because the method used is...',
+          ],
+          conceptA: 'Affinity chromatography — specific molecular recognition, highest purity',
+          conceptB: 'Ion exchange chromatography — charge-based, less specific',
+          correct: 'Affinity chromatography — specific molecular recognition, highest purity',
+          explanation: 'Affinity exploits one specific interaction (His-tag/Ni, antibody/antigen, enzyme/substrate) → only the target binds → high purity per step. Ion exchange binds any protein of complementary charge → many co-elute. For maximum purity: affinity first, then polish with size exclusion or ion exchange.',
+        },
+      ],
     },
 
   ];
