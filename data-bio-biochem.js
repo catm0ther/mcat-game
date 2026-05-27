@@ -638,7 +638,7 @@
           conceptId: 'brain-ectoderm',
           scenarios: [
             'The heart is mesoderm-derived. The brain is NOT — it comes from...',
-            'A NOT question asks which structure is NOT mesoderm-derived. The answer is brain, because the brain is...',
+            'The neural tube, which gives rise to the brain and spinal cord, forms from a specific embryonic germ layer during development. The brain is derived from...',
           ],
           conceptA: 'Ectoderm — brain/nervous system',
           conceptB: 'Mesoderm — heart/muscle/kidney',
