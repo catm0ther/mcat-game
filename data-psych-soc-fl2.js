@@ -140,7 +140,7 @@
           conceptId: 'crystallized-vs-fluid',
           label: 'Crystallized = stored knowledge; Fluid = novel reasoning',
           scenarios: [
-            'A retired professor still recalls obscure Latin phrases from decades of study. This reflects which type of intelligence?',
+            'A student is handed a completely new type of pattern puzzle she has never seen before and must figure it out entirely through in-the-moment reasoning, without drawing on any prior knowledge. This requires which type of intelligence?',
             'Solving a completely novel puzzle that requires in-the-moment reasoning rather than remembered knowledge relies on which intelligence type?',
             'Which type of intelligence declines with age while the other is relatively preserved or improves?',
           ],
@@ -160,7 +160,7 @@
           conceptId: 'emotional-vs-interpersonal',
           scenarios: [
             'A student resists the urge to check social media while studying, recognizing and managing her own impulses. This self-regulation reflects which type of intelligence?',
-            'Delay of gratification = control over one\'s own emotions. Understanding what a friend is feeling = ...',
+            'A person recognizes rising anxiety before a presentation and uses deliberate self-calming strategies to stay focused. This ability to regulate one\'s own emotional state is...',
           ],
           conceptA: 'Emotional intelligence — managing one\'s own emotions',
           conceptB: 'Interpersonal intelligence — understanding others',
@@ -308,7 +308,7 @@
           conceptId: 'hawthorne-vs-impression',
           scenarios: [
             'Factory workers speed up when a researcher watches, then slow down when the researcher leaves — no deliberate effort to look good, just an automatic response to being observed. Which phenomenon describes this?',
-            'Being observed passively changes behavior (Hawthorne). Deliberately managing how you appear to others is...',
+            'A hospital employee\'s productivity increases measurably whenever a quality-control team is present — not because she\'s trying to look good, but simply because she knows she\'s being watched. Which phenomenon explains this automatic response to observation?',
           ],
           conceptA: 'Hawthorne effect — passive, automatic response to observation',
           conceptB: 'Impression management — deliberate, strategic self-presentation',
@@ -399,8 +399,8 @@
         {
           conceptId: 'meritocracy-vs-cultural-capital',
           scenarios: [
-            'The belief that talent and effort alone determine success is meritocracy. The inherited social assets (education, connections, cultural knowledge) that actually confer advantage are...',
-            'Meritocracy assumes effort = reward. Bourdieu\'s concept explaining WHY inherited advantage persists is...',
+            'A startup CEO tells investors her company promotes based purely on performance metrics — no nepotism, no inherited connections. Which ideological framework does this policy reflect?',
+            'A politician argues that any student who works hard enough can earn a scholarship and succeed — background and family status are irrelevant. This belief that reward tracks talent and effort alone is...',
           ],
           conceptA: 'Meritocracy — effort and talent determine success',
           conceptB: 'Cultural capital — inherited social assets create advantage',
@@ -421,7 +421,7 @@
         {
           conceptId: 'dependency-ratio-vs-life-course',
           scenarios: [
-            'A government report quantifies how many retirees each worker must support. The statistic is the dependency ratio, not the...',
+            'A government report calculates that for every 100 working-age adults there are 78 dependent children and elderly people. This population measure is the...',
             'Dependency ratio (a number) vs. life course perspective (a theory): which explains how aging population demographics strain working-age populations?',
           ],
           conceptA: 'Dependency ratio — quantitative demographic statistic',

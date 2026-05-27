@@ -238,7 +238,7 @@
         {
           conceptId: 'basic-amino-acid-trio',
           scenarios: [
-            'Lysine, Arginine, and Histidine are the three basic amino acids. Their opposites — the acidic amino acids with negative charges at pH 7.4 — are...',
+            'At physiological pH 7.4, three amino acids carry a net positive charge and are classified as basic. Lysine, Arginine, and the third basic amino acid (with pKa ~6) together form the group...',
             'Asp and Glu are acidic; Lys, Arg, and His are basic. At pH 7.4, the basic trio carries which charge?',
           ],
           conceptA: 'Lys, Arg, His — positively charged (basic)',
@@ -330,8 +330,8 @@
         {
           conceptId: 'nuclear-localization-sequence',
           scenarios: [
-            'A transcription factor heading to the nucleus carries a nuclear localization sequence (NLS). A protein heading to the ER lumen carries a...',
-            'NLS targets the nucleus. A different N-terminal sequence, rich in hydrophobic residues, targets the...',
+            'A transcription factor synthesized in the cytoplasm must enter the nucleus to function. It carries a short basic amino acid sequence recognized by importins that directs it through the nuclear pore. This targeting signal is...',
+            'A newly translated protein contains a short cluster of basic residues (Lys/Arg-rich) near its N-terminus recognized by importin proteins, delivering it to the nucleus. The targeting sequence is...',
           ],
           conceptA: 'Nuclear localization sequence (NLS) → nucleus',
           conceptB: 'Signal peptide → ER lumen',
@@ -341,7 +341,7 @@
         {
           conceptId: 'vasopressin-collecting-duct-aquaporin',
           scenarios: [
-            'Vasopressin inserts AQP2 water channels into the apical membrane of the collecting duct. The ascending loop of Henle is water-impermeable because...',
+            'Vasopressin (ADH) is released during dehydration. It binds receptors and triggers insertion of AQP2 aquaporin channels into the apical membrane of a specific tubule segment, increasing water reabsorption. That tubule segment is the...',
             'ADH target: collecting duct or ascending loop of Henle?',
           ],
           conceptA: 'Collecting duct — the vasopressin target',
@@ -422,7 +422,7 @@
         {
           conceptId: 'pep-glycolysis-not-cac',
           scenarios: [
-            'PEP is converted to pyruvate in the final ATP-generating step of glycolysis. PEP belongs to glycolysis, not the...',
+            'PEP is the penultimate intermediate in glycolysis, immediately upstream of pyruvate. In which metabolic pathway does PEP appear?',
             'Malate is a genuine CAC intermediate. PEP is NOT — it belongs to...',
           ],
           conceptA: 'Glycolysis (PEP → pyruvate)',
@@ -554,7 +554,7 @@
         {
           conceptId: 'centrosome-mtoc',
           scenarios: [
-            'Microtubules for vesicle transport are nucleated at the centrosome (MTOC). Kinetochores attach to microtubules but do NOT...',
+            'Cytoplasmic microtubule tracks used for vesicle transport originate from a single organizing structure containing γ-tubulin ring complexes near the nucleus. It is the...',
             'Which structure nucleates cytoplasmic microtubules vs. which structure just attaches to already-formed spindle microtubules?',
           ],
           conceptA: 'Centrosome — nucleates microtubules (MTOC)',
@@ -565,7 +565,7 @@
         {
           conceptId: 'lysosome-acid-hydrolases',
           scenarios: [
-            'Lysosomes contain acid hydrolases for degradation. Protein synthesis machinery (ribosomes) is located...',
+            'An organelle maintains a luminal pH of ~5 using V-type H⁺-ATPase and contains degradative enzymes including cathepsins, lipases, and glycosidases. The defining contents of this organelle are...',
             'What is inside a lysosome: acid hydrolases or ribosomes?',
           ],
           conceptA: 'Acid hydrolases — define lysosomes',
@@ -576,8 +576,8 @@
         {
           conceptId: 'k-channel-repolarization',
           scenarios: [
-            'Blocking voltage-gated K⁺ channels prevents repolarization, causing a prolonged AP. This is different from blocking Na⁺ channels, which would...',
-            'K⁺ channel blockers prolong the AP. Na⁺ channel blockers would instead prevent...',
+            'A toxin specifically blocks voltage-gated K⁺ channels during an action potential. Repolarization depends on K⁺ efflux — without it, the action potential is...',
+            'Dendrotoxin blocks voltage-gated potassium channels in neurons. Potassium efflux normally drives the falling phase of the action potential. Blocking this efflux causes the action potential to be...',
           ],
           conceptA: 'Prolongs action potential (K⁺ channels blocked)',
           conceptB: 'Prevents depolarization (Na⁺ channels blocked)',
@@ -657,8 +657,8 @@
         {
           conceptId: 'dna-phosphodiester-bond',
           scenarios: [
-            'DNA ligase seals nicks in the DNA backbone by forming a phosphodiester bond, not a...',
-            'The covalent bond linking nucleotides in the DNA backbone is a phosphodiester bond. Proteins use a different backbone bond — the...',
+            'During DNA repair, after nucleotide excision and resynthesis, a DNA ligase seals the remaining nick by catalyzing a covalent bond between the 3′-OH end of one nucleotide and the 5′-phosphate of the next. This backbone bond is a...',
+            'DNA ligase seals the final nick in a repaired strand by catalyzing formation of a 3′-OH + 5′-phosphate linkage. The covalent bond it forms between nucleotides is a...',
           ],
           conceptA: 'Phosphodiester bond (DNA backbone)',
           conceptB: 'Disulfide bond (protein Cys–Cys only)',
@@ -669,7 +669,7 @@
           conceptId: 'cyclobutane-pyrimidine-dimer',
           scenarios: [
             'UV induces a cyclobutane dimer between two adjacent pyrimidines — not between a purine and a pyrimidine. The dimer is...',
-            'UV photoproducts involve pyrimidine–pyrimidine crosslinks. A purine–pyrimidine dimer is...',
+            'After UV irradiation, [2+2] cycloaddition between two adjacent bases in DNA forms a covalently linked lesion. These UV photoproducts exclusively involve two adjacent...',
           ],
           conceptA: 'Pyrimidine–pyrimidine dimer (UV product)',
           conceptB: 'Purine–pyrimidine dimer (not a UV photoproduct)',
@@ -742,7 +742,7 @@
         {
           conceptId: 'antibody-variable-both-chains',
           scenarios: [
-            'Antigen specificity requires VH and VL together. The Fc region (heavy chain constant domains) mediates...',
+            'Antigen-binding specificity in an antibody requires the coordinated action of CDR loops from two different chain types. Antigen recognition requires the variable regions of...',
             'Both heavy-chain variable region (VH) and light-chain variable region (VL) contribute to antigen binding. Not just VL — both VH and...',
           ],
           conceptA: 'Both VH + VL — antigen binding requires both variable regions',
@@ -753,8 +753,8 @@
         {
           conceptId: 'endosomal-acidification-viral',
           scenarios: [
-            'Influenza uses endocytic entry. Membrane fusion is triggered by acidification of the endosome, not the...',
-            'Viral envelope fusion during endocytic entry happens in acidified endosomes, not in the...',
+            'Influenza enters cells via receptor-mediated endocytosis. Proton pumps lower the pH of the resulting vesicle, triggering hemagglutinin to refold and fuse viral and cellular membranes. The cellular compartment where this pH-triggered fusion occurs is the...',
+            'A V-ATPase inhibitor (bafilomycin A1) completely blocks influenza infection at the cellular level. It prevents viral genome release because the drug neutralizes the acidic environment of the...',
           ],
           conceptA: 'Endosome (acidified by V-ATPase)',
           conceptB: 'Golgi apparatus (biosynthetic, not endocytic)',

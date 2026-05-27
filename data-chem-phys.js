@@ -341,7 +341,7 @@
           conceptId: 'storage-lipid-tag',
           scenarios: [
             'Adipocytes store energy as a neutral, water-insoluble molecule made of three fatty acids on a glycerol backbone. This is a triacylglycerol, not a...',
-            'Long-term energy storage in fat tissue uses triacylglycerols. Membrane bilayers use a different lipid class:',
+            'Adipose cells store excess dietary energy as densely packed, water-insoluble molecules made of three fatty acid chains esterified to a glycerol backbone. The primary energy storage molecule in these fat cells is a...',
           ],
           conceptA: 'Triacylglycerol — energy storage',
           conceptB: 'Phospholipid — membrane component',
@@ -441,7 +441,7 @@
           conceptId: 'catalyst-rate-not-yield',
           scenarios: [
             'A catalyst speeds up a reversible reaction. It reaches equilibrium faster, but the equilibrium position itself is unchanged. A catalyst changes the reaction\'s...',
-            'Enzymes lower activation energy for both forward and reverse reactions equally. This affects kinetics but not the...',
+            'Adding platinum catalyst to a reversible reaction cuts the time to reach equilibrium from one hour to two minutes, but the final ratio of products to reactants is identical with or without the catalyst. What has the catalyst changed?',
           ],
           conceptA: 'Rate — reaches equilibrium faster',
           conceptB: 'Equilibrium yield — more product formed',
@@ -580,7 +580,7 @@
           conceptId: 'diverging-lens-image',
           scenarios: [
             'A diverging lens is held in front of a printed page. The image seen through the lens is smaller and right-side up — it is...',
-            'No matter how far an object is from a diverging lens, the image is always virtual, upright, and reduced. This contrasts with a converging lens, which can produce...',
+            'A nearsighted patient holds a concave lens at arm\'s length and looks through it at a distant sign. Regardless of distance, the image she sees is smaller than the sign, right-side up, and cannot be projected onto a screen. These images are always...',
           ],
           conceptA: 'Virtual, upright, reduced',
           conceptB: 'Real, inverted, magnified',
