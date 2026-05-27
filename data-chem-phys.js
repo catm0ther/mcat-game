@@ -363,7 +363,7 @@
           conceptId: 'coordinate-covalent-metal',
           scenarios: [
             'A nitrogen atom on a histidine donates both of its lone pair electrons to Zn²⁺. The bond formed is...',
-            'In an enzyme active site, a ligand donates both electrons to a metal. This is a coordinate covalent bond, not a...',
+            'A water molecule donates one of its lone pairs to a Fe²⁺ ion in a heme group, forming a bond where both electrons originate from the same atom. This bond is a...',
           ],
           conceptA: 'Coordinate covalent bond',
           conceptB: 'Ionic bond',
