@@ -340,7 +340,7 @@
         {
           conceptId: 'storage-lipid-tag',
           scenarios: [
-            'Adipocytes store energy as a neutral, water-insoluble molecule made of three fatty acids on a glycerol backbone. This is a triacylglycerol, not a...',
+            'A neutral, water-insoluble molecule composed of three fatty acid chains each esterified to a single glycerol backbone is the predominant energy-storage molecule in fat tissue. This molecule is a...',
             'Adipose cells store excess dietary energy as densely packed, water-insoluble molecules made of three fatty acid chains esterified to a glycerol backbone. The primary energy storage molecule in these fat cells is a...',
           ],
           conceptA: 'Triacylglycerol — energy storage',
