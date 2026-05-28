@@ -28,6 +28,8 @@ const state = {
   answered: false,
   currentQ: null,
   currentAnswers: [],
+  streak: 0,
+  bestStreak: 0,
 };
 
 const isMobile = window.innerWidth < 768 ||
@@ -304,11 +306,18 @@ function _applyMastery(pool, { maxNew = 3, maxMastered = 1 } = {}) {
     ...shuffle(mastered).slice(0, maxMastered),
   ];
   const finalPool = session.length > 0 ? session : shuffle(pool);
-  return finalPool.map(q => ({
-    ...q,
-    scenario:     q.scenarios ? pickScenario(q) : (q.scenario || ''),
-    wrongAnswers: q.wrongPool  ? pickWrongAnswers(q) : [],
-  }));
+  return finalPool.map(q => {
+    const base = {
+      ...q,
+      scenario:     q.scenarios ? pickScenario(q) : (q.scenario || ''),
+      wrongAnswers: q.wrongPool  ? pickWrongAnswers(q) : [],
+    };
+    if (q.variants) {
+      const v = q.variants[Math.floor(Math.random() * q.variants.length)];
+      return { ...base, scenario: v.scenario, options: v.options, correct: v.correct };
+    }
+    return base;
+  });
 }
 
 // ── Utilities ──────────────────────────────────────────────────────────────
@@ -525,6 +534,7 @@ function startGame(clusterId) {
   state.session   = buildSmartSession(cluster);
   state.index     = 0;
   state.score     = 0;
+  state.streak    = 0;
   state.answered  = false;
   renderQuestion();
 }
@@ -538,6 +548,7 @@ function startSectionGame(sectionId) {
   state.session  = buildSectionSession(sectionId);
   state.index    = 0;
   state.score    = 0;
+  state.streak   = 0;
   state.answered = false;
   renderQuestion();
 }
@@ -636,6 +647,9 @@ function renderScenarioDrop(q, header) {
 
 function renderShowdown(q, header) {
   const c = state.cluster;
+  const flip  = Math.random() < 0.5;
+  const left  = flip ? q.conceptB : q.conceptA;
+  const right = flip ? q.conceptA : q.conceptB;
 
   render(`
     <div class="screen-game" style="--zone-color:${c.color}; --zone-light:${c.lightColor}">
@@ -644,16 +658,16 @@ function renderShowdown(q, header) {
         <p class="showdown-prompt">Which concept fits?</p>
         <div class="scenario-card"><p class="scenario-text">${q.scenario}</p></div>
         <div class="showdown-choices">
-          <button class="showdown-btn" id="btnA" data-val="${q.conceptA}">${stripExplanation(q.conceptA)}</button>
+          <button class="showdown-btn" id="btnA" data-val="${left}">${stripExplanation(left)}</button>
           <div class="vs-badge">VS</div>
-          <button class="showdown-btn" id="btnB" data-val="${q.conceptB}">${stripExplanation(q.conceptB)}</button>
+          <button class="showdown-btn" id="btnB" data-val="${right}">${stripExplanation(right)}</button>
         </div>
         <div id="feedback" class="feedback-panel hidden"></div>
       </div>
     </div>
   `);
 
-  [{ id: 'btnA', val: q.conceptA }, { id: 'btnB', val: q.conceptB }].forEach(({ id, val }) => {
+  [{ id: 'btnA', val: left }, { id: 'btnB', val: right }].forEach(({ id, val }) => {
     document.getElementById(id).addEventListener('click', function () {
       if (state.answered) return;
       state.answered = true;
@@ -674,6 +688,7 @@ function renderShowdown(q, header) {
 
 function renderEquationRescue(q, header) {
   const c = state.cluster;
+  const shuffledOpts = shuffle([...q.options]);
   render(`
     <div class="screen-game" style="--zone-color:${c.color}; --zone-light:${c.lightColor}">
       ${header}
@@ -682,7 +697,7 @@ function renderEquationRescue(q, header) {
         <div class="scenario-card"><p class="scenario-text">${q.scenario}</p></div>
         <p class="calc-prompt">Which setup is correct?</p>
         <div class="rescue-options" id="rescue-options">
-          ${q.options.map((opt, i) => `<button class="rescue-btn" data-idx="${i}">${stripExplanation(opt.replace(/\s*\([^)]*\)\s*$/, '').trim())}</button>`).join('')}
+          ${shuffledOpts.map((opt, i) => `<button class="rescue-btn" data-idx="${i}">${stripExplanation(opt.replace(/\s*\([^)]*\)\s*$/, '').trim())}</button>`).join('')}
         </div>
         <div id="feedback" class="feedback-panel hidden"></div>
       </div>
@@ -692,12 +707,12 @@ function renderEquationRescue(q, header) {
     btn.addEventListener('click', () => {
       if (state.answered) return;
       state.answered = true;
-      const selected = q.options[parseInt(btn.dataset.idx)];
+      const selected = shuffledOpts[parseInt(btn.dataset.idx)];
       const correct  = selected === q.correct;
       if (correct) state.score++;
       recordAnswer(q.conceptId, correct);
       document.querySelectorAll('.rescue-btn').forEach(b => {
-        const val = q.options[parseInt(b.dataset.idx)];
+        const val = shuffledOpts[parseInt(b.dataset.idx)];
         if (val === q.correct)  b.classList.add('correct');
         else if (b === btn)     b.classList.add('incorrect');
         else                    b.classList.add('dimmed');
@@ -710,6 +725,7 @@ function renderEquationRescue(q, header) {
 
 function renderMagnitudeBlitz(q, header) {
   const c = state.cluster;
+  const shuffledOpts = shuffle([...q.options]);
   render(`
     <div class="screen-game" style="--zone-color:${c.color}; --zone-light:${c.lightColor}">
       ${header}
@@ -718,7 +734,7 @@ function renderMagnitudeBlitz(q, header) {
         <div class="scenario-card"><p class="scenario-text">${q.scenario}</p></div>
         <p class="calc-prompt">Best estimate?</p>
         <div class="blitz-grid" id="blitz-options">
-          ${q.options.map((opt, i) => `<button class="blitz-btn" data-idx="${i}">${opt}</button>`).join('')}
+          ${shuffledOpts.map((opt, i) => `<button class="blitz-btn" data-idx="${i}">${opt}</button>`).join('')}
         </div>
         <div id="feedback" class="feedback-panel hidden"></div>
       </div>
@@ -728,12 +744,12 @@ function renderMagnitudeBlitz(q, header) {
     btn.addEventListener('click', () => {
       if (state.answered) return;
       state.answered = true;
-      const selected = q.options[parseInt(btn.dataset.idx)];
+      const selected = shuffledOpts[parseInt(btn.dataset.idx)];
       const correct  = selected === q.correct;
       if (correct) state.score++;
       recordAnswer(q.conceptId, correct);
       document.querySelectorAll('.blitz-btn').forEach(b => {
-        const val = q.options[parseInt(b.dataset.idx)];
+        const val = shuffledOpts[parseInt(b.dataset.idx)];
         if (val === q.correct)  b.classList.add('correct');
         else if (b === btn)     b.classList.add('incorrect');
         else                    b.classList.add('dimmed');
@@ -746,15 +762,28 @@ function renderMagnitudeBlitz(q, header) {
 
 // ── Feedback ───────────────────────────────────────────────────────────────
 function showFeedback(correct, explanation, conceptId) {
-  const panel   = document.getElementById('feedback');
-  const isLast  = state.index + 1 >= state.session.length;
-  const rec     = getConceptRecord(conceptId);
+  if (correct) {
+    state.streak++;
+    if (state.streak > state.bestStreak) state.bestStreak = state.streak;
+  } else {
+    state.streak = 0;
+  }
+
+  const panel    = document.getElementById('feedback');
+  const isLast   = state.index + 1 >= state.session.length;
+  const rec      = getConceptRecord(conceptId);
   const newState = rec.state;
 
-  // Show mastery milestone if just hit 3-in-a-row
   const milestone = correct && rec.streak >= 3 && newState === 'mastered'
     ? '<div class="milestone">⭐ Mastered! This concept moves to your review pile.</div>'
     : '';
+
+  let streakBanner = '';
+  if (correct && state.streak >= 3) {
+    if      (state.streak >= 10) streakBanner = `<div class="streak-banner streak-epic">🔥🔥🔥 ${state.streak} in a row!! MCAT beast mode!</div>`;
+    else if (state.streak >= 5)  streakBanner = `<div class="streak-banner streak-hot">🔥🔥 ${state.streak} in a row! You're on fire!</div>`;
+    else                         streakBanner = `<div class="streak-banner streak-warm">🔥 ${state.streak} in a row!</div>`;
+  }
 
   panel.className = `feedback-panel ${correct ? 'feedback-correct' : 'feedback-incorrect'}`;
   panel.innerHTML = `
@@ -766,6 +795,7 @@ function showFeedback(correct, explanation, conceptId) {
       </div>
     </div>
     ${milestone}
+    ${streakBanner}
     <div class="feedback-actions">
       <button class="btn-flag" onclick="flagQuestion()">🚩 Flag question</button>
       <button class="btn-next" onclick="nextQuestion()">${isLast ? 'See Results →' : 'Next →'}</button>

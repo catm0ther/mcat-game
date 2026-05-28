@@ -864,6 +864,25 @@ button:active { transform: scale(0.96); }
   animation: slideUp 0.3s ease;
 }
 
+/* ── Streak celebration banners ───────────────────── */
+.streak-banner {
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-align: center;
+  animation: streakPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.streak-warm { background: #FEF3C7; color: #92400E; border: 1.5px solid #F59E0B; }
+.streak-hot  { background: #FED7AA; color: #7C2D12; border: 1.5px solid #F97316; }
+.streak-epic { background: #FCA5A5; color: #7F1D1D; border: 2px solid #EF4444;   }
+
+@keyframes streakPop {
+  0%   { transform: scale(0.7); opacity: 0; }
+  70%  { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
 /* ── Mastery summary on results ───────────────────── */
 .mastery-summary {
   background: var(--bg);

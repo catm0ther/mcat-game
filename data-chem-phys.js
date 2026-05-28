@@ -711,40 +711,96 @@
       magnitudeBlitz: [
         {
           conceptId: 'calc-power-mgh',
-          label: 'Power: P = mgh/t',
-          scenario: 'A 5 kg box is raised 9 m in 5 seconds. Using P = mgh/t (g ≈ 10 m/s²), what is the best estimate of power output?',
-          options: ['0.9 W', '9 W', '90 W', '900 W'],
-          correct: '90 W',
-          explanation: 'P = (5)(10)(9)/5 = 450/5 = 90 W. Common traps: forgetting g gives 9 W; using m = 50 kg gives 900 W.',
+          label: 'Power output (gravitational)',
+          variants: [
+            {
+              scenario: 'A worker lifts a 5 kg crate straight up 9 meters in 5 seconds (g ≈ 10 m/s²). What is the best estimate of average power output?',
+              options: ['0.9 W', '9 W', '90 W', '900 W'],
+              correct: '90 W',
+            },
+            {
+              scenario: 'A machine raises a 4 kg block 5 meters vertically in 8 seconds (g ≈ 10 m/s²). What is the best estimate of average power output?',
+              options: ['2.5 W', '25 W', '250 W', '2500 W'],
+              correct: '25 W',
+            },
+            {
+              scenario: 'A student carries a 6 kg bag up a 10-meter staircase in 3 seconds (g ≈ 10 m/s²). What is the best estimate of average power output?',
+              options: ['20 W', '200 W', '2000 W', '20000 W'],
+              correct: '200 W',
+            },
+          ],
+          explanation: 'P = mgh/t. Multiply mass × g × height, then divide by time. Units: watts (W = J/s). Tip: always include g ≈ 10 m/s² — forgetting it gives an answer 10× too small.',
         },
         {
           conceptId: 'calc-spring-work',
-          label: 'Spring work: W = ½kx²',
-          scenario: 'A spring (k = 200 N/m) is compressed 0.2 m from equilibrium. Using W = ½kx², what is the elastic potential energy stored?',
-          options: ['0.4 J', '4 J', '40 J', '400 J'],
-          correct: '4 J',
-          explanation: 'W = ½ × 200 × (0.2)² = 100 × 0.04 = 4 J. Traps: forgetting to square x (0.2 not 0.04) gives 40 J; forgetting the ½ gives 8 J.',
+          label: 'Elastic potential energy (spring)',
+          variants: [
+            {
+              scenario: 'A spring with spring constant 200 N/m is compressed 0.2 m from its natural length. What is the best estimate of elastic potential energy stored?',
+              options: ['0.4 J', '4 J', '40 J', '400 J'],
+              correct: '4 J',
+            },
+            {
+              scenario: 'A spring with spring constant 500 N/m is stretched 0.1 m from equilibrium. What is the best estimate of elastic potential energy stored?',
+              options: ['0.25 J', '2.5 J', '25 J', '250 J'],
+              correct: '2.5 J',
+            },
+            {
+              scenario: 'A spring with spring constant 400 N/m is compressed 0.3 m from its resting length. What is the best estimate of elastic potential energy stored?',
+              options: ['1.8 J', '18 J', '180 J', '1800 J'],
+              correct: '18 J',
+            },
+          ],
+          explanation: 'PE = ½kx². Square the displacement first, then multiply by ½k. The most common error is forgetting to square x (using 0.2 instead of 0.04, for example), which gives an answer 5–10× too large.',
         },
         {
           conceptId: 'calc-decibel-ratio',
           label: 'dB difference → intensity ratio',
-          scenario: 'Two sounds differ by 20 dB. Using ΔdB = 10 × log(I₂/I₁), what is the intensity ratio I₂/I₁?',
-          options: ['2', '20', '100', '1000'],
-          correct: '100',
-          explanation: 'I₂/I₁ = 10^(ΔdB/10) = 10^(20/10) = 10² = 100. Every 10 dB = 10× intensity. Two 10 dB steps = 10 × 10 = 100×.',
+          variants: [
+            {
+              scenario: 'Sound B is 20 dB louder than Sound A. What is the ratio of their intensities (I_B / I_A)?',
+              options: ['2', '20', '100', '1000'],
+              correct: '100',
+            },
+            {
+              scenario: 'Sound B is 10 dB louder than Sound A. What is the ratio of their intensities (I_B / I_A)?',
+              options: ['2', '10', '100', '1000'],
+              correct: '10',
+            },
+            {
+              scenario: 'Sound B is 30 dB louder than Sound A. What is the ratio of their intensities (I_B / I_A)?',
+              options: ['3', '30', '1000', '10000'],
+              correct: '1000',
+            },
+          ],
+          explanation: 'I₂/I₁ = 10^(ΔdB/10). Every 10 dB = 10× the intensity. So 20 dB = 10² = 100×; 30 dB = 10³ = 1000×. The trap is using the dB number directly as the ratio.',
         },
         {
           conceptId: 'calc-gas-stp-volume',
           label: 'Gas volume at STP',
-          scenario: 'A reaction produces 1.5 mol of CO₂ gas. At STP, 1 mol of ideal gas = 22.4 L. What volume of CO₂ is produced?',
-          options: ['3.4 L', '15 L', '33.6 L', '224 L'],
-          correct: '33.6 L',
-          explanation: 'V = n × 22.4 = 1.5 × 22.4 = 33.6 L. The trap is using 22.4 L without scaling for the actual moles (1 mol → 22.4, not 1.5 mol → 22.4).',
+          variants: [
+            {
+              scenario: 'A reaction produces 1.5 mol of CO₂ gas at standard temperature and pressure (1 mol ideal gas = 22.4 L). What is the best estimate of total gas volume?',
+              options: ['3.4 L', '15 L', '33.6 L', '224 L'],
+              correct: '33.6 L',
+            },
+            {
+              scenario: 'A decomposition reaction releases 0.5 mol of O₂ gas at standard temperature and pressure (1 mol ideal gas = 22.4 L). What is the best estimate of total gas volume?',
+              options: ['2.2 L', '11.2 L', '22.4 L', '112 L'],
+              correct: '11.2 L',
+            },
+            {
+              scenario: 'A combustion reaction produces 2.5 mol of water vapor at standard temperature and pressure (1 mol ideal gas = 22.4 L). What is the best estimate of total gas volume?',
+              options: ['5.6 L', '22.4 L', '56 L', '224 L'],
+              correct: '56 L',
+            },
+          ],
+          explanation: 'V = n × 22.4 L/mol at STP. Multiply moles by 22.4. The trap is using 22.4 L for any number of moles without scaling.',
         },
         {
           conceptId: 'calc-electrons-from-charge',
           label: 'Charge → number of electrons',
-          scenario: 'A sphere holds 3.2 × 10⁻⁹ C of charge. Each electron has charge 1.6 × 10⁻¹⁹ C. How many electrons were removed?',
+          scenario: 'A conducting sphere carries a net positive charge of 3.2 × 10⁻⁹ C (meaning that many electrons were removed). The charge of one electron is 1.6 × 10⁻¹⁹ C. How many electrons were removed?',
           options: ['2 × 10⁸', '2 × 10¹⁰', '2 × 10¹²', '2 × 10²⁸'],
           correct: '2 × 10¹⁰',
           explanation: 'n = Q/e = (3.2 × 10⁻⁹)/(1.6 × 10⁻¹⁹). Coefficients: 3.2/1.6 = 2. Exponents: −9 − (−19) = +10. Answer: 2 × 10¹⁰.',
