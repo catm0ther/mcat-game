@@ -154,7 +154,7 @@
           conceptId: 'phosphomimetic-glu-asp',
           scenarios: [
             'A researcher wants a constitutively "phosphorylated" form of a substrate without using a kinase. Which amino acid substitution at the serine site would work?',
-            'In a signaling study, a Ser→Glu mutation is introduced into a substrate protein. What biological state does this substitution mimic?',
+            'A researcher replaces the serine at a kinase target site with an amino acid carrying a permanent negative charge, so the protein behaves as if it is always phosphorylated — no kinase needed. The amino acid used is...',
             'Which amino acid is considered a phosphomimetic because its side chain carries a negative charge similar to a phosphate group?',
           ],
           correct: 'Glutamate (Glu/E) or Aspartate (Asp/D) — negatively charged side chains mimic phosphate',
