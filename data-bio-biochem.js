@@ -41,6 +41,7 @@
             'The middle of a membrane-spanning α-helix sits in the hydrophobic lipid bilayer core. Which residues are enriched there?',
             'A 20-residue stretch predicted to be a transmembrane helix is rich in Leu, Ile, Val, and Ala. This is expected because...',
             'A receptor\'s transmembrane domain must be energetically stable inside the lipid bilayer. This requires its interior residues to be...',
+            'A passage describes a receptor with seven transmembrane α-helical domains. The middle region of each membrane-spanning helix most likely contains which type of amino acid?',
           ],
           correct: 'Nonpolar (hydrophobic) residues — compatible with the hydrophobic lipid core',
           wrongPool: [
@@ -379,6 +380,7 @@
             'A transcription factor must enter the nucleus to activate gene expression. What sequence feature enables it to cross the nuclear pore?',
             'β-Catenin moves to the nucleus to activate Wnt target genes. What structural feature enables nuclear import?',
             'A researcher mutates a stretch of basic amino acids in a nuclear protein and finds it can no longer enter the nucleus. This sequence is a...',
+            'A passage describes β-catenin accumulating in the cytoplasm after Wnt signaling activates. To turn on target gene transcription, β-catenin must reach DNA in the nucleus. Which feature enables this nuclear import?',
           ],
           correct: 'Nuclear localization sequence (NLS) — short basic peptide recognized by importins for nuclear pore import',
           wrongPool: [
@@ -387,6 +389,8 @@
             'High proportion of surface nonpolar residues — describes membrane association, not nuclear targeting',
             'GPI anchor — lipid modification for membrane attachment',
             'KDEL sequence — retains proteins in the ER lumen; not a nuclear import signal',
+            'Multiple subunits — quaternary structure; says nothing about where in the cell the protein goes',
+            'Very few disulfide bonds — disulfides form in oxidizing environments (extracellular/ER); irrelevant to nuclear import',
           ],
           explanation: 'NLS = short sequence rich in Lys and Arg. Importin-α recognizes NLS → importin-β docks at nuclear pore → RanGTP-driven transport into nucleus. Signal peptides target ER. KDEL retains ER residents. Surface nonpolar residues = membrane association.',
         },
