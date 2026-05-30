@@ -987,7 +987,7 @@
       emoji: '🧪',
       color: '#0D9488',
       lightColor: '#CCFBF1',
-      description: 'Column chromatography: size exclusion, ion exchange, and affinity',
+      description: 'Column chromatography (size exclusion, ion exchange, affinity) and blotting techniques (Southern/Northern/Western)',
       scenarioDrop: [
         {
           conceptId: 'size-exclusion-chromatography',
@@ -1043,6 +1043,63 @@
           ],
           explanation: 'Affinity: specific ligand (His-tag/Ni-NTA, antigen/antibody, substrate analogue) is tethered to resin → only the target binds → everything else flows through → elute target with competitor or pH change. Highest purity per step — the gold standard for recombinant protein purification. Compare: size exclusion separates by size (lower specificity); ion exchange separates by charge (lower specificity).',
         },
+        {
+          conceptId: 'southern-blot-dna',
+          label: 'Southern blot — detects DNA',
+          scenarios: [
+            'A researcher digests genomic DNA with restriction enzymes, runs the fragments on a gel, transfers them to a nitrocellulose membrane, and hybridizes with a labeled DNA probe to find a specific gene. This technique is...',
+            'Which blotting technique uses a nucleic acid probe to detect specific DNA sequences in a genomic sample?',
+            'A clinician uses a blotting technique to test whether a patient carries a specific disease-associated gene sequence at the DNA level. The technique is...',
+            'A passage describes DNA extracted from a tumor, cut with restriction enzymes, run on a gel, and probed with a labeled sequence to look for a gene deletion. The blotting technique used is...',
+          ],
+          correct: 'Southern blot — detects DNA sequences using a complementary labeled probe',
+          wrongPool: [
+            'Northern blot — detects RNA (mRNA), not genomic DNA',
+            'Western blot — detects proteins using antibodies; no nucleic acid probe involved',
+            'ELISA — antibody-based assay for proteins in solution; no gel-transfer step',
+            'ChIP (chromatin immunoprecipitation) — detects protein-DNA binding sites; not used to detect a gene sequence directly',
+            'PCR — amplifies DNA but does not separate fragments on a membrane or use a probe hybridization step',
+          ],
+          explanation: 'Southern blot: (1) Cut DNA with restriction enzymes. (2) Gel electrophoresis. (3) Transfer (blot) to membrane. (4) Hybridize with labeled DNA/RNA probe. (5) Detect. Mnemonic: SNoW DRoP — S=DNA, N=RNA, W=Protein. Named after Edwin Southern who invented it in 1975; Northern and Western are named by directional analogy (and humor).',
+        },
+        {
+          conceptId: 'northern-blot-rna',
+          label: 'Northern blot — detects RNA',
+          scenarios: [
+            'A researcher extracts total RNA from two tissues, runs them on a denaturing gel, transfers the RNA to a membrane, and probes with a labeled complementary sequence to compare mRNA levels. This technique is...',
+            'Which blotting technique directly measures the size and abundance of a specific mRNA transcript in a tissue sample?',
+            'A scientist wants to confirm that a gene is being transcribed in muscle but not liver. They extract RNA, separate it by size on a gel, and detect the mRNA of interest with a probe. This technique is...',
+            'A passage describes RNA extracted from cells, run on a formaldehyde gel to prevent folding, transferred to a membrane, and hybridized with a probe to show a single band at the expected transcript size. The technique is...',
+          ],
+          correct: 'Northern blot — detects RNA (mRNA) using a complementary labeled probe',
+          wrongPool: [
+            'Southern blot — detects genomic DNA sequences, not RNA',
+            'Western blot — detects proteins using antibodies; cannot detect RNA',
+            'RT-PCR — converts RNA to cDNA then amplifies; more sensitive but does not show transcript size on a blot',
+            'ELISA — quantifies protein in solution; cannot detect nucleic acids',
+            'DNA microarray — measures RNA expression for thousands of genes at once but is not a membrane-blot technique',
+          ],
+          explanation: 'Northern blot: (1) Extract RNA. (2) Denaturing gel (formaldehyde keeps RNA unfolded). (3) Transfer to membrane. (4) Probe with labeled sequence. (5) Band size = transcript length; band intensity = expression level. Mnemonic: SNoW DRoP — N = RNA. Key advantage over RT-PCR: Northern blot shows transcript SIZE, confirming no aberrant splicing or truncation.',
+        },
+        {
+          conceptId: 'western-blot-protein',
+          label: 'Western blot — detects protein',
+          scenarios: [
+            'A researcher separates cell lysate by molecular weight using SDS-PAGE, transfers the proteins to a PVDF membrane, and incubates with a primary antibody against a target protein, then a secondary antibody with an enzyme reporter. This technique is...',
+            'Which blotting technique uses antibodies to detect a specific protein and simultaneously confirms it is the expected molecular weight?',
+            'A lab wants to confirm that a frameshift mutation produces a smaller-than-normal protein. They separate proteins from cell lysate by mass, transfer to a membrane, and probe with an antibody. The technique is...',
+            'A passage states that a protein was detected using an antibody after SDS-PAGE separation and transfer to a membrane. The technique described is...',
+          ],
+          correct: 'Western blot — detects proteins by antibody recognition after SDS-PAGE size separation',
+          wrongPool: [
+            'Southern blot — detects DNA sequences using a nucleic acid probe; no antibody involved',
+            'Northern blot — detects RNA transcripts; cannot detect proteins',
+            'ELISA — uses antibodies to quantify a protein in solution but does not separate by molecular weight; cannot confirm protein size',
+            'Immunofluorescence — uses antibodies to locate a protein inside a cell; does not separate by molecular weight on a gel',
+            'Co-immunoprecipitation (Co-IP) — pulls down a protein complex with an antibody; does not separate proteins by size on a blot',
+          ],
+          explanation: 'Western blot: (1) SDS-PAGE — SDS denatures proteins, gives uniform negative charge → separated by size alone. (2) Transfer to membrane. (3) Block. (4) Primary antibody → specific protein. (5) Secondary antibody with reporter. Unique advantage: confirms BOTH protein presence AND molecular weight (band position on gel). Mnemonic: SNoW DRoP — W = Protein. ELISA also uses antibodies but gives quantity in solution without size information.',
+        },
       ],
       showdown: [
         {
@@ -1066,6 +1123,28 @@
           conceptB: 'Ion exchange chromatography — charge-based, less specific',
           correct: 'Affinity chromatography — specific molecular recognition, highest purity',
           explanation: 'Affinity exploits one specific interaction (His-tag/Ni, antibody/antigen, enzyme/substrate) → only the target binds → high purity per step. Ion exchange binds any protein of complementary charge → many co-elute. For maximum purity: affinity first, then polish with size exclusion or ion exchange.',
+        },
+        {
+          conceptId: 'southern-blot-dna',
+          scenarios: [
+            'A technique involves restriction-digesting genomic DNA, running it on a gel, blotting it to a membrane, and detecting a specific sequence with a labeled probe. The nucleic acid detected is DNA — the blot is...',
+            'A researcher runs two experiments: one to find a specific gene sequence in extracted DNA, one to find the mRNA that gene produces. The DNA-detecting experiment uses...',
+          ],
+          conceptA: 'Southern blot — detects DNA',
+          conceptB: 'Northern blot — detects RNA',
+          correct: 'Southern blot — detects DNA',
+          explanation: 'Southern = DNA. Northern = RNA. Both use labeled probes that hybridize to complementary sequences — the difference is whether you extract DNA (Southern) or RNA (Northern) first. Mnemonic: SNoW DRoP — S=DNA, N=RNA.',
+        },
+        {
+          conceptId: 'western-blot-protein',
+          scenarios: [
+            'A technique involves SDS-PAGE, membrane transfer, and antibody-based detection of a specific molecule. The molecule detected is a protein — the blot is...',
+            'A researcher wants to detect the protein product of a gene (not the mRNA). They separate cell lysate by molecular weight and probe with an antibody. This blot is...',
+          ],
+          conceptA: 'Western blot — detects protein via antibody',
+          conceptB: 'Northern blot — detects RNA via probe',
+          correct: 'Western blot — detects protein via antibody',
+          explanation: 'Western = protein. Northern = RNA. Western uses antibodies; Northern uses nucleic acid probes. Key tell in a passage: antibody → Western; labeled nucleic acid probe → Northern (or Southern). Mnemonic: SNoW DRoP — W=Protein.',
         },
       ],
     },
