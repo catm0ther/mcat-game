@@ -173,22 +173,22 @@
         },
       ],
       showdown: [
-        {
-          conceptId: 'fl3-ps-bi-sd1',
-          scenario: 'Research goal: localize which brain region is active during emotion regulation',
-          a: 'MRI — best spatial resolution among all scanners',
-          b: 'fMRI — measures activity (BOLD signal) with good spatial resolution; MRI images structure only',
-          better: 'B',
-          why: 'MRI = anatomy. fMRI = function. Activity questions require fMRI or PET, never plain MRI or CT.',
-        },
-        {
-          conceptId: 'fl3-ps-bi-sd2',
-          scenario: 'Which has better temporal resolution for catching a 50 ms neural event?',
-          a: 'fMRI — BOLD signal peaks ~5 seconds after neural activity, giving second-level resolution',
-          b: 'EEG — measures electrical activity directly with millisecond resolution',
-          better: 'B',
-          why: 'EEG tracks voltage changes as they happen. fMRI lags ~5 seconds behind because it reads downstream blood-flow changes.',
-        },
+        {          
+            conceptId: 'fl3-ps-bi-sd1',
+            scenario: 'Research goal: localize which brain region is active during emotion regulation',
+            conceptA: 'MRI — best spatial resolution among all scanners',
+            conceptB: 'fMRI — measures activity (BOLD signal) with good spatial resolution; MRI images structure only',
+            correct: 'fMRI — measures activity (BOLD signal) with good spatial resolution; MRI images structure only',
+            explanation: 'MRI = anatomy. fMRI = function. Activity questions require fMRI or PET, never plain MRI or CT.',
+          },
+        {          
+            conceptId: 'fl3-ps-bi-sd2',
+            scenario: 'Which has better temporal resolution for catching a 50 ms neural event?',
+            conceptA: 'fMRI — BOLD signal peaks ~5 seconds after neural activity, giving second-level resolution',
+            conceptB: 'EEG — measures electrical activity directly with millisecond resolution',
+            correct: 'EEG — measures electrical activity directly with millisecond resolution',
+            explanation: 'EEG tracks voltage changes as they happen. fMRI lags ~5 seconds behind because it reads downstream blood-flow changes.',
+          },
       ],
     },
 
@@ -295,22 +295,22 @@
         },
       ],
       showdown: [
-        {
-          conceptId: 'fl3-ps-gi-sd1',
-          scenario: 'Group scenario: members discuss → final position is more extreme than initial individual positions',
-          a: 'Groupthink — the group is suppressing dissent to reach consensus',
-          b: 'Group polarization — discussion amplifies the dominant initial tendency toward a more extreme position',
-          better: 'B',
-          why: 'Groupthink is about suppressing dissent to maintain harmony, often resulting in bad decisions. Polarization is specifically about the post-discussion shift toward extremity — it requires initial lean + like-minded discussion.',
-        },
-        {
-          conceptId: 'fl3-ps-gi-sd2',
-          scenario: 'Expert swimmer with an audience: performance improves on a well-rehearsed race',
-          a: 'Deindividuation — the crowd absorbs her identity and she performs more freely',
-          b: 'Social facilitation — arousal from observers enhances performance on a dominant (well-learned) response',
-          better: 'B',
-          why: 'Deindividuation is about loss of individuality causing disinhibition (often leading to antisocial behavior). Social facilitation is specifically about observer-caused arousal improving dominant, well-rehearsed behaviors.',
-        },
+        {          
+            conceptId: 'fl3-ps-gi-sd1',
+            scenario: 'Group scenario: members discuss → final position is more extreme than initial individual positions',
+            conceptA: 'Groupthink — the group is suppressing dissent to reach consensus',
+            conceptB: 'Group polarization — discussion amplifies the dominant initial tendency toward a more extreme position',
+            correct: 'Group polarization — discussion amplifies the dominant initial tendency toward a more extreme position',
+            explanation: 'Groupthink is about suppressing dissent to maintain harmony, often resulting in bad decisions. Polarization is specifically about the post-discussion shift toward extremity — it requires initial lean + like-minded discussion.',
+          },
+        {          
+            conceptId: 'fl3-ps-gi-sd2',
+            scenario: 'Expert swimmer with an audience: performance improves on a well-rehearsed race',
+            conceptA: 'Deindividuation — the crowd absorbs her identity and she performs more freely',
+            conceptB: 'Social facilitation — arousal from observers enhances performance on a dominant (well-learned) response',
+            correct: 'Social facilitation — arousal from observers enhances performance on a dominant (well-learned) response',
+            explanation: 'Deindividuation is about loss of individuality causing disinhibition (often leading to antisocial behavior). Social facilitation is specifically about observer-caused arousal improving dominant, well-rehearsed behaviors.',
+          },
       ],
     },
 
@@ -379,14 +379,14 @@
         },
       ],
       showdown: [
-        {
-          conceptId: 'fl3-ps-cpa-sd1',
-          scenario: 'Researchers find that one specific generation (born 1965-1980) has higher divorce rates than other generations at the same age',
-          a: 'Period effect — the historical context of that era affected only this birth group',
-          b: 'Cohort effect — the shared formative experiences of this generation account for the difference, not the historical moment affecting all current age groups',
-          better: 'B',
-          why: 'Cohort = difference specific to one birth group\'s formative experiences. Period = a historical moment shifts ALL age groups at once. "One specific generation" = cohort.',
-        },
+        {          
+            conceptId: 'fl3-ps-cpa-sd1',
+            scenario: 'Researchers find that one specific generation (born 1965-1980) has higher divorce rates than other generations at the same age',
+            conceptA: 'Period effect — the historical context of that era affected only this birth group',
+            conceptB: 'Cohort effect — the shared formative experiences of this generation account for the difference, not the historical moment affecting all current age groups',
+            correct: 'Cohort effect — the shared formative experiences of this generation account for the difference, not the historical moment affecting all current age groups',
+            explanation: 'Cohort = difference specific to one birth group\',
+          },
       ],
     },
 
@@ -455,14 +455,14 @@
         },
       ],
       showdown: [
-        {
-          conceptId: 'fl3-ps-ml-sd1',
-          scenario: 'Schools teach children punctuality and deference to authority through daily structure — the "hidden curriculum"',
-          a: 'Manifest function — socialization is a well-known outcome of schooling, so it must be intended',
-          b: 'Latent function — the socialization is real and often beneficial but was never the explicit stated purpose; it arises as an unrecognized byproduct',
-          better: 'B',
-          why: '"Well-known to sociologists" ≠ "intended." Latent functions can become recognized over time without becoming manifest. The key is whether the institution officially organized itself to produce this outcome.',
-        },
+        {          
+            conceptId: 'fl3-ps-ml-sd1',
+            scenario: 'Schools teach children punctuality and deference to authority through daily structure — the "hidden curriculum"',
+            conceptA: 'Manifest function — socialization is a well-known outcome of schooling, so it must be intended',
+            conceptB: 'Latent function — the socialization is real and often beneficial but was never the explicit stated purpose; it arises as an unrecognized byproduct',
+            correct: 'Latent function — the socialization is real and often beneficial but was never the explicit stated purpose; it arises as an unrecognized byproduct',
+            explanation: '"Well-known to sociologists" ≠ "intended." Latent functions can become recognized over time without becoming manifest. The key is whether the institution officially organized itself to produce this outcome.',
+          },
       ],
     },
 
@@ -548,14 +548,14 @@
         },
       ],
       showdown: [
-        {
-          conceptId: 'fl3-ps-dc-sd1',
-          scenario: 'After 5 nights of REM deprivation, what happens on the first unrestricted sleep night?',
-          a: 'REM is reduced — the sleep system has adapted to function without it',
-          b: 'REM increases (REM rebound) — homeostatic pressure accumulated during deprivation is discharged',
-          better: 'B',
-          why: 'Sleep homeostasis: deprive a stage → pressure builds → rebound when restriction is lifted. Always MORE, not less. Same logic applies to total sleep deprivation: longer, deeper sleep follows.',
-        },
+        {          
+            conceptId: 'fl3-ps-dc-sd1',
+            scenario: 'After 5 nights of REM deprivation, what happens on the first unrestricted sleep night?',
+            conceptA: 'REM is reduced — the sleep system has adapted to function without it',
+            conceptB: 'REM increases (REM rebound) — homeostatic pressure accumulated during deprivation is discharged',
+            correct: 'REM increases (REM rebound) — homeostatic pressure accumulated during deprivation is discharged',
+            explanation: 'Sleep homeostasis: deprive a stage → pressure builds → rebound when restriction is lifted. Always MORE, not less. Same logic applies to total sleep deprivation: longer, deeper sleep follows.',
+          },
       ],
     },
 
@@ -642,22 +642,22 @@
         },
       ],
       showdown: [
-        {
-          conceptId: 'fl3-ps-ee-sd1',
-          scenario: 'Hypothesis: empathy and perspective-taking are separate. Which finding BEST supports it?',
-          a: 'Both skills correlate at r = +0.60 across a large sample',
-          b: 'Patients with vmPFC damage show impaired empathy but intact perspective-taking on neuropsychological testing',
-          better: 'B',
-          why: 'Correlation (A) is consistent with both separation AND overlap. A selective neurological dissociation (B) proves the skills can operate independently — the strongest possible evidence for separability.',
-        },
-        {
-          conceptId: 'fl3-ps-ee-sd2',
-          scenario: 'Challenge to social construction of race: which finding is stronger?',
-          a: 'People self-identify race differently than an interviewer classifies them — showing race is perceived inconsistently',
-          b: 'A genetic locus is found that predicts racial-category membership — suggesting a biological component',
-          better: 'B',
-          why: 'Inconsistent self-vs-observer classification (A) is actually CONSISTENT with social construction — it shows race is malleable. A genetic basis (B) directly contradicts the core claim that race has no biological grounding.',
-        },
+        {          
+            conceptId: 'fl3-ps-ee-sd1',
+            scenario: 'Hypothesis: empathy and perspective-taking are separate. Which finding BEST supports it?',
+            conceptA: 'Both skills correlate at r = +0.60 across a large sample',
+            conceptB: 'Patients with vmPFC damage show impaired empathy but intact perspective-taking on neuropsychological testing',
+            correct: 'Patients with vmPFC damage show impaired empathy but intact perspective-taking on neuropsychological testing',
+            explanation: 'Correlation (A) is consistent with both separation AND overlap. A selective neurological dissociation (B) proves the skills can operate independently — the strongest possible evidence for separability.',
+          },
+        {          
+            conceptId: 'fl3-ps-ee-sd2',
+            scenario: 'Challenge to social construction of race: which finding is stronger?',
+            conceptA: 'People self-identify race differently than an interviewer classifies them — showing race is perceived inconsistently',
+            conceptB: 'A genetic locus is found that predicts racial-category membership — suggesting a biological component',
+            correct: 'A genetic locus is found that predicts racial-category membership — suggesting a biological component',
+            explanation: 'Inconsistent self-vs-observer classification (A) is actually CONSISTENT with social construction — it shows race is malleable. A genetic basis (B) directly contradicts the core claim that race has no biological grounding.',
+          },
       ],
     },
 
@@ -725,14 +725,14 @@
         },
       ],
       showdown: [
-        {
-          conceptId: 'fl3-ps-fi-sd1',
-          scenario: 'Three therapy groups, all below clinical threshold at 6 months, no * markers. Can Group A be called the best therapy?',
-          a: 'Yes — Group A was significantly superior at 2 months, and that advantage defines the best therapy overall',
-          b: 'No — at 6 months there are no significant differences; reading a 2-month advantage into a 6-month conclusion overclaims the figure',
-          better: 'B',
-          why: 'Figures license conclusions only for the time points and comparisons where significance was demonstrated. A * at month 2 does NOT grant you a conclusion at month 6. Read only what the markers say.',
-        },
+        {          
+            conceptId: 'fl3-ps-fi-sd1',
+            scenario: 'Three therapy groups, all below clinical threshold at 6 months, no * markers. Can Group A be called the best therapy?',
+            conceptA: 'Yes — Group A was significantly superior at 2 months, and that advantage defines the best therapy overall',
+            conceptB: 'No — at 6 months there are no significant differences; reading a 2-month advantage into a 6-month conclusion overclaims the figure',
+            correct: 'No — at 6 months there are no significant differences; reading a 2-month advantage into a 6-month conclusion overclaims the figure',
+            explanation: 'Figures license conclusions only for the time points and comparisons where significance was demonstrated. A * at month 2 does NOT grant you a conclusion at month 6. Read only what the markers say.',
+          },
       ],
     },
 
