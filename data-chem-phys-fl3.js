@@ -1582,7 +1582,7 @@
             'The nucleoside formed from adenine + ribose is called...',
             'deoxyadenosine is the deoxy form of which ribonucleoside?',
           ],
-          correct: 'Adenosine (adenine + ribose); deoxyadenosine (adenine + deoxyribose)',
+          correct: 'Adenosine — purine nucleoside; adenine + ribose; deoxy form = deoxyadenosine',
           wrongPool: [
             'Cytidine — cytidine is derived from cytosine (pyrimidine), not adenine',
             'Guanosine — guanosine is derived from guanine (the other purine)',
@@ -1599,7 +1599,7 @@
             'The deoxy form of guanosine is called...',
             'GMP contains which nucleoside?',
           ],
-          correct: 'Guanosine (guanine + ribose); deoxyguanosine (guanine + deoxyribose)',
+          correct: 'Guanosine — purine nucleoside; guanine + ribose; deoxy form = deoxyguanosine',
           wrongPool: [
             'Adenosine — adenosine is derived from adenine, the other purine',
             'Cytidine — cytidine is derived from cytosine (pyrimidine)',
@@ -1616,7 +1616,7 @@
             'The nucleoside deoxycytidine is derived from which nucleobase?',
             'CMP contains which nucleoside?',
           ],
-          correct: 'Deoxycytidine (cytosine + deoxyribose); cytidine (cytosine + ribose)',
+          correct: 'Deoxycytidine — pyrimidine nucleoside; cytosine + deoxyribose; ribo form = cytidine',
           wrongPool: [
             'Thymidine — thymidine derives from thymine, not cytosine',
             'Deoxyadenosine — deoxyadenosine derives from adenine (purine)',
@@ -1633,7 +1633,7 @@
             'The nucleoside thymidine contains which sugar?',
             'Why does thymine have no ribonucleoside equivalent (unlike other bases)?',
           ],
-          correct: 'Thymidine (thymine + deoxyribose); thymine is DNA-only, so the nucleoside is assumed deoxy',
+          correct: 'Thymidine — pyrimidine nucleoside; thymine + deoxyribose; no ribo form (thymine is DNA-only)',
           wrongPool: [
             'Thymidine contains ribose — thymine can pair with either sugar (incorrect; thymine is DNA-specific)',
             'Thymuridine — this is not a real nucleoside name',
@@ -1650,7 +1650,7 @@
             'The nucleoside uridine contains which base?',
             'Which base is found in RNA but NOT in DNA, and what is its nucleoside?',
           ],
-          correct: 'Uridine (uracil + ribose); uracil replaces thymine in RNA',
+          correct: 'Uridine — pyrimidine nucleoside; uracil + ribose; RNA only; uracil replaces thymine',
           wrongPool: [
             'Thymidine — thymidine contains thymine, which is in DNA, not RNA',
             'Cytidine — cytidine contains cytosine; both cytosine and uracil are pyrimidines but different',

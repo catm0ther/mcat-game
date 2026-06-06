@@ -664,13 +664,19 @@ function renderScenarioDrop(q, header) {
   state.currentAnswers = answers;
   const c = state.cluster;
 
-  // If stripping at ' — ' would produce duplicate button labels, show full text
-  // (truncated to 120 chars) so all buttons remain distinguishable
+  // Button label strategy:
+  // 1. If stripped labels would duplicate → show full text (truncated to 120)
+  // 2. If correct answer has no ' — ' but wrong answers do → force full text for
+  //    all buttons so the correct one doesn't stand out by being visually longer
+  // 3. Otherwise → use stripped short labels
   const stripped = answers.map(stripExplanation);
   const allUnique = new Set(stripped).size === stripped.length;
+  const correctHasNoSep = !q.correct.includes(' — ') && q.correct.length > 40;
+  const wrongHasSep = answers.some(a => a !== q.correct && a.includes(' — '));
+  const forceFullText = !allUnique || (correctHasNoSep && wrongHasSep);
   const buttonLabel = (a, i) => {
-    if (allUnique) return stripped[i];
-    return a.length > 120 ? a.slice(0, 117) + '…' : a;
+    if (forceFullText) return a.length > 120 ? a.slice(0, 117) + '…' : a;
+    return stripped[i];
   };
 
   render(`

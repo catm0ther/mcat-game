@@ -157,6 +157,19 @@ for fname in DATA_FILES:
                         f'"{correct_label[:60]}" appears verbatim in scenario'
                     )
 
+        # Asymmetric separator check: correct has no ' — ' but wrong-pool items do.
+        # This causes the correct button to show full long text while wrong buttons
+        # show only stripped short labels — a visual giveaway.
+        correct_val = card['correct']
+        if ' — ' not in correct_val and len(correct_val) > 40 and card['wrong']:
+            wrong_with_sep = sum(1 for w in card['wrong'] if ' — ' in w)
+            if wrong_with_sep > 0:
+                file_errors.append(
+                    f'  LINE {card["line"]}: asymmetric separator — correct has no " — " '
+                    f'but {wrong_with_sep} wrong-pool item(s) do; correct button will look '
+                    f'longer/different: "{correct_val[:70]}..."'
+                )
+
     if file_errors:
         errors_found = True
         print(f'\n=== {fname} ===')
