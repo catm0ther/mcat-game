@@ -710,9 +710,9 @@
         {
           conceptId: 'reaction-type-identification-practice',
           scenarios: [
-            'Classify each: (A) 2Al + 3Cl₂ → 2AlCl₃(s); (B) Pb(NO₃)₂(aq) + 2KI(aq) → PbI₂(s) + 2KNO₃(aq); (C) NH₃ + HNO₃ → NH₄NO₃. Types?',
             'Which of the following is a precipitation reaction? (A) Fe + S → FeS, (B) BaCl₂ + H₂SO₄ → BaSO₄↓ + 2HCl, (C) Cu + 2AgNO₃ → Cu(NO₃)₂ + 2Ag',
-            'A solid forms in each reaction below. In which case is the reaction type precipitation (not redox)?',
+            'All four reactions produce a solid product. Which one is precipitation (no oxidation-state change): Fe + S → FeS, BaCl₂ + H₂SO₄ → BaSO₄↓ + 2HCl, Cu + 2AgNO₃ → Cu(NO₃)₂ + 2Ag, or 2Al + 3Cl₂ → 2AlCl₃?',
+            'A solid forms in each reaction. Identify the ONE that is precipitation, not redox: (A) Fe + S → FeS, (B) BaCl₂ + H₂SO₄ → BaSO₄↓ + 2HCl, (C) Cu + 2AgNO₃ → Cu(NO₃)₂ + 2Ag.',
           ],
           correct: 'Precipitation: BaCl₂ + H₂SO₄ → BaSO₄↓ (ions combine, no oxidation-state change); the others are redox (oxidation states change)',
           wrongPool: [
