@@ -172,7 +172,7 @@
           conceptId: 'fl3-bb-dc-3',
           scenarios: [
             'Fiber A has the same diameter as Fiber B but higher myosin ATPase activity. Same load. Which fiber produces more POWER?',
-            'Two fibers with identical cross-sections but different ATPase rates lift the same load. Which develops more power output?',
+            'Two fibers lift the same load. Identical diameter. Fiber A has a higher myosin ATPase rate than Fiber B. Which develops more power output?',
           ],
           options: ['Fiber A — higher ATPase → faster cross-bridge cycling → higher velocity at same force → more power', 'Fiber B — lower ATPase conserves energy, allowing more total power', 'They have equal power because diameter is the same', 'Fiber A generates more force, not more power'],
           correct: 'Fiber A — higher ATPase → faster cross-bridge cycling → higher velocity at same force → more power',
