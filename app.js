@@ -814,11 +814,10 @@ function renderMagnitudeBlitz(q, header) {
 
 // ── Feedback ───────────────────────────────────────────────────────────────
 function showFeedback(correct, explanation, conceptId) {
-  // Fall back to the explanation embedded in the correct answer after ' — '
+  // Fall back to the full correct answer as the explanation (replace ' — ' with ': ')
   if (!explanation) {
     const c = (state.currentQ && state.currentQ.correct) || '';
-    const idx = c.indexOf(' — ');
-    explanation = idx !== -1 ? c.slice(idx + 3) : '';
+    explanation = c.replace(' — ', ': ');
   }
   if (correct) {
     state.streak++;
@@ -843,13 +842,17 @@ function showFeedback(correct, explanation, conceptId) {
     else                         streakBanner = `<div class="streak-banner streak-warm">🔥 ${state.streak} in a row!</div>`;
   }
 
+  const explanationHtml = explanation
+    ? (correct ? `<p>${explanation}</p>` : `<p><strong>Right answer:</strong> ${explanation}</p>`)
+    : '';
+
   panel.className = `feedback-panel ${correct ? 'feedback-correct' : 'feedback-incorrect'}`;
   panel.innerHTML = `
     <div class="feedback-top">
       <span class="feedback-icon">${correct ? '✓' : '✗'}</span>
       <div class="feedback-text">
         <strong>${correct ? 'Correct!' : 'Not quite.'}</strong>
-        <p>${explanation}</p>
+        ${explanationHtml}
       </div>
     </div>
     ${milestone}
