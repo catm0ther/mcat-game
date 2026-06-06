@@ -1189,8 +1189,6 @@
       ],
     },
 
-  ];
-
     // ── MODULE 4A: Mol/Mass/Electron Stoichiometry ─────────────────────────────
     {
       id: 'fl3-calc-stoichiometry',
