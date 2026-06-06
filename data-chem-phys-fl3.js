@@ -1976,7 +1976,7 @@
         {
           conceptId: 'sphingolipid-backbone',
           scenarios: [
-            'A sphingomyelin molecule has a sphingosine backbone instead of glycerol. What distinguishes sphingolipids from glycerophospholipids?',
+            'Sphingomyelin has a sphingosine backbone, not glycerol. Which lipid class does it belong to?',
             'Ceramide = sphingosine + one fatty acid. Adding a phosphocholine head group to ceramide gives...',
             'Which lipid class uses sphingosine (an amino alcohol) rather than glycerol as its backbone?',
           ],
