@@ -49,7 +49,7 @@
             'Square pyramidal (AX₅E — five bonds and one lone pair)',
             'Trigonal planar (AX₃ — only three bonds)',
           ],
-          explanation: 'AX₄E₂ = square planar. Two lone pairs occupy opposite axial positions of an octahedral electron geometry, leaving four bonds in a plane. This is the Q57 trap: AX₆ is octahedral, AX₄E₂ is square planar.',
+          explanation: 'AX₄E₂ = square planar. Two lone pairs occupy opposite axial positions of an octahedral electron geometry, leaving four bonds in a plane. Key trap: AX₆ is octahedral, AX₄E₂ is square planar.',
         },
         {
           conceptId: 'vsepr-ax5e-square-pyramidal',
@@ -69,57 +69,6 @@
           explanation: 'AX₅E = square pyramidal. One lone pair on the axial position of an octahedral frame pushes the five bonds into a square pyramidal arrangement. Not the same as square planar (AX₄E₂).',
         },
         {
-          conceptId: 'vsepr-ax4e-seesaw',
-          scenarios: [
-            'SF₄ has four S–F bonds and one lone pair on sulfur. What is the molecular geometry?',
-            'A central atom with four bonds and one lone pair on a trigonal bipyramidal electron frame (AX₄E) has which molecular shape?',
-            'SeF₄ has four bonds and one equatorial lone pair on selenium. What shape does this produce?',
-          ],
-          correct: 'Seesaw (AX₄E — one equatorial lone pair on a trigonal bipyramidal frame)',
-          wrongPool: [
-            'Square planar (AX₄E₂ — needs two lone pairs on an octahedral frame)',
-            'Tetrahedral (AX₄ — four bonds, zero lone pairs)',
-            'Octahedral (AX₆ — six bonds, zero lone pairs)',
-            'Square pyramidal (AX₅E — five bonds, one lone pair)',
-            'T-shape (AX₃E₂ — three bonds, two lone pairs)',
-          ],
-          explanation: 'AX₄E = seesaw. The lone pair occupies an equatorial position on a trigonal bipyramidal electron geometry, distorting four bonds into a seesaw shape. Distinct from square planar (octahedral frame, two lone pairs).',
-        },
-        {
-          conceptId: 'vsepr-ax3e2-t-shape',
-          scenarios: [
-            'BrF₃ has three Br–F bonds and two lone pairs on bromine. What is the molecular geometry?',
-            'ClF₃ has three bonds and two equatorial lone pairs on the central atom (AX₃E₂). What shape does this produce?',
-            'A molecule on a trigonal bipyramidal electron frame with three bonds and two equatorial lone pairs is called...',
-          ],
-          correct: 'T-shape (AX₃E₂ — three bonds, two equatorial lone pairs)',
-          wrongPool: [
-            'Trigonal planar (AX₃ — three bonds, zero lone pairs)',
-            'Square planar (AX₄E₂ — four bonds, octahedral frame)',
-            'Pyramidal (AX₃E — three bonds, one lone pair)',
-            'Seesaw (AX₄E — four bonds and one lone pair)',
-            'Octahedral (AX₆ — six bonds, no lone pairs)',
-          ],
-          explanation: 'AX₃E₂ = T-shape. Two lone pairs fill equatorial spots of a trigonal bipyramid; the three bonds (two axial, one equatorial) form a T. Not the same as pyramidal (AX₃E) or square planar.',
-        },
-        {
-          conceptId: 'vsepr-ax2e3-linear',
-          scenarios: [
-            'XeF₂ has two Xe–F bonds and three lone pairs on xenon. What is the molecular geometry?',
-            'I₃⁻ has two bonds and three lone pairs on the central iodine. What shape does I₃⁻ adopt?',
-            'A central atom with two bonds and three lone pairs on a trigonal bipyramidal frame (AX₂E₃) is...',
-          ],
-          correct: 'Linear (AX₂E₃ — two bonds on axial positions, three equatorial lone pairs)',
-          wrongPool: [
-            'Bent (AX₂E — one lone pair; or AX₂E₂ — two lone pairs)',
-            'T-shape (AX₃E₂ — three bonds, two lone pairs)',
-            'Trigonal planar (AX₃ — three bonds, zero lone pairs)',
-            'Octahedral (AX₆ — six bonds)',
-            'Square planar (AX₄E₂ — four bonds, two lone pairs)',
-          ],
-          explanation: 'AX₂E₃ = linear. Three lone pairs fill all equatorial positions; two bonds are axial → 180° apart → linear molecular geometry. Despite five electron groups (trigonal bipyramid), the molecule looks linear.',
-        },
-        {
           conceptId: 'vsepr-octahedral-vs-square-planar',
           scenarios: [
             'Both SF₆ and XeF₄ have six total electron groups around the central atom. SF₆ is octahedral; XeF₄ is square planar. What accounts for the difference?',
@@ -134,41 +83,7 @@
             'Seesaw — AX₄E on a trigonal bipyramidal frame, not octahedral',
             'The molecular geometry equals the electron geometry regardless of lone pairs',
           ],
-          explanation: 'KEY TRAP (Q57): Electron geometry = octahedral for all AX₆ systems. Molecular geometry = shape of BONDS only. AX₆ → octahedral. AX₅E → square pyramidal. AX₄E₂ → square planar. The lone pairs hide; only bond positions name the molecular shape.',
-        },
-        {
-          conceptId: 'vsepr-lone-pair-counting',
-          scenarios: [
-            'To determine whether a molecule is octahedral or square planar, the first step is to count the total electron groups and then...',
-            'Given the formula XeF₄, determine the number of lone pairs on Xe: Xe has 8 valence electrons, four are used in Xe–F bonds (one electron each bond), leaving 4 nonbonding → 2 lone pairs. The molecular geometry is...',
-            'Central atom has 6 bonding pairs and 0 lone pairs → octahedral. If it has 4 bonding pairs and 2 lone pairs → ___.',
-          ],
-          correct: 'Square planar — count lone pairs separately; AX₄E₂ on an octahedral frame = square planar',
-          wrongPool: [
-            'Octahedral — lone pairs do not change the electron geometry, so molecular geometry is also octahedral (incorrect: lone pairs change the molecular shape)',
-            'Tetrahedral — tetrahedral requires AX₄ with no lone pairs and a sp³ frame',
-            'Seesaw — seesaw requires a trigonal bipyramidal frame, not octahedral',
-            'Square pyramidal — square pyramidal is AX₅E, one lone pair on octahedral frame',
-            'The shape cannot be determined without knowing the bond angles',
-          ],
-          explanation: 'Lone pairs occupy space but aren\'t counted in molecular geometry name. On an octahedral electron frame: 0 LP → octahedral; 1 LP → square pyramidal; 2 LP → square planar. Always count LPs and identify the parent electron geometry first.',
-        },
-        {
-          conceptId: 'vsepr-formula-to-shape',
-          scenarios: [
-            'Identify the molecular geometry for each: (A) AX₄E₂ (B) AX₅E (C) AX₆. Which list correctly pairs formula to geometry?',
-            'Which of the following correctly matches the formula type to its molecular shape? (A) AX₃E₂ = T-shape, (B) AX₄E = square planar, (C) AX₅E = seesaw',
-            'A molecule is AX₄E on a trigonal bipyramidal electron frame. Its molecular geometry is seesaw. Its cousin AX₄E₂ on an octahedral frame is...',
-          ],
-          correct: 'Square planar — AX₄E₂ (octahedral frame, 2 LP); seesaw is AX₄E (trigonal bipyramidal frame, 1 LP)',
-          wrongPool: [
-            'Seesaw — AX₄E₂ is square planar, not seesaw (seesaw = AX₄E on trigonal bipyramidal frame)',
-            'Octahedral — octahedral requires AX₆, zero lone pairs',
-            'Square pyramidal — AX₅E, not AX₄E₂',
-            'Tetrahedral — AX₄ with zero lone pairs on sp³ frame',
-            'T-shape — AX₃E₂ on trigonal bipyramidal frame, not AX₄E₂',
-          ],
-          explanation: 'Critical table: AX₄E (trig-bip frame) = seesaw; AX₄E₂ (octahedral frame) = square planar. Same number of bonds (4), different lone pair count and parent frame → completely different shapes.',
+          explanation: 'KEY TRAP: Electron geometry = octahedral for all AX₆ systems. Molecular geometry = shape of BONDS only. AX₆ → octahedral. AX₅E → square pyramidal. AX₄E₂ → square planar. The lone pairs hide; only bond positions name the molecular shape.',
         },
         {
           conceptId: 'vsepr-ax6-family-progression',
@@ -385,13 +300,13 @@
           ],
           correct: 'Eₐ = E(transition state) − E(reactants) = 120 − 50 = 70 kJ',
           wrongPool: [
-            'Eₐ = E(products) − E(reactants) = 30 − 50 = −20 kJ (that is ΔE, not Eₐ — the Q14 error)',
+            'Eₐ = E(products) − E(reactants) = 30 − 50 = −20 kJ (that is ΔE, not Eₐ — common error)',
             'Eₐ = E(transition state) − E(products) = 120 − 30 = 90 kJ (that is Eₐ reverse)',
             'Eₐ = E(reactants) − E(transition state) = 50 − 120 = −70 kJ (sign error)',
             'Eₐ = E(products) + E(reactants) = 80 kJ (addition — not defined this way)',
             'Eₐ = E(transition state) only, without subtracting any reference point',
           ],
-          explanation: 'KEY (Q14): Eₐ(forward) = E(transition state) − E(reactants). This is the hill you must climb from where you start. ΔE = E(products) − E(reactants). The Q14 error was using products − reactants for Eₐ — that is ΔE.',
+          explanation: 'KEY: Eₐ(forward) = E(transition state) − E(reactants). This is the hill you must climb from where you start. ΔE = E(products) − E(reactants). Common error: using products − reactants for Eₐ — that is ΔE.',
         },
         {
           conceptId: 'delta-e-definition',
@@ -489,7 +404,7 @@
           conceptA: 'Reactants — Eₐ(fwd) = TS − reactants = 70 kJ',
           conceptB: 'Products — Eₐ(fwd) = TS − products = 50 kJ (that is Eₐ reverse)',
           correct: 'Reactants — Eₐ(fwd) = TS − reactants = 70 kJ',
-          explanation: 'Eₐ(forward) = E(TS) − E(reactants). Q14 error: used products − reactants, which is ΔE. Always subtract from the starting point of that reaction direction.',
+          explanation: 'Eₐ(forward) = E(TS) − E(reactants). Common error: used products − reactants, which is ΔE. Always subtract from the starting point of that reaction direction.',
         },
         {
           conceptId: 'ea-vs-delta-e-diagram-read',
@@ -500,7 +415,7 @@
           conceptA: 'ΔE = 30 kJ (products − reactants = 50 − 20); Eₐ = 60 kJ (TS − reactants = 80 − 20)',
           conceptB: 'ΔE = 60 kJ (TS − reactants); Eₐ = 30 kJ (products − reactants)',
           correct: 'ΔE = 30 kJ (products − reactants = 50 − 20); Eₐ = 60 kJ (TS − reactants = 80 − 20)',
-          explanation: 'Two different subtractions, two different values. ΔE uses the endpoints (reactants and products). Eₐ uses reactants and the peak (TS). Confusing them was the Q14 error.',
+          explanation: 'Two different subtractions, two different values. ΔE uses the endpoints (reactants and products). Eₐ uses reactants and the peak (TS). Confusing them is the classic mistake.',
         },
       ],
     },
@@ -559,13 +474,13 @@
           ],
           correct: '[Ar] 4s² 3d¹⁰ — Zn fills normally; the 4s¹ exception applies only to Cr and Cu',
           wrongPool: [
-            '[Ar] 4s¹ 3d¹⁰ — incorrect; Zn is NOT an exception element (the Q15 error — applying Cu\'s rule to Zn)',
+            '[Ar] 4s¹ 3d¹⁰ — incorrect; Zn is NOT an exception element (applying Cu\'s rule to Zn is wrong)',
             '[Ar] 4s² 3d⁹ — missing one 3d electron; Zn has 10 3d electrons',
             '[Ar] 4s¹ 3d⁵ — that is Cr (chromium), 6 fewer electrons than Zn',
             '[Ar] 3d¹⁰ only — 4s is fully occupied in Zn; it does not lose its 4s² electrons',
             '[Ar] 4s² 3d¹⁰ 4p⁰ — redundant; same as [Ar] 4s² 3d¹⁰',
           ],
-          explanation: 'KEY TRAP (Q15): Zn is NOT an exception. The 4s¹ rule applies ONLY to Cr and Cu. Zn ([Ar] 4s² 3d¹⁰) has both 4s electrons because it is already past the benefit window — 3d¹⁰ is fully filled regardless. Applying the Cu exception to Zn is the exact Q15 error.',
+          explanation: 'KEY TRAP: Zn is NOT an exception. The 4s¹ rule applies ONLY to Cr and Cu. Zn ([Ar] 4s² 3d¹⁰) has both 4s electrons because it is already past the benefit window — 3d¹⁰ is fully filled regardless. Applying the Cu exception to Zn is the common error.',
         },
         {
           conceptId: 'manganese-config',
@@ -668,13 +583,13 @@
         {
           conceptId: 'zinc-no-exception',
           scenarios: [
-            'Q15 trap: Zn (Z = 30) has a fully filled 3d¹⁰. Does Zn follow the 4s¹ exception like Cu?',
+            'Zn (Z = 30) has a fully filled 3d¹⁰. Does Zn follow the 4s¹ exception like Cu?',
             'Zn: [Ar] 4s² 3d¹⁰ (normal filling) vs. [Ar] 4s¹ 3d¹⁰ (exception). Which is correct?',
           ],
           conceptA: '[Ar] 4s² 3d¹⁰ — Zn fills normally; the exception applies only to Cr and Cu',
           conceptB: '[Ar] 4s¹ 3d¹⁰ — Zn uses the same exception as Cu (incorrect)',
           correct: '[Ar] 4s² 3d¹⁰ — Zn fills normally; the exception applies only to Cr and Cu',
-          explanation: 'Zn is NOT an exception. 4s¹ exception = Cr and Cu only. Zn reaches 3d¹⁰ through normal Aufbau (4s² fills first, then 3d). No promotion from 4s occurs. Applying the Cu rule to Zn was the Q15 error.',
+          explanation: 'Zn is NOT an exception. 4s¹ exception = Cr and Cu only. Zn reaches 3d¹⁰ through normal Aufbau (4s² fills first, then 3d). No promotion from 4s occurs. Applying the Cu rule to Zn is wrong.',
         },
       ],
     },
@@ -699,7 +614,7 @@
           ],
           correct: 'Redox: oxidation states change — one element is oxidized, another is reduced',
           wrongPool: [
-            'A solid product forms — a solid can result from redox, precipitation, or other types (the Q16 error)',
+            'A solid product forms — a solid can result from redox, precipitation, or other types (solid alone is not enough to classify)',
             'An ionic bond is formed — ionic product formation occurs in precipitation too, without redox',
             'A gas is released — gas evolution can occur in acid–base reactions, not just redox',
             'Heat is released — exothermic reactions include precipitation, acid–base, and redox alike',
@@ -716,7 +631,7 @@
           ],
           correct: 'Precipitation: soluble ions combine to form an insoluble solid; NO change in oxidation states',
           wrongPool: [
-            'Any reaction that produces a solid product is precipitation — this ignores oxidation-state change (the Q16 error)',
+            'Any reaction that produces a solid product is precipitation — this ignores oxidation-state change (always check oxidation states)',
             'Precipitation requires a metal to lose electrons to form a solid salt',
             'Precipitation requires acid and base to react and form a salt',
             'Precipitation occurs when two elements directly combine — but element combination usually involves oxidation-state change (redox)',
@@ -729,17 +644,17 @@
           scenarios: [
             'A reaction between iron metal and sulfur produces iron(II) sulfide (FeS), a solid. Is this precipitation or redox?',
             'Magnesium burns in oxygen: 2Mg + O₂ → 2MgO(s). A solid is formed. What type of reaction is this?',
-            'The Q16 trap: a solid product forms when metal reacts with a nonmetal. Before calling it precipitation, check...',
+            'A solid product forms when a metal reacts with a nonmetal. Before calling it precipitation, what must you check?',
           ],
           correct: 'Redox — metal + nonmetal reactions involve oxidation-state change even when a solid forms; precipitation requires ionic precursors',
           wrongPool: [
-            'Precipitation — a solid (FeS or MgO) forms, so it must be precipitation (Q16 error)',
+            'Precipitation — a solid (FeS or MgO) forms, so it must be precipitation (solid ≠ precipitation if oxidation states change)',
             'Acid–base — solid formation indicates an acid–base neutralization salt',
             'Complexation — transition metals always form complex ions when reacting with nonmetals',
             'Physical change — no reaction classification needed when solids form from elements',
             'Cannot be determined without knowing whether the solid is ionic or covalent',
           ],
-          explanation: 'KEY TRAP (Q16): solid product ≠ precipitation. Fe + S → FeS: Fe⁰ → Fe²⁺ (oxidized), S⁰ → S²⁻ (reduced) → REDOX. Precipitation requires soluble ions as reactants with no oxidation-state change. Element-level reactants always change oxidation states.',
+          explanation: 'KEY TRAP: solid product ≠ precipitation. Fe + S → FeS: Fe⁰ → Fe²⁺ (oxidized), S⁰ → S²⁻ (reduced) → REDOX. Precipitation requires soluble ions as reactants with no oxidation-state change. Element-level reactants always change oxidation states.',
         },
         {
           conceptId: 'acid-base-reaction-type',
@@ -837,7 +752,7 @@
           conceptA: 'Ag⁺ + Cl⁻ → AgCl is precipitation — dissolved ions combine, no oxidation-state change',
           conceptB: '2Mg + O₂ → 2MgO is precipitation — a solid ionic compound forms',
           correct: 'Ag⁺ + Cl⁻ → AgCl is precipitation — dissolved ions combine, no oxidation-state change',
-          explanation: 'Precipitation = dissolved ions → insoluble solid, no oxidation-state change. Mg + O₂: Mg⁰ → Mg²⁺, O₂⁰ → O²⁻ — oxidation-state change → REDOX. A solid ionic product alone does not equal precipitation. (Q16 trap)',
+          explanation: 'Precipitation = dissolved ions → insoluble solid, no oxidation-state change. Mg + O₂: Mg⁰ → Mg²⁺, O₂⁰ → O²⁻ — oxidation-state change → REDOX. A solid ionic product alone does not equal precipitation. (classic trap)',
         },
         {
           conceptId: 'redox-definition',
@@ -884,13 +799,13 @@
           ],
           correct: 'Transferase — catalyzes the transfer of a chemical group from one molecule to another',
           wrongPool: [
-            'Hydrolase — hydrolases use water to cleave bonds; group transfer without water is a transferase (the Q40 error)',
+            'Hydrolase — hydrolases use water to cleave bonds; group transfer without water is a transferase (common confusion)',
             'Oxidoreductase — requires electron transfer; group transfer does not involve oxidation-state change',
             'Lyase — lyases break bonds without water or oxidation; they do not transfer groups between molecules',
             'Isomerase — rearranges atoms within the same molecule; does not transfer groups between molecules',
             'Ligase — joins two molecules using ATP; distinct from group transfer',
           ],
-          explanation: 'Transferase: moves a functional group (methyl, phosphoryl, amino, etc.) from donor to acceptor. Kinases are transferases. Methyltransferases are transferases. The key: group moves from A to B. No water required, no oxidation. (Q40: methyl transfer was miscalled hydrolase.)',
+          explanation: 'Transferase: moves a functional group (methyl, phosphoryl, amino, etc.) from donor to acceptor. Kinases are transferases. Methyltransferases are transferases. The key: group moves from A to B. No water required, no oxidation. (methyl transfer is commonly miscalled hydrolase.)',
         },
         {
           conceptId: 'hydrolase-definition',
@@ -901,7 +816,7 @@
           ],
           correct: 'Hydrolase — cleaves bonds by adding water (H to one fragment, OH to the other)',
           wrongPool: [
-            'Transferase — hydrolases don\'t transfer groups between molecules; they use water to break bonds (Q40 confusion)',
+            'Transferase — hydrolases don\'t transfer groups between molecules; they use water to break bonds (common confusion)',
             'Oxidoreductase — requires electron transfer; hydrolysis does not change oxidation states',
             'Lyase — lyases break bonds without water (non-hydrolytic, non-oxidative)',
             'Ligase — ligases form bonds using ATP; the opposite of hydrolytic bond cleavage',
@@ -931,7 +846,7 @@
           scenarios: [
             'TET enzymes catalyze the conversion of 5-methylcytosine (5mC) to 5-hydroxymethylcytosine (5hmC) using molecular oxygen and α-ketoglutarate. This reaction involves oxidation of the methyl group. What class is TET?',
             'DNMT1 methylates cytosine using SAM as the methyl donor, attaching –CH₃ to C5 of cytosine. No water participates. DNMT1 is a...',
-            'The Q40 reaction: cytosine → 5-methylcytosine → 5-hydroxymethylcytosine involves which two enzyme classes in sequence?',
+            'Cytosine modification: cytosine → 5-methylcytosine → 5-hydroxymethylcytosine involves which two enzyme classes in sequence?',
           ],
           correct: 'DNMT = transferase (methyl group transferred from SAM); TET = oxidoreductase (methyl group oxidized using O₂); neither is a hydrolase',
           wrongPool: [
@@ -941,7 +856,7 @@
             'TET = hydrolase (water is added across the methyl-cytosine bond during oxidation)',
             'Both are lyases because they break and form C–C bonds in cytosine modification',
           ],
-          explanation: 'Q40 TRAP: methyl transfer (SAM → cytosine by DNMT) = transferase. Methyl oxidation (CH₃ → CH₂OH by TET using O₂/α-KG) = oxidoreductase. Neither uses water to cleave a bond → neither is a hydrolase. Calling methyl transfer "hydrolase" was the Q40 error.',
+          explanation: 'KEY TRAP: methyl transfer (SAM → cytosine by DNMT) = transferase. Methyl oxidation (CH₃ → CH₂OH by TET using O₂/α-KG) = oxidoreductase. Neither uses water to cleave a bond → neither is a hydrolase. Calling methyl transfer "hydrolase" is the common error.',
         },
         {
           conceptId: 'lyase-isomerase',
@@ -1022,7 +937,7 @@
           conceptA: 'Transferase — group moves from donor to acceptor molecule',
           conceptB: 'Hydrolase — any reaction that breaks a high-energy bond uses water',
           correct: 'Transferase — group moves from donor to acceptor molecule',
-          explanation: 'Transferase = group transfer. Hydrolase = water is the nucleophile. In SAM-methylation and kinase reactions, the substrate — not water — attacks. No water involved → not hydrolase. (Q40 error: called methyl transfer "hydrolysis.")',
+          explanation: 'Transferase = group transfer. Hydrolase = water is the nucleophile. In SAM-methylation and kinase reactions, the substrate — not water — attacks. No water involved → not hydrolase. (common error: methyl transfer miscalled "hydrolysis.")',
         },
         {
           conceptId: 'oxidoreductase-definition',
@@ -1086,13 +1001,13 @@
           ],
           correct: 'Alkaline earth metals — Group 2 (Be, Mg, Ca, Sr, Ba, Ra); two valence electrons',
           wrongPool: [
-            'Alkali metals — Group 1 (Li, Na, K); Ca and Mg have two valence electrons, not one (the Q54 error)',
+            'Alkali metals — Group 1 (Li, Na, K); Ca and Mg have two valence electrons, not one (alkaline earth, not alkali)',
             'Transition metals — Groups 3–12; Ca and Mg are main-group (s-block) elements',
             'Halogens — Group 17; Ca and Mg are metals, not nonmetals',
             'Noble gases — Group 18; Ca and Mg are reactive metals, not inert gases',
             'Post-transition metals — these include Al, Sn, Pb; Ca and Mg are in the s-block',
           ],
-          explanation: 'KEY (Q54 trap): Ca and Mg are alkaline earth metals (Group 2), NOT alkali metals (Group 1). Alkaline earth = Group 2 = two valence electrons = Be, Mg, Ca, Sr, Ba, Ra. They are reactive but less so than Group 1 because they have two electrons to lose.',
+          explanation: 'KEY TRAP: Ca and Mg are alkaline earth metals (Group 2), NOT alkali metals (Group 1). Alkaline earth = Group 2 = two valence electrons = Be, Mg, Ca, Sr, Ba, Ra. They are reactive but less so than Group 1 because they have two electrons to lose.',
         },
         {
           conceptId: 'alkali-vs-alkaline-earth-trap',
@@ -1109,7 +1024,7 @@
             'Na is alkaline earth (Group 2); Ca is alkali metal (Group 1) — completely reversed',
             '"Alkaline earth" is an outdated term for alkali metals; they are the same group',
           ],
-          explanation: 'Q54 ERROR: calling Ca an alkali metal. Alkali metals = Group 1 (one valence e⁻): Li, Na, K, Rb, Cs, Fr. Alkaline earth metals = Group 2 (two valence e⁻): Be, Mg, Ca, Sr, Ba, Ra. The "alkaline" in alkaline earth refers to the hydroxides being alkaline (basic), not group 1 membership.',
+          explanation: 'KEY ERROR: calling Ca an alkali metal. Alkali metals = Group 1 (one valence e⁻): Li, Na, K, Rb, Cs, Fr. Alkaline earth metals = Group 2 (two valence e⁻): Be, Mg, Ca, Sr, Ba, Ra. The "alkaline" in alkaline earth refers to the hydroxides being alkaline (basic), not group 1 membership.',
         },
         {
           conceptId: 'halogens-group17',
@@ -1160,7 +1075,7 @@
             'K = alkaline earth (Group 2) because potassium forms K₂O like calcium forms CaO',
             'Na and Ca are both alkali metals because both react with water',
           ],
-          explanation: 'Quick rules: One valence electron → alkali metal (Li, Na, K). Two valence electrons → alkaline earth (Be, Mg, Ca). Seven valence electrons → halogen (F, Cl, Br, I). Filled valence → noble gas (He, Ne, Ar). The Q54 error: Ca has TWO valence electrons = alkaline earth, not alkali.',
+          explanation: 'Quick rules: One valence electron → alkali metal (Li, Na, K). Two valence electrons → alkaline earth (Be, Mg, Ca). Seven valence electrons → halogen (F, Cl, Br, I). Filled valence → noble gas (He, Ne, Ar). Ca has TWO valence electrons = alkaline earth, not alkali.',
         },
       ],
       showdown: [
@@ -1173,7 +1088,7 @@
           conceptA: 'Alkaline earth metal — Group 2, two valence electrons (Ca, Mg, Be, Sr)',
           conceptB: 'Alkali metal — Group 1, one valence electron (Na, K, Li, Rb)',
           correct: 'Alkaline earth metal — Group 2, two valence electrons (Ca, Mg, Be, Sr)',
-          explanation: 'Ca = alkaline earth (Group 2). Na = alkali metal (Group 1). Q54 called Ca an alkali metal — wrong. Two valence electrons → Group 2 → alkaline earth. One valence electron → Group 1 → alkali.',
+          explanation: 'Ca = alkaline earth (Group 2). Na = alkali metal (Group 1). Ca is NOT an alkali metal — wrong group. Two valence electrons → Group 2 → alkaline earth. One valence electron → Group 1 → alkali.',
         },
         {
           conceptId: 'group1-alkali-metals',
@@ -1208,12 +1123,12 @@
           scenario: 'An electrolysis reaction deposits 0.050 mol of copper (Cu, MW = 63.5 g/mol) onto a cathode. What is the mass of copper deposited?',
           options: [
             '0.050 mol × 63.5 g/mol = 3.175 g ≈ 3.2 g',
-            '63.5 ÷ 0.050 = 1270 g (divided instead of multiplied — the Q23-type inversion error)',
+            '63.5 ÷ 0.050 = 1270 g (divided instead of multiplied — classic inversion error)',
             '0.050 ÷ 63.5 = 7.9 × 10⁻⁴ g (mol ÷ MW — inverted and wrong units)',
             '0.050 × 63.5 × 2 = 6.35 g (incorrectly doubled MW)',
           ],
           correct: '0.050 mol × 63.5 g/mol = 3.175 g ≈ 3.2 g',
-          explanation: 'mass = mol × MW. Units: mol × (g/mol) = g. The (g/mol) tells you multiply, not divide. Dividing mol by MW gives mol²/g — a nonsense unit. The Q23 error was inverting: 180/0.67 instead of 0.67 × 180.',
+          explanation: 'mass = mol × MW. Units: mol × (g/mol) = g. The (g/mol) tells you multiply, not divide. Dividing mol by MW gives mol²/g — a nonsense unit. Common inversion error: 180/0.67 instead of 0.67 × 180.',
         },
         {
           conceptId: 'calc-electron-stoichiometry-2e',
@@ -1226,7 +1141,7 @@
             '0.40 ÷ 65.4 = 0.0061 mol Zn (divided by molar mass at the wrong step)',
           ],
           correct: '0.40 mol e⁻ ÷ 2 e⁻/Zn = 0.20 mol Zn',
-          explanation: 'Zn²⁺ + 2e⁻ → Zn. Two electrons per zinc atom. mol Zn = mol e⁻ / (e⁻ per Zn) = 0.40/2 = 0.20 mol. The Q23 error included failing to account for the per-molecule electron count.',
+          explanation: 'Zn²⁺ + 2e⁻ → Zn. Two electrons per zinc atom. mol Zn = mol e⁻ / (e⁻ per Zn) = 0.40/2 = 0.20 mol. A common error is failing to account for the per-molecule electron count.',
         },
         {
           conceptId: 'calc-full-electroplating',
@@ -1235,7 +1150,7 @@
           options: [
             '0.30 mol e⁻ ÷ 1 e⁻/Ag × 107.9 g/mol = 32.4 g',
             '0.30 × 107.9 ÷ 1 = 32.4 g — same answer, but written without showing the e⁻ step',
-            '107.9 ÷ 0.30 = 360 g (inverted: MW ÷ mol — the Q23 inversion error)',
+            '107.9 ÷ 0.30 = 360 g (inverted: MW ÷ mol — classic inversion error)',
             '0.30 ÷ 107.9 = 0.0028 g (mol ÷ MW — double inversion)',
           ],
           correct: '0.30 mol e⁻ ÷ 1 e⁻/Ag × 107.9 g/mol = 32.4 g',
@@ -1252,7 +1167,7 @@
             '180 ÷ 0.25 × 0.25 = 180 g, which is just the molar mass and also wrong',
           ],
           correct: 'She divided when she should multiply: mass = 0.25 mol × 180 g/mol = 45 g; her answer gives g/mol² × mol = g/mol — not grams',
-          explanation: 'KEY CHECK: track units. MW = g/mol. mol × (g/mol) = g ✓. (g/mol) ÷ mol = g/mol² ✗. If the units don\'t give grams, the setup is wrong. The Q23 error was 180/0.67 instead of 0.67 × 180 — the unit check would have caught it.',
+          explanation: 'KEY CHECK: track units. MW = g/mol. mol × (g/mol) = g ✓. (g/mol) ÷ mol = g/mol² ✗. If the units don\'t give grams, the setup is wrong. The inversion error: 180/0.67 instead of 0.67 × 180 — the unit check would have caught it.',
         },
         {
           conceptId: 'calc-faraday-charge-to-mol-electrons',
@@ -1328,12 +1243,12 @@
           scenario: 'A passage states: "The aorta has cross-sectional area 2.5 × 10⁴ mm² and blood velocity 0.3 mm/s. A nearby table also lists a capillary area of 1.5 × 10⁴ mm²." What is the volumetric flow rate Q through the aorta?',
           options: [
             'Q = 2.5 × 10⁴ mm² × 0.3 mm/s = 7.5 × 10³ mm³/s (used the stated aorta area)',
-            'Q = 1.5 × 10⁴ mm² × 0.3 mm/s = 4.5 × 10³ mm³/s (used the capillary decoy — the Q50 error)',
+            'Q = 1.5 × 10⁴ mm² × 0.3 mm/s = 4.5 × 10³ mm³/s (used the capillary decoy — used the wrong object's value)',
             'Q = (2.5 + 1.5) × 10⁴ × 0.3 = 1.2 × 10⁴ mm³/s (summed the two areas)',
             'Q = 2.5 × 10⁴ / 0.3 = 8.3 × 10⁴ mm³/s (divided instead of multiplied)',
           ],
           correct: 'Q = 2.5 × 10⁴ mm² × 0.3 mm/s = 7.5 × 10³ mm³/s (used the stated aorta area)',
-          explanation: 'Q50 ERROR: used 1.5×10⁴ (capillary) instead of 2.5×10⁴ (aorta). Before computing Q = Av, re-read and identify which object\'s area is asked for. The decoy value is always nearby and plausible. Circle the value; confirm the object.',
+          explanation: 'Common decoy error: used 1.5×10⁴ (capillary) instead of 2.5×10⁴ (aorta). Before computing Q = Av, re-read and identify which object\'s area is asked for. The decoy value is always nearby and plausible. Circle the value; confirm the object.',
         },
         {
           conceptId: 'calc-wave-correct-frequency',
@@ -1341,12 +1256,12 @@
           scenario: 'A passage states: "Ultrasound probe A operates at 2.3 MHz. Probe B, described earlier in the passage, runs at 1.0 MHz. The speed of sound in tissue is 1540 m/s." What is the wavelength of probe A\'s ultrasound?',
           options: [
             'λ = 1540 m/s ÷ (2.3 × 10⁶ Hz) = 6.7 × 10⁻⁴ m (used the stated 2.3 MHz)',
-            'λ = 1540 ÷ (1.0 × 10⁶) = 1.54 × 10⁻³ m (used the decoy 1.0 MHz — the Q51 error)',
+            'λ = 1540 ÷ (1.0 × 10⁶) = 1.54 × 10⁻³ m (used the decoy 1.0 MHz — used wrong probe's frequency)',
             'λ = 1540 × 2.3 × 10⁶ = 3.5 × 10⁹ m (multiplied instead of divided)',
             'λ = (2.3 × 10⁶) / 1540 = 1.5 × 10³ m⁻¹ (inverted: f/v gives m⁻¹ not m)',
           ],
           correct: 'λ = 1540 m/s ÷ (2.3 × 10⁶ Hz) = 6.7 × 10⁻⁴ m (used the stated 2.3 MHz)',
-          explanation: 'Q51 ERROR: used f = 1.0 MHz (probe B) instead of 2.3 MHz (probe A). Strategy: before computing, write down the question object (probe A) and find its specific value in the passage. The decoy (1.0 MHz) appeared earlier for probe B.',
+          explanation: 'Common decoy error: used f = 1.0 MHz (probe B) instead of 2.3 MHz (probe A). Strategy: before computing, write down the question object (probe A) and find its specific value in the passage. The decoy (1.0 MHz) appeared earlier for probe B.',
         },
         {
           conceptId: 'calc-photon-energy-correct-wavelength',
@@ -1359,7 +1274,7 @@
             'E = hc/(550 + 450) nm — averaged both wavelengths',
           ],
           correct: 'E = hc/λ = (6.63×10⁻³⁴ × 3.0×10⁸) / (450×10⁻⁹) = 4.4 × 10⁻¹⁹ J (used 450 nm — the absorption minimum)',
-          explanation: 'The question asks for the absorption MINIMUM, not maximum. 450 nm is minimum; 550 nm is maximum. Misreading "minimum" and plugging in 550 nm (max) is the Q19-type error — answered the quantity you computed (λmax) rather than what was asked (λmin).',
+          explanation: 'The question asks for the absorption MINIMUM, not maximum. 450 nm is minimum; 550 nm is maximum. Misreading "minimum" and plugging in 550 nm (max) is the classic error — answered the quantity you computed (λmax) rather than what was asked (λmin).',
         },
         {
           conceptId: 'calc-continuity-unit-conversion',
@@ -1398,7 +1313,7 @@
             'v = Vmax × [S]/Km = 100 × 5.0/0.50 = 1000 µmol/min (forgot the denominator term)',
           ],
           correct: 'v/Vmax = [S]/(Km + [S]) = 5.0/(0.50 + 5.0) = 5.0/5.5 ≈ 0.91 (used the correct Km = 0.50)',
-          explanation: 'Passage-value trap: Ki = 5.0 µM looks similar to Km = 0.50 mM, and both share the "5" digit. Before computing, write "Km = 0.50 mM" explicitly, then plug in. Using any other "5" from the passage is the Q50/Q51 decoy error.',
+          explanation: 'Passage-value trap: Ki = 5.0 µM looks similar to Km = 0.50 mM, and both share the "5" digit. Before computing, write "Km = 0.50 mM" explicitly, then plug in. Using any other "5" from the passage is the classic decoy error.',
         },
         {
           conceptId: 'calc-max-energy-min-wavelength',
@@ -1411,7 +1326,7 @@
             'All wavelengths carry the same energy because energy depends on intensity, not wavelength',
           ],
           correct: '200 nm — shortest wavelength = highest energy (E inversely proportional to λ)',
-          explanation: 'Q19 ERROR: chose the longest wavelength (700 nm, λmax for absorption) when the question asked for maximum ENERGY. E = hc/λ: energy and wavelength are INVERSELY proportional. Maximum energy → minimum wavelength. Always: max E ↔ min λ ↔ max frequency.',
+          explanation: 'Common error: chose the longest wavelength (700 nm, λmax for absorption) when the question asked for maximum ENERGY. E = hc/λ: energy and wavelength are INVERSELY proportional. Maximum energy → minimum wavelength. Always: max E ↔ min λ ↔ max frequency.',
         },
         {
           conceptId: 'calc-ph-to-concentration-correct-quantity',
@@ -1419,12 +1334,12 @@
           scenario: 'A solution has pH = 10 at 25°C. A question asks for [OH⁻]. (Kw = 10⁻¹⁴)',
           options: [
             '[H⁺] = 10⁻¹⁰ M; [OH⁻] = Kw/[H⁺] = 10⁻¹⁴/10⁻¹⁰ = 10⁻⁴ M (answered [OH⁻] as asked)',
-            '[OH⁻] = 10⁻¹⁰ M (reported [H⁺] directly — the Q34 error: answered the intermediate, not the asked quantity)',
+            '[OH⁻] = 10⁻¹⁰ M (reported [H⁺] directly — answered the intermediate, not the asked quantity)',
             '[OH⁻] = 14 − 10 = 4 M (confused pOH with [OH⁻]; pOH = 4, but [OH⁻] = 10⁻⁴, not 4)',
             '[OH⁻] = 10⁻¹⁴ M (used Kw as the answer instead of calculating [OH⁻])',
           ],
           correct: '[H⁺] = 10⁻¹⁰ M; [OH⁻] = Kw/[H⁺] = 10⁻¹⁴/10⁻¹⁰ = 10⁻⁴ M (answered [OH⁻] as asked)',
-          explanation: 'Q34 ERROR: computed [H⁺] = 10⁻¹⁰ and stopped. The question asked for [OH⁻]. One more step: [OH⁻] = Kw/[H⁺] = 10⁻¹⁴/10⁻¹⁰ = 10⁻⁴ M. The intermediate value ([H⁺] = 10⁻¹⁰) appears as a wrong answer choice to catch this exact error.',
+          explanation: 'Common error: computed [H⁺] = 10⁻¹⁰ and stopped. The question asked for [OH⁻]. One more step: [OH⁻] = Kw/[H⁺] = 10⁻¹⁴/10⁻¹⁰ = 10⁻⁴ M. The intermediate value ([H⁺] = 10⁻¹⁰) appears as a wrong answer choice to catch this exact error.',
         },
       ],
     },
@@ -1465,12 +1380,12 @@
           ],
           correct: 'Maximum energy = shortest wavelength (400 nm or 300 nm); minimum energy = longest wavelength (700 nm)',
           wrongPool: [
-            'Maximum energy = longest wavelength (700 nm) — inverse relationship forgotten (Q19 error)',
+            'Maximum energy = longest wavelength (700 nm) — inverse relationship forgotten)',
             'Maximum energy = middle wavelength — average wavelength gives average energy',
             'Minimum energy = shortest wavelength — confused direction of inverse relationship',
             'Energy is highest at the wavelength of maximum absorption, regardless of which end of the spectrum it falls on',
           ],
-          explanation: 'KEY (Q19): E ∝ 1/λ. Shortest λ → highest E. Longest λ → lowest E. When asked for "maximum energy photon," pick the shortest wavelength. When asked for "minimum energy photon," pick the longest wavelength.',
+          explanation: 'KEY: E ∝ 1/λ. Shortest λ → highest E. Longest λ → lowest E. When asked for "maximum energy photon," pick the shortest wavelength. When asked for "minimum energy photon," pick the longest wavelength.',
         },
         {
           conceptId: 'force-proportional-velocity-decay',
@@ -1541,13 +1456,13 @@
         {
           conceptId: 'max-energy-min-wavelength',
           scenarios: [
-            'Q19 scenario: a question asks for the photon of maximum energy from a spectrum spanning 200–700 nm. The answer is the ___ wavelength.',
+            'Classic trap: a question asks for the photon of maximum energy from a spectrum spanning 200–700 nm. The answer is the ___ wavelength.',
             '"Maximum energy photon" means...',
           ],
           conceptA: 'Shortest wavelength (200 nm) — E = hc/λ, inverse relationship',
           conceptB: 'Longest wavelength (700 nm) — more wave = more energy',
           correct: 'Shortest wavelength (200 nm) — E = hc/λ, inverse relationship',
-          explanation: 'E ∝ 1/λ. Maximum E → minimum λ. Q19 trap: reported the maximum wavelength (λmax absorption) when the question asked for maximum energy photon. Opposite ends of the spectrum.',
+          explanation: 'E ∝ 1/λ. Maximum E → minimum λ. Classic trap: reported the maximum wavelength (λmax absorption) when the question asked for maximum energy photon. Opposite ends of the spectrum.',
         },
         {
           conceptId: 'force-proportional-velocity-decay',
@@ -1624,7 +1539,7 @@
             'Cytosinine — this is not a real nucleoside name',
             'Deoxyuridine — derived from uracil + deoxyribose; distinct from cytosine',
           ],
-          explanation: 'Cytosine (pyrimidine) + ribose = cytidine. Cytosine + deoxyribose = deoxycytidine. C pairs with G. The Q44 concept: a strand with no G has a complement with no C → complement lacks deoxycytidine.',
+          explanation: 'Cytosine (pyrimidine) + ribose = cytidine. Cytosine + deoxyribose = deoxycytidine. C pairs with G. Key concept: a strand with no G has a complement with no C → complement lacks deoxycytidine.',
         },
         {
           conceptId: 'nucleoside-thymine',
@@ -1675,7 +1590,7 @@
             'The complement contains all four deoxyribonucleosides regardless of template sequence',
             'The complement does not contain deoxyuridine — uracil is not in DNA at all',
           ],
-          explanation: 'KEY (Q44): G pairs with C. Template has no G → no C needed in complement → complement lacks deoxycytidine. NOT question: "which nucleoside does the complement NOT contain?" Template: AATAAT (only A and T). Complement: TTATAA (only T and A) → complement has deoxyadenosine and thymidine but LACKS deoxycytidine AND deoxyguanosine.',
+          explanation: 'KEY: G pairs with C. Template has no G → no C needed in complement → complement lacks deoxycytidine. NOT question: "which nucleoside does the complement NOT contain?" Template: AATAAT (only A and T). Complement: TTATAA (only T and A) → complement has deoxyadenosine and thymidine but LACKS deoxycytidine AND deoxyguanosine.',
         },
         {
           conceptId: 'complement-no-a-lacks-thymidine',
@@ -1756,7 +1671,7 @@
           conceptA: 'Deoxycytidine — G pairs with C; no G in template → no C incorporated in complement',
           conceptB: 'Deoxyguanosine — G is absent from the template, so G cannot go in the complement',
           correct: 'Deoxycytidine — G pairs with C; no G in template → no C incorporated in complement',
-          explanation: 'Q44 LOGIC: the complement strand is built against the template. G in template → C in complement. No G in template → no C in complement → complement lacks deoxycytidine. "Deoxyguanosine" is absent from the template, not the complement.',
+          explanation: 'LOGIC: the complement strand is built against the template. G in template → C in complement. No G in template → no C in complement → complement lacks deoxycytidine. "Deoxyguanosine" is absent from the template, not the complement.',
         },
         {
           conceptId: 'purine-pyrimidine-nucleoside-naming',
@@ -1793,13 +1708,13 @@
           ],
           correct: 'Tyrosine (Tyr/Y) — contains a phenol side chain (benzene ring with –OH at para position)',
           wrongPool: [
-            'Phenylalanine (Phe/F) — has a benzyl group (plain aromatic ring, no –OH); the Q36 error',
+            'Phenylalanine (Phe/F) — has a benzyl group (plain aromatic ring, no –OH); missing the phenol –OH',
             'Leucine (Leu/L) — has a branched aliphatic side chain, no aromatic or hydroxyl group',
             'Serine (Ser/S) — has a hydroxyl group but no aromatic ring (not a phenol)',
             'Tryptophan (Trp/W) — has an indole ring, not a phenol',
             'Histidine (His/H) — has an imidazole ring, not a phenol',
           ],
-          explanation: 'KEY (Q36): Tyr = phenol (hydroxybenzyl). HRP oxidizes the phenol –OH. Phe = plain benzyl (no –OH) → not an HRP substrate. The Q36 error was choosing Leu (aliphatic, no aromatic group at all) when Tyr was the HRP target.',
+          explanation: 'KEY: Tyr = phenol (hydroxybenzyl). HRP oxidizes the phenol –OH. Phe = plain benzyl (no –OH) → not an HRP substrate. The common error is choosing Leu (aliphatic, no aromatic group at all) when Tyr was the HRP target.',
         },
         {
           conceptId: 'phenylalanine-benzyl',
@@ -1912,13 +1827,13 @@
           ],
           correct: 'Tyrosine (Tyr) — the phenol –OH is the substrate for peroxidase oxidation; Phe lacks this –OH',
           wrongPool: [
-            'Phenylalanine (Phe) — Phe has a plain benzyl group; without the –OH, peroxidases cannot oxidize it at the ring (Q36 error)',
+            'Phenylalanine (Phe) — Phe has a plain benzyl group; without the –OH, peroxidases cannot oxidize it at the ring',
             'Both Tyr and Phe — both aromatic residues can be oxidized by HRP equally',
             'Neither — peroxidases only oxidize sulfur-containing residues (Cys, Met)',
             'Phenylalanine — Phe is more hydrophobic and therefore more reactive toward HRP',
             'Leucine — Leu has a large hydrophobic side chain and is the preferred HRP target',
           ],
-          explanation: 'Q36 KEY: HRP (peroxidase) oxidizes phenols. Tyr = phenol → HRP substrate. Phe = plain benzyl, no –OH → not an HRP substrate. When Tyr → Phe mutation occurs, the residue loses its phenol group (–OH) and therefore loses peroxidase oxidizability.',
+          explanation: 'KEY: HRP (peroxidase) oxidizes phenols. Tyr = phenol → HRP substrate. Phe = plain benzyl, no –OH → not an HRP substrate. When Tyr → Phe mutation occurs, the residue loses its phenol group (–OH) and therefore loses peroxidase oxidizability.',
         },
         {
           conceptId: 'sulfur-residues-cys-vs-met',
@@ -1960,12 +1875,12 @@
           conceptId: 'tyrosine-phenol',
           scenarios: [
             'HRP oxidizes phenols. Two candidates: Phe (benzyl, no –OH) vs Tyr (phenol, has –OH). HRP substrate is...',
-            'Q36 discrimination: Leu has no aromatic group; Phe has benzene ring without –OH; Tyr has phenol. HRP target is...',
+            'Shape discrimination: Leu has no aromatic group; Phe has benzene ring without –OH; Tyr has phenol. HRP target is...',
           ],
           conceptA: 'Tyrosine — phenol side chain (–OH on benzene ring) is the HRP substrate',
           conceptB: 'Phenylalanine — plain benzene ring is sufficient for peroxidase activity',
           correct: 'Tyrosine — phenol side chain (–OH on benzene ring) is the HRP substrate',
-          explanation: 'HRP specifically oxidizes phenols. Tyr = phenol. Phe = no –OH = not a phenol. Q36 error: chose Leu (no aromatic, no –OH). Correct: Tyr. The –OH on the ring is the essential feature.',
+          explanation: 'HRP specifically oxidizes phenols. Tyr = phenol. Phe = no –OH = not a phenol. Common error: chose Leu (no aromatic, no –OH). Correct: Tyr. The –OH on the ring is the essential feature.',
         },
         {
           conceptId: 'cysteine-thiol',
@@ -2001,7 +1916,7 @@
           ],
           correct: 'Steroid — four fused rings: three cyclohexane (6-6-6) plus one cyclopentane (5), all in one planar scaffold',
           wrongPool: [
-            'Nucleotide — nucleotides (e.g., ATP) have a nitrogenous base + ribose + phosphate; no fused ring scaffold (the Q25 error)',
+            'Nucleotide — nucleotides (e.g., ATP) have a nitrogenous base + ribose + phosphate; no four-ring fused scaffold',
             'Phospholipid — phospholipids have a glycerol backbone with two fatty-acid tails; no fused-ring scaffold',
             'Porphyrin — porphyrins have four pyrrole rings arranged around a metal center; not 6-6-6-5',
             'Prostaglandin — prostaglandins have a five-membered ring with two aliphatic tails; not 6-6-6-5 fused',
@@ -2014,7 +1929,7 @@
           scenarios: [
             'A nuclear hormone receptor binds its ligand in a hydrophobic pocket shaped to fit a four-ring scaffold. ATP is NOT the ligand because ATP\'s structure is...',
             'ATP is described as: adenine (purine base) + ribose (5-carbon sugar) + three phosphate groups. A steroid receptor would not bind ATP because ATP lacks...',
-            'Q25 trap: a student picks ATP as a steroid receptor ligand. What structural mismatch makes this wrong?',
+            'Classic trap: a student picks ATP as a steroid receptor ligand. What structural mismatch makes this wrong?',
           ],
           correct: 'ATP lacks the four-ring fused steroid skeleton; ATP is hydrophilic (multiple charged phosphates) while steroid receptors bind hydrophobic ligands',
           wrongPool: [
@@ -2024,7 +1939,7 @@
             'ATP binds steroid receptors because both ATP and steroids interact with hydrophobic domains',
             'Adenine\'s two-ring purine structure is topologically equivalent to the steroid four-ring scaffold',
           ],
-          explanation: 'Q25: steroid receptors require the 6-6-6-5 hydrophobic scaffold. ATP = base+sugar+phosphate, highly polar/charged, no four-ring scaffold, does not fit steroid receptor. The visual similarity of "ring + ring + ring" in a purine does not create steroid-like topology.',
+          explanation: 'Steroid receptors require the 6-6-6-5 hydrophobic scaffold. ATP = base+sugar+phosphate, highly polar/charged, no four-ring scaffold, does not fit steroid receptor. The visual similarity of "ring + ring + ring" in a purine does not create steroid-like topology.',
         },
         {
           conceptId: 'porphyrin-heme-structure',
@@ -2137,7 +2052,7 @@
           conceptA: 'Steroid — four fused rings (6-6-6-5), lipid-soluble, crosses membrane',
           conceptB: 'ATP — base+sugar+3 phosphates, hydrophilic, cannot cross membrane to bind nuclear receptor',
           correct: 'Steroid — four fused rings (6-6-6-5), lipid-soluble, crosses membrane',
-          explanation: 'Q25: steroid receptor binds the hydrophobic steroid scaffold. ATP is highly charged (3 phosphates), polar, does not cross the membrane, and has no 6-6-6-5 ring system. Confusing a nucleotide structure with a steroid is the Q25 error.',
+          explanation: 'Steroid receptors bind the hydrophobic steroid scaffold. ATP is highly charged (3 phosphates), polar, does not cross the membrane, and has no 6-6-6-5 ring system. Confusing a nucleotide structure with a steroid is the classic error.',
         },
         {
           conceptId: 'porphyrin-heme-structure',
@@ -2196,7 +2111,7 @@
             'C–H labels exchange slowly but completely within 24 hours in water',
             'Aromatic C–H positions exchange faster than aliphatic C–H due to resonance activation',
           ],
-          explanation: 'Q10 KEY: stable isotope label must be on a C–H position to survive aqueous conditions. N–H labels (backbone amide, lysine –NH₂, etc.) exchange within seconds to hours in water. O–H labels exchange even faster. C–H bonds are non-exchangeable under mild aqueous conditions.',
+          explanation: 'KEY: stable isotope label must be on a C–H position to survive aqueous conditions. N–H labels (backbone amide, lysine –NH₂, etc.) exchange within seconds to hours in water. O–H labels exchange even faster. C–H bonds are non-exchangeable under mild aqueous conditions.',
         },
         {
           conceptId: 'backbone-nh-exchanges',
@@ -2264,7 +2179,7 @@
             'Label the carbonyl (C=O) — carbonyl carbons do not exchange but the oxygen does',
             'Label a sulfur-containing group (–SH) — thiol protons exchange even faster than N–H or O–H',
           ],
-          explanation: 'Q10 STRATEGY: for aqueous tracing, always label C–H. ²H or ³H on C–H = stable. ²H/³H on N–H or O–H = lost in minutes. ¹³C labels on any carbon (including C=O) are stable. For hydrogen isotope labels specifically: only C–H positions survive in aqueous metabolic experiments.',
+          explanation: 'STRATEGY: for aqueous tracing, always label C–H. ²H or ³H on C–H = stable. ²H/³H on N–H or O–H = lost in minutes. ¹³C labels on any carbon (including C=O) are stable. For hydrogen isotope labels specifically: only C–H positions survive in aqueous metabolic experiments.',
         },
       ],
       showdown: [
@@ -2277,7 +2192,7 @@
           conceptA: 'C–H label survives — C–H bonds are non-exchangeable in water',
           conceptB: 'N–H label survives — nitrogen is more electronegative, making N–H more stable',
           correct: 'C–H label survives — C–H bonds are non-exchangeable in water',
-          explanation: 'Q10: N–H (and O–H) protons exchange with water. C–H protons do not. The tritium (or deuterium) on N–H is lost within minutes. The label on C–H remains. For metabolic tracing: always choose C–H positions.',
+          explanation: 'KEY: N–H (and O–H) protons exchange with water. C–H protons do not. The tritium (or deuterium) on N–H is lost within minutes. The label on C–H remains. For metabolic tracing: always choose C–H positions.',
         },
         {
           conceptId: 'oh-nh-exchange-principle',
@@ -2313,13 +2228,13 @@
           ],
           correct: 'pH does not change — dilution decreases [A⁻] and [HA] equally, so the ratio [A⁻]/[HA] is unchanged; pH = pKₐ + log(ratio) is unchanged',
           wrongPool: [
-            'pH decreases — dilution adds water (weakly acidic, pH 7 at 25°C) which lowers the buffer pH (Q26 error)',
+            'pH decreases — dilution adds water (weakly acidic, pH 7 at 25°C) which would lower the buffer pH (incorrect)',
             'pH increases — dilution makes the solution more basic by increasing water\'s contribution',
             'pH decreases because the buffer capacity decreases and it can no longer maintain its set point',
             'pH changes by exactly log(10) = 1 unit because of the 10-fold dilution',
             'pH changes by 0.5 units because the buffer is weakened at lower concentration',
           ],
-          explanation: 'KEY (Q26): Henderson–Hasselbalch: pH = pKₐ + log([A⁻]/[HA]). Diluting multiplies both [A⁻] and [HA] by the same factor → ratio unchanged → log(ratio) unchanged → pH unchanged. Dilution DOES reduce buffer CAPACITY (ability to resist pH change), but NOT the pH itself.',
+          explanation: 'KEY: Henderson–Hasselbalch: pH = pKₐ + log([A⁻]/[HA]). Diluting multiplies both [A⁻] and [HA] by the same factor → ratio unchanged → log(ratio) unchanged → pH unchanged. Dilution DOES reduce buffer CAPACITY (ability to resist pH change), but NOT the pH itself.',
         },
         {
           conceptId: 'add-acid-to-lower-ph',
@@ -2331,7 +2246,7 @@
           correct: 'Add more acetic acid (HA, the acid component) — increases [HA] relative to [A⁻], decreasing the ratio → decreasing pH',
           wrongPool: [
             'Add more sodium acetate (A⁻, the base component) — this increases [A⁻]/[HA] ratio → RAISES pH (opposite)',
-            'Dilute the buffer — dilution does not change pH (Q26 error)',
+            'Dilute the buffer — dilution does not change pH (classic error)',
             'Add water to shift the equilibrium toward more H⁺ formation — dilution doesn\'t lower pH',
             'Lower the temperature — temperature affects pKₐ slightly but is not the primary manipulation',
             'Add a small amount of NaOH — this would convert HA → A⁻, raising the ratio → raising pH',
@@ -2387,7 +2302,7 @@
             'Dilution does not affect either pH or capacity — the buffer is self-correcting regardless of concentration',
             'Buffer capacity depends only on pKₐ, not on the concentration of buffer components',
           ],
-          explanation: 'Buffer capacity = amount of acid or base the buffer can absorb without significant pH change. Proportional to the CONCENTRATION of buffer components. Dilution 100× → buffer capacity decreases 100×. pH unchanged (ratio unchanged), but the buffer is easily overwhelmed. Q26 concept: dilution ≠ pH change, but capacity decreases.',
+          explanation: 'Buffer capacity = amount of acid or base the buffer can absorb without significant pH change. Proportional to the CONCENTRATION of buffer components. Dilution 100× → buffer capacity decreases 100×. pH unchanged (ratio unchanged), but the buffer is easily overwhelmed. Key concept: dilution ≠ pH change, but capacity decreases.',
         },
         {
           conceptId: 'buffer-direction-of-shift',
@@ -2411,13 +2326,13 @@
         {
           conceptId: 'dilution-no-ph-change',
           scenarios: [
-            'Q26 drill: a buffer is diluted 10-fold. The pH...',
+            'Dilution drill: a buffer is diluted 10-fold. The pH...',
             'Henderson–Hasselbalch: pH = pKₐ + log([A⁻]/[HA]). Diluting equally: ratio [A⁻]/[HA]...',
           ],
           conceptA: 'Does not change — dilution preserves the [A⁻]/[HA] ratio, so pH is unchanged',
           conceptB: 'Decreases — more water means more H⁺ from water\'s autoionization',
           correct: 'Does not change — dilution preserves the [A⁻]/[HA] ratio, so pH is unchanged',
-          explanation: 'Q26: dilution does NOT change buffer pH. [A⁻] and [HA] both decrease by the same factor → ratio unchanged → log(ratio) unchanged → pH unchanged. Buffer CAPACITY decreases, but pH stays the same.',
+          explanation: 'KEY: dilution does NOT change buffer pH. [A⁻] and [HA] both decrease by the same factor → ratio unchanged → log(ratio) unchanged → pH unchanged. Buffer CAPACITY decreases, but pH stays the same.',
         },
         {
           conceptId: 'add-acid-to-lower-ph',

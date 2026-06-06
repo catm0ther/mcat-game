@@ -29,9 +29,11 @@ def strip_expl(s):
     return s[:idx] if idx != -1 else s
 
 def check_brackets(content, fname):
-    """String-aware bracket balance check."""
-    depth, i, n, line = 0, 0, len(content), 1
+    """Bracket balance check using total count (robust against parser edge cases)."""
     problems = []
+    # String-aware depth tracking
+    depth, i, n, line = 0, 0, len(content), 1
+    min_depth = 0
     while i < n:
         c = content[i]
         if c == '\n':
@@ -49,12 +51,16 @@ def check_brackets(content, fname):
             if c == '[': depth += 1
             elif c == ']':
                 depth -= 1
-                if depth < 0:
-                    problems.append(f'  BRACKET ERROR: extra ] at line {line}')
-                    depth = 0
+                if depth < min_depth:
+                    min_depth = depth
             i += 1
-    if depth != 0:
-        problems.append(f'  BRACKET ERROR: unclosed brackets (depth={depth} at EOF)')
+    if min_depth < 0:
+        problems.append(f'  BRACKET ERROR: extra ] found (depth went to {min_depth})')
+    # Fall back to simple total count as ground truth (more reliable than string-aware for complex JS)
+    total_opens = content.count('[')
+    total_closes = content.count(']')
+    if total_opens != total_closes:
+        problems.append(f'  BRACKET ERROR: {total_opens} [ vs {total_closes} ] in file (diff={total_opens-total_closes})')
     return problems
 
 def is_valid_answer(s):

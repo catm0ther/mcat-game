@@ -15,9 +15,9 @@
             'A student marks answer choice C because it is a correct fact about enzyme kinetics. The question asks which statement is NOT supported by the data. What went wrong?',
             'A test-taker picks the factually accurate statement about membrane permeability. The stem asked which option the passage does NOT support. What error did they make?',
           ],
-          options: ['Chose a true statement instead of reading what the passage contradicts', 'Forgot to read all answer choices', 'Used the wrong enzyme kinetics formula', 'Confused the x-axis with the y-axis'],
+          options: ['Chose a true statement instead of reading what the passage contradicts', 'Picked the answer that seemed most scientifically important overall', 'Eliminated three choices and selected whatever remained without re-reading the stem', 'Confused NOT/EXCEPT with "directly contradicts the passage"'],
           correct: 'Chose a true statement instead of reading what the passage contradicts',
-          wrongPool: ['Forgot to read all answer choices', 'Used the wrong enzyme kinetics formula', 'Confused the x-axis with the y-axis', 'Did not eliminate the obviously wrong answers first'],
+          wrongPool: ['Picked the answer that seemed most scientifically important overall', 'Eliminated three choices and selected whatever remained without re-reading the stem', 'Confused NOT/EXCEPT with "directly contradicts the passage"', 'Assumed the longest answer choice was the NOT answer'],
         },
         {
           conceptId: 'fl3-bb-ns-2',
@@ -79,9 +79,9 @@
           scenarios: [
             'Strategy: when you see NOT/EXCEPT/LEAST in the stem, what is the single best habit before selecting?',
           ],
-          options: ['Physically circle or underline the negative word so your brain switches to "find the wrong one" mode', 'Answer the positive form first, then pick the opposite', 'Skip these questions and return at the end', 'Look for the answer that contradicts the passage title'],
+          options: ['Physically circle or underline the negative word so your brain switches to "find the wrong one" mode', 'Answer the positive form of the question first, then select whichever choice does not fit', 'Evaluate every answer choice as if it were a standalone true/false statement, ignoring the stem modifier', 'Read the answer choices before finishing the question stem to save time'],
           correct: 'Physically circle or underline the negative word so your brain switches to "find the wrong one" mode',
-          wrongPool: ['Answer the positive form first, then pick the opposite', 'Skip these questions and return at the end', 'Look for the answer that contradicts the passage title', 'Trust your first instinct without re-reading'],
+          wrongPool: ['Answer the positive form of the question first, then select whichever choice does not fit', 'Evaluate every answer choice as if it were a standalone true/false statement, ignoring the stem modifier', 'Read the answer choices before finishing the question stem to save time', 'Pick the answer that contradicts the most information in the passage'],
         },
         {
           conceptId: 'fl3-bb-ns-9',
