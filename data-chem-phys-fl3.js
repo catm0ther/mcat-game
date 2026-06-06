@@ -1243,7 +1243,7 @@
           scenario: 'A passage states: "The aorta has cross-sectional area 2.5 × 10⁴ mm² and blood velocity 0.3 mm/s. A nearby table also lists a capillary area of 1.5 × 10⁴ mm²." What is the volumetric flow rate Q through the aorta?',
           options: [
             'Q = 2.5 × 10⁴ mm² × 0.3 mm/s = 7.5 × 10³ mm³/s (used the stated aorta area)',
-            'Q = 1.5 × 10⁴ mm² × 0.3 mm/s = 4.5 × 10³ mm³/s (used the capillary decoy — used the wrong object's value)',
+            'Q = 1.5 × 10⁴ mm² × 0.3 mm/s = 4.5 × 10³ mm³/s (used the capillary decoy — used the wrong object\'s value)',
             'Q = (2.5 + 1.5) × 10⁴ × 0.3 = 1.2 × 10⁴ mm³/s (summed the two areas)',
             'Q = 2.5 × 10⁴ / 0.3 = 8.3 × 10⁴ mm³/s (divided instead of multiplied)',
           ],
@@ -1256,7 +1256,7 @@
           scenario: 'A passage states: "Ultrasound probe A operates at 2.3 MHz. Probe B, described earlier in the passage, runs at 1.0 MHz. The speed of sound in tissue is 1540 m/s." What is the wavelength of probe A\'s ultrasound?',
           options: [
             'λ = 1540 m/s ÷ (2.3 × 10⁶ Hz) = 6.7 × 10⁻⁴ m (used the stated 2.3 MHz)',
-            'λ = 1540 ÷ (1.0 × 10⁶) = 1.54 × 10⁻³ m (used the decoy 1.0 MHz — used wrong probe's frequency)',
+            'λ = 1540 ÷ (1.0 × 10⁶) = 1.54 × 10⁻³ m (used the decoy 1.0 MHz — used wrong probe\'s frequency)',
             'λ = 1540 × 2.3 × 10⁶ = 3.5 × 10⁹ m (multiplied instead of divided)',
             'λ = (2.3 × 10⁶) / 1540 = 1.5 × 10³ m⁻¹ (inverted: f/v gives m⁻¹ not m)',
           ],
