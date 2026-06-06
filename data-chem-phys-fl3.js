@@ -177,13 +177,13 @@
           ],
           correct: 'Heat of combustion (ΔHcomb) — more stable isomer releases less energy when burned (lower ΔHcomb)',
           wrongPool: [
-            'Boiling point — reflects IMF between molecules, not covalent bond stability (the Q9 error)',
+            'Boiling point — reflects IMF between molecules, not covalent bond stability (BP ≠ bond stability)',
             'Melting point — reflects crystal lattice energy, not covalent bond stability',
             'Density — a physical property unrelated to thermodynamic bond energy',
             'Vapor pressure — inversely related to IMF, same issue as boiling point',
             'Viscosity — measures resistance to flow; related to IMF, not bond stability',
           ],
-          explanation: 'KEY TRAP (Q9): boiling point ranks IMF strength, NOT covalent stability. To rank isomers by stability, use heat of combustion. More stable isomer = lower internal energy = less energy released on combustion = lower ΔHcomb.',
+          explanation: 'KEY TRAP: boiling point ranks IMF strength, NOT covalent stability. To rank isomers by stability, use heat of combustion. More stable isomer = lower internal energy = less energy released on combustion = lower ΔHcomb.',
         },
         {
           conceptId: 'stable-isomer-lower-hcomb',
@@ -251,7 +251,7 @@
             'All three measurements provide equivalent information about molecular stability',
             'ΔHcomb measures IMF, not bond stability — molecules with stronger IMF combust more energetically',
           ],
-          explanation: 'Boiling point ≠ bond stability (Q9 trap). BP measures energy to separate molecules (IMF). ΔHcomb measures energy in covalent bonds. A compound can have strong IMF (high BP) but also high ΔHcomb (less stable), or vice versa. Always ask: what does the measurement actually probe?',
+          explanation: 'Boiling point ≠ bond stability. BP measures energy to separate molecules (IMF). ΔHcomb measures energy in covalent bonds. A compound can have strong IMF (high BP) but also high ΔHcomb (less stable), or vice versa. Always ask: what does the measurement actually probe?',
         },
       ],
       showdown: [
@@ -264,7 +264,7 @@
           conceptA: 'Heat of combustion — energy stored in covalent bonds (bond stability)',
           conceptB: 'Boiling point — energy in intermolecular forces (IMF)',
           correct: 'Heat of combustion — energy stored in covalent bonds (bond stability)',
-          explanation: 'BP measures IMF (intermolecular forces). ΔHcomb measures covalent bond energy (intramolecular). To compare isomer stability, always use ΔHcomb. (Q9: used boiling point instead — wrong tool.)',
+          explanation: 'BP measures IMF (intermolecular forces). ΔHcomb measures covalent bond energy (intramolecular). To compare isomer stability, always use ΔHcomb. (using boiling point for stability is the classic error — wrong tool.)',
         },
         {
           conceptId: 'stable-isomer-lower-hcomb',
@@ -1401,7 +1401,7 @@
             'Instantaneous jump to terminal velocity — unrealistic; the exponential approach is asymptotic',
             'Sinusoidal oscillation — oscillation requires a restoring force, not a damping force proportional to velocity',
           ],
-          explanation: 'Q8: force ∝ velocity → differential equation dv/dt = k(v_t − v) → solution: v(t) = v_t(1 − e^(−kt)). This is exponential approach to terminal velocity. Linear decay/increase only occurs when acceleration (force) is constant. Drag proportional to v gives exponential behavior.',
+          explanation: 'Key concept: force ∝ velocity → differential equation dv/dt = k(v_t − v) → solution: v(t) = v_t(1 − e^(−kt)). This is exponential approach to terminal velocity. Linear decay/increase only occurs when acceleration (force) is constant. Drag proportional to v gives exponential behavior.',
         },
         {
           conceptId: 'period-frequency-inverse',
@@ -1433,7 +1433,7 @@
             'Both inverse proportionality and exponential decay produce identical straight-line graphs on log-linear axes — they cannot be distinguished',
             'Force ∝ velocity gives a parabolic velocity-time curve (velocity ∝ t²)',
           ],
-          explanation: 'Inverse: y = k/x = hyperbola. Exponential: y = Ae^(−kx) = steeply falling then flattening curve. Key distinction: exponential decay appears linear on a semi-log (log y vs x) plot; inverse proportionality appears linear on a log-log (log y vs log x) plot. Q8: velocity decay under viscous drag is exponential.',
+          explanation: 'Inverse: y = k/x = hyperbola. Exponential: y = Ae^(−kx) = steeply falling then flattening curve. Key distinction: exponential decay appears linear on a semi-log (log y vs x) plot; inverse proportionality appears linear on a log-log (log y vs log x) plot. Velocity decay under viscous drag is exponential.',
         },
         {
           conceptId: 'energy-frequency-direct',
@@ -1473,7 +1473,7 @@
           conceptA: 'Exponential approach (v = v_t(1 − e^(−kt))) — force decreases as gap closes',
           conceptB: 'Linear increase — velocity grows at constant rate until terminal velocity',
           correct: 'Exponential approach (v = v_t(1 − e^(−kt))) — force decreases as gap closes',
-          explanation: 'When net force ∝ (v_t − v), the system obeys first-order kinetics → exponential approach. Linear increase requires constant force. As the object speeds up, drag increases, net force decreases → deceleration of acceleration → exponential, not linear. (Q8)',
+          explanation: 'When net force ∝ (v_t − v), the system obeys first-order kinetics → exponential approach. Linear increase requires constant force. As the object speeds up, drag increases, net force decreases → deceleration of acceleration → exponential, not linear.',
         },
       ],
     },
