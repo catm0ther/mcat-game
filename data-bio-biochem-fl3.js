@@ -1178,7 +1178,7 @@
         {
           conceptId: 'fl3-bb-gen-7',
           scenarios: [
-            'A de novo mutation occurs in a germ cell that becomes a sperm. The offspring inherits this mutation. Neither parent is affected. What term describes this?',
+            'A mutation arises spontaneously in a spermatogonium and is passed to the offspring. Neither parent carries the mutation in their somatic or germ cells. What term describes this phenomenon?',
           ],
           options: ['De novo mutation — arises spontaneously in a germ cell; not present in either parent', 'Recessive inheritance — both parents are carriers but unaffected', 'Incomplete penetrance — the parents carry the allele but do not express the phenotype', 'Somatic mutation — the mutation arose in a non-reproductive cell'],
           correct: 'De novo mutation — arises spontaneously in a germ cell; not present in either parent',

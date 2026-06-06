@@ -814,6 +814,12 @@ function renderMagnitudeBlitz(q, header) {
 
 // ── Feedback ───────────────────────────────────────────────────────────────
 function showFeedback(correct, explanation, conceptId) {
+  // Fall back to the explanation embedded in the correct answer after ' — '
+  if (!explanation) {
+    const c = (state.currentQ && state.currentQ.correct) || '';
+    const idx = c.indexOf(' — ');
+    explanation = idx !== -1 ? c.slice(idx + 3) : '';
+  }
   if (correct) {
     state.streak++;
     if (state.streak > state.bestStreak) state.bestStreak = state.streak;
