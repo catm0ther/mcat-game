@@ -543,9 +543,8 @@
           scenarios: [
             'A passage states that stress exposure is inversely related to SES and asks for the correlation coefficient. The options are r = −0.50, r = −0.20, r = +0.20, r = +0.50. What is the two-step approach to answer this correctly?',
           ],
-          options: ['Step 1 — determine sign (inverse = negative → eliminate + options); Step 2 — judge magnitude (−0.50 implausibly strong, −0.20 moderate and plausible → r = −0.20)', 'Step 1 — find the option closest to zero (weakest relationship); Step 2 — pick whichever sign the question describes', 'Step 1 — always pick the positive correlation because stress is a positive real-world outcome; Step 2 — judge magnitude after', 'Step 1 — identify which choice has the highest absolute value; Step 2 — apply the correct sign'],
-          correct: 'Step 1 — determine sign (inverse = negative → eliminate + options); Step 2 — judge magnitude (−0.50 implausibly strong, −0.20 moderate and plausible → r = −0.20)',
-          wrongPool: ['Step 1 — find the option closest to zero (weakest relationship); Step 2 — pick whichever sign the question describes', 'Step 1 — always pick the positive correlation because stress is a positive real-world outcome; Step 2 — judge magnitude after', 'Step 1 — identify which choice has the highest absolute value; Step 2 — apply the correct sign', 'Step 1 — read the passage; Step 2 — pick the only statistically significant correlation among the choices'],
+          correct: 'Sign then magnitude — "inversely related" → negative; cut +0.20 and +0.50; −0.50 is implausibly strong for SES, −0.20 is moderate and realistic → r = −0.20',
+          wrongPool: ['Magnitude then sign — find the weakest option (closest to zero) first, then apply whatever sign the passage describes', 'Default positive — stress is a real-world harm so the correlation must be positive; judge size after', 'Strongest r first — pick the highest absolute value, then apply the correct sign'],
         },
       ],
       showdown: [

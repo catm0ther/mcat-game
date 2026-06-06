@@ -664,13 +664,22 @@ function renderScenarioDrop(q, header) {
   state.currentAnswers = answers;
   const c = state.cluster;
 
+  // If stripping at ' — ' would produce duplicate button labels, show full text
+  // (truncated to 120 chars) so all buttons remain distinguishable
+  const stripped = answers.map(stripExplanation);
+  const allUnique = new Set(stripped).size === stripped.length;
+  const buttonLabel = (a, i) => {
+    if (allUnique) return stripped[i];
+    return a.length > 120 ? a.slice(0, 117) + '…' : a;
+  };
+
   render(`
     <div class="screen-game" style="--zone-color:${c.color}; --zone-light:${c.lightColor || c.light}">
       ${header}
       <div class="game-body">
         <div class="scenario-card"><p class="scenario-text">${q.scenario}</p></div>
         <div class="answers-grid" id="answers">
-          ${answers.map((a, i) => `<button class="answer-btn" data-idx="${i}">${stripExplanation(a)}</button>`).join('')}
+          ${answers.map((a, i) => `<button class="answer-btn" data-idx="${i}">${buttonLabel(a, i)}</button>`).join('')}
         </div>
         <div id="feedback" class="feedback-panel hidden"></div>
       </div>
