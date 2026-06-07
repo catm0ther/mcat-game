@@ -121,7 +121,7 @@
         },
       ],
       showdown: [
-        {          
+        {
             conceptId: 'fl3-bb-ns-sd1',
             scenario: 'Negative-stem question type: EXCEPT vs LEAST',
             conceptA: 'EXCEPT → one option is factually not a member of the category',
@@ -129,7 +129,7 @@
             correct: 'LEAST → one option is least supported by evidence/logic in context',
             explanation: 'Both mean "find the outlier" but EXCEPT = categorical exclusion; LEAST = weakest evidence link. Knowing the difference prevents misapplying the strategy.',
           },
-        {          
+        {
             conceptId: 'fl3-bb-ns-sd2',
             scenario: 'When stuck on a NOT/EXCEPT question, which approach is more reliable?',
             conceptA: 'Eliminate the three that are clearly true/correct; what remains is the answer',
@@ -284,7 +284,7 @@
         },
       ],
       showdown: [
-        {          
+        {
             conceptId: 'fl3-bb-dc-sd1',
             scenario: 'Higher ATPase rate in a muscle fiber with same diameter and same load',
             conceptA: 'More force generated because ATP hydrolysis drives cross-bridge attachment',
@@ -292,7 +292,7 @@
             correct: 'More power generated because higher ATPase → faster shortening velocity → more power at same force',
             explanation: 'Diameter determines force. ATPase rate determines velocity. Power = Force × velocity, so higher ATPase → higher power, not more force.',
           },
-        {          
+        {
             conceptId: 'fl3-bb-dc-sd2',
             scenario: 'Effect of HDAC inhibitor on gene expression',
             conceptA: 'Transcription increases — inhibiting HDAC keeps acetyl groups on histones → open chromatin',
@@ -311,7 +311,7 @@
       light: '#e0f2fe',
       icon: '⚓',
       showdown: [
-        {          
+        {
             conceptId: 'fl3-bb-da-1',
             scenario: 'SDH (succinate dehydrogenase) and succinate: producer vs consumer',
             conceptA: 'SDH produces succinate from succinyl-CoA (succinate is its output)',
@@ -319,7 +319,7 @@
             correct: 'SDH consumes succinate, converting it to fumarate (succinate is its substrate)',
             explanation: 'In the TCA cycle: succinyl-CoA → succinate (succinyl-CoA synthetase), then succinate → fumarate (SDH = succinate dehydrogenase). SDH is the consumer of succinate.',
           },
-        {          
+        {
             conceptId: 'fl3-bb-da-2',
             scenario: 'Succinyl-CoA synthetase: what does it produce?',
             conceptA: 'Succinyl-CoA synthetase produces succinyl-CoA from succinate',
@@ -327,7 +327,7 @@
             correct: 'Succinyl-CoA synthetase produces succinate from succinyl-CoA',
             explanation: 'Succinyl-CoA SYNTHETASE sounds like it makes succinyl-CoA, but as a TCA enzyme it converts succinyl-CoA → succinate + GTP. It produces succinate.',
           },
-        {          
+        {
             conceptId: 'fl3-bb-da-3',
             scenario: 'X-inactivation: when an extra X chromosome is present, what happens to it?',
             conceptA: 'The extra X is duplicated to ensure dosage balance',
@@ -335,7 +335,7 @@
             correct: 'The extra X is inactivated (Barr body formed) to achieve dosage compensation',
             explanation: 'Dosage compensation = silence the extras. One X stays active; every additional X forms a Barr body. 46,XX → 1 active, 0 Barr bodies. 47,XXX → 1 active, 2 Barr bodies.',
           },
-        {          
+        {
             conceptId: 'fl3-bb-da-4',
             scenario: 'Blood Ca²⁺ is too HIGH. How do bone cells respond?',
             conceptA: '↑ osteoclast activity to resorb bone and raise Ca further',
@@ -343,7 +343,7 @@
             correct: '↓ osteoclast + ↑ osteoblast to deposit Ca into bone and lower serum Ca',
             explanation: 'Osteoclasts CRUSH bone (release Ca). Osteoblasts BUILD bone (store Ca). To lower serum Ca: crush less, build more.',
           },
-        {          
+        {
             conceptId: 'fl3-bb-da-5',
             scenario: 'SERT (serotonin transporter) is blocked. Net effect on synaptic serotonin?',
             conceptA: 'Synaptic serotonin decreases — SERT normally releases serotonin into the synapse',
@@ -351,7 +351,7 @@
             correct: 'Synaptic serotonin increases — SERT normally clears serotonin; blocking it lets serotonin accumulate',
             explanation: 'SERT is a REUPTAKE transporter: it pulls serotonin BACK into the presynaptic terminal. Block it → serotonin stays in synapse longer → ↑ concentration.',
           },
-        {          
+        {
             conceptId: 'fl3-bb-da-6',
             scenario: 'Osmotic pressure and solute concentration: which direction?',
             conceptA: 'Higher solute concentration → lower osmotic pressure',
@@ -359,7 +359,7 @@
             correct: 'Higher solute concentration → higher osmotic pressure (π = iMRT)',
             explanation: 'π = iMRT. π is directly proportional to M. More solute = more particles = more osmotic pressure. The relationship is direct, not inverse.',
           },
-        {          
+        {
             conceptId: 'fl3-bb-da-7',
             scenario: 'Intestinal villi: absorption surface vs propulsion',
             conceptA: 'Villi primarily drive peristalsis and propel luminal contents',
@@ -367,7 +367,7 @@
             correct: 'Villi primarily expand absorptive surface area; propulsion is driven by smooth muscle in the muscularis',
             explanation: 'Villi = finger-like projections that maximize surface area for absorption. Movement = circular and longitudinal smooth muscle layers in the muscularis externa.',
           },
-        {          
+        {
             conceptId: 'fl3-bb-da-8',
             scenario: 'Work (W = F·d) vs power (P = W/t) when only ATPase rate differs',
             conceptA: 'Higher ATPase rate increases force and therefore increases work',

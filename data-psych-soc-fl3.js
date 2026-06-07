@@ -173,7 +173,7 @@
         },
       ],
       showdown: [
-        {          
+        {
             conceptId: 'fl3-ps-bi-sd1',
             scenario: 'Research goal: localize which brain region is active during emotion regulation',
             conceptA: 'MRI — best spatial resolution among all scanners',
@@ -181,7 +181,7 @@
             correct: 'fMRI — measures activity (BOLD signal) with good spatial resolution; MRI images structure only',
             explanation: 'MRI = anatomy. fMRI = function. Activity questions require fMRI or PET, never plain MRI or CT.',
           },
-        {          
+        {
             conceptId: 'fl3-ps-bi-sd2',
             scenario: 'Which has better temporal resolution for catching a 50 ms neural event?',
             conceptA: 'fMRI — BOLD signal peaks ~5 seconds after neural activity, giving second-level resolution',
@@ -295,7 +295,7 @@
         },
       ],
       showdown: [
-        {          
+        {
             conceptId: 'fl3-ps-gi-sd1',
             scenario: 'Group scenario: members discuss → final position is more extreme than initial individual positions',
             conceptA: 'Groupthink — the group is suppressing dissent to reach consensus',
@@ -303,7 +303,7 @@
             correct: 'Group polarization — discussion amplifies the dominant initial tendency toward a more extreme position',
             explanation: 'Groupthink is about suppressing dissent to maintain harmony, often resulting in bad decisions. Polarization is specifically about the post-discussion shift toward extremity — it requires initial lean + like-minded discussion.',
           },
-        {          
+        {
             conceptId: 'fl3-ps-gi-sd2',
             scenario: 'Expert swimmer with an audience: performance improves on a well-rehearsed race',
             conceptA: 'Deindividuation — the crowd absorbs her identity and she performs more freely',
@@ -379,13 +379,13 @@
         },
       ],
       showdown: [
-        {          
+        {
             conceptId: 'fl3-ps-cpa-sd1',
             scenario: 'Researchers find that one specific generation (born 1965-1980) has higher divorce rates than other generations at the same age',
             conceptA: 'Period effect — the historical context of that era affected only this birth group',
             conceptB: 'Cohort effect — the shared formative experiences of this generation account for the difference, not the historical moment affecting all current age groups',
             correct: 'Cohort effect — the shared formative experiences of this generation account for the difference, not the historical moment affecting all current age groups',
-            explanation: 'Cohort = difference specific to one birth group\',
+            explanation: 'Cohort = difference specific to one birth group\'s formative experiences. Period = a historical moment shifts ALL age groups at once. "One specific generation" = cohort.',
           },
       ],
     },
@@ -455,7 +455,7 @@
         },
       ],
       showdown: [
-        {          
+        {
             conceptId: 'fl3-ps-ml-sd1',
             scenario: 'Schools teach children punctuality and deference to authority through daily structure — the "hidden curriculum"',
             conceptA: 'Manifest function — socialization is a well-known outcome of schooling, so it must be intended',
@@ -548,7 +548,7 @@
         },
       ],
       showdown: [
-        {          
+        {
             conceptId: 'fl3-ps-dc-sd1',
             scenario: 'After 5 nights of REM deprivation, what happens on the first unrestricted sleep night?',
             conceptA: 'REM is reduced — the sleep system has adapted to function without it',
@@ -642,7 +642,7 @@
         },
       ],
       showdown: [
-        {          
+        {
             conceptId: 'fl3-ps-ee-sd1',
             scenario: 'Hypothesis: empathy and perspective-taking are separate. Which finding BEST supports it?',
             conceptA: 'Both skills correlate at r = +0.60 across a large sample',
@@ -650,7 +650,7 @@
             correct: 'Patients with vmPFC damage show impaired empathy but intact perspective-taking on neuropsychological testing',
             explanation: 'Correlation (A) is consistent with both separation AND overlap. A selective neurological dissociation (B) proves the skills can operate independently — the strongest possible evidence for separability.',
           },
-        {          
+        {
             conceptId: 'fl3-ps-ee-sd2',
             scenario: 'Challenge to social construction of race: which finding is stronger?',
             conceptA: 'People self-identify race differently than an interviewer classifies them — showing race is perceived inconsistently',
@@ -725,7 +725,7 @@
         },
       ],
       showdown: [
-        {          
+        {
             conceptId: 'fl3-ps-fi-sd1',
             scenario: 'Three therapy groups, all below clinical threshold at 6 months, no * markers. Can Group A be called the best therapy?',
             conceptA: 'Yes — Group A was significantly superior at 2 months, and that advantage defines the best therapy overall',
